@@ -1,0 +1,237 @@
+\documentclass[letterpaper]{article}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{epsfig,float,alltt}
+\usepackage{psfrag,xr}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+%\usepackage{mathtools}
+
+\begin{document}
+
+\newcommand{\trace}{\mathrm{trace}}
+\newcommand{\real}{\mathbb R}  % real numbers  {I\!\!R}
+\newcommand{\nat}{\mathbb R}   % Natural numbers {I\!\!N}
+\newcommand{\cp}{\mathbb C}    % complex numbers  {I\!\!\!\!C}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\mf}[2]{\frac{\ds #1}{\ds #2}}
+\newcommand{\book}[2]{{Luenberger, Page~#1, }{Prob.~#2}}
+\newcommand{\spanof}[1]{\textrm{span} \{ #1 \}}
+\parindent 0pt
+
+
+\begin{center}
+{\large \bf HW \# 03 Solutions}
+\end{center}
+
+\vspace*{1cm}
+
+%Prob. 1 Span
+\noindent \textbf{Problem 1:}  Let $X = \spanof{S_1 \cup S_2}$ and $Y = \spanof{S_1}+\spanof{S_2}$. We need to show that $X\subset Y$ and $ Y \subset X$, because this is equivalent to $X=Y$. We denote the field by $\mathcal{F}$.
+\medskip \\
+\underline{Claim 1}: $X \subset Y$.
+\medskip \\
+\underline{Proof}: Let $x \in \spanof{S_1 \cup S_2}$. Then $\exists v_1, ..., v_k \in S_1$ and $ w_1, ..., w_m \in S_2$, as well as $\alpha_1, ..., \alpha_k \in \mathcal{F}$ and $\beta_1, ..., \beta_m \in \mathcal{F}$ such that
+$$X = \sum \limits_{i=1}^{k}\alpha_i v_i+\sum \limits_{i=1}^{m}\beta_i w_i.$$\\
+We observe, by definition of $\spanof{S_1}$ and $\spanof{S_2}$, that $\sum \limits_{i=1}^{k}\alpha_i v_i \in \spanof{S_1}$ and
+$\sum \limits_{i=1}^{m}\beta_i w_i \in \spanof{S_2}$.\\
+
+Therefore, by the definition of the sum of two subspaces,
+$$X = \sum \limits_{i=1}^{k}\alpha_i v_i+\sum \limits_{i=1}^{m}\beta_i w_i \in  \spanof{S_1}+\spanof{S_2}=Y.$$
+\medskip \\
+\underline{Claim 2}: $Y \subset X$.
+\medskip \\
+\underline{Proof}: $y\in Y$ means there exists $y_1 \in \spanof{S_1}$ and $y_2 \in \spanof{S_2}$ such that $y = y_1 +y_2$. $y_1 \in \spanof{S_1}$ implies there exist $\bar{\alpha}_1,...,\bar{\alpha}_{\bar{k}} \in \mathcal{F}$ and $ \bar{v}_1,...,\bar{v}_{\bar{k}} \in S_1$, such that
+$$y_1 = \sum\limits_{i=1}^{\bar{k}} \bar{\alpha}_i \bar{v}_i.$$
+Similarly, there exist $\bar{\beta}_1, ...,\bar{\beta}_{\bar{m}} \in \mathcal{F}$ and $\bar{w}_1, ...,\bar{w}_{\bar{m}} \in S_2$, such that
+$$y_2 = \sum\limits_{i=1}^{\bar{m}} \bar{\beta}_i \bar{w}_i.$$
+Therefore, $y=y_1+y_2$ is a linear combination of elements of $S_1 \cup S_2$ and thus $y\in\spanof{S_1 \cup S_2}=X$. \hfill $\square$
+
+\bigskip
+%Prob. 2 Linear independence
+\noindent \textbf{Problem 2:}
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item The vectors are linearly independent if, and only if, the only solution to: $$\alpha_1 \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} + \alpha_2 \begin{bmatrix} 2 \\ 1 \\ 0 \end{bmatrix} + \alpha_3 \begin{bmatrix} 1 \\ 5 \\ 9 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}$$
+is $\alpha_1 = \alpha_2 = \alpha_3 = 0.$ \\
+The above is equivalent to:
+$$\underbrace{\left[ \begin{array}{ccc}1 & 2 & 1 \\ 2 & 1 & 5 \\ 3 & 0 & 9 \end{array} \right]}_{det=0} \begin{bmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}. $$
+Because the determinant is zero, there is non-trivial solution. Indeed,
+$$\begin{aligned}3\begin{bmatrix} 1\\2\\3 \end{bmatrix} - \begin{bmatrix} 2\\1\\0 \end{bmatrix} &- \begin{bmatrix} 1\\5\\9 \end{bmatrix} = \begin{bmatrix} 0\\0\\0 \end{bmatrix}, \\ (\alpha_1 = 3, ~~\alpha_2 = &-1,~~ \alpha_3 = -1) \end{aligned}$$
+and thus the set is \underline{linearly dependent}.
+
+\item $\real^3$ has dimension 3, and thus any set of 4 vectors must be \underline{linearly dependent}. We do not need to do any further calculations.
+
+\item $\hfill \alpha_1 \begin{bmatrix} 3 \\ 2 \\ 1 \end{bmatrix} + \alpha_2 \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} + \alpha_3 \begin{bmatrix} 2 \\ 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} \hfill$ \\
+if, and only if,
+$$\underbrace{\left[ \begin{array}{ccc}3 & 1 & 2 \\ 2 & 0 & 1 \\ 1 & 0 & 0 \end{array} \right]}_{det=1\neq0 } \begin{bmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}. $$
+
+$\therefore$ Only solution is $\alpha_1=\alpha_2=\alpha_3=0$ and the vectors are \underline{linearly independent}.
+\end{enumerate}
+
+%Prob. 3 Linear independence
+\noindent \textbf{Problem 3:} Suppose that
+$$\alpha \left[\begin{array}{cc}1&2\\2&1\end{array}\right]+\beta \left[\begin{array}{cc}2&1\\1&1\end{array}\right]+\gamma \left[\begin{array}{cc}4&-1\\-1&1\end{array}\right]=\left[\begin{array}{cc}0&0\\0&0\end{array}\right].$$
+This is equivalent to:
+$$\begin{aligned}
+\alpha+2\beta+4\gamma&=0\\
+2\alpha+\beta-\gamma&=0\\
+\alpha+\beta+\gamma&=0\end{aligned}$$
+(There are only 3 equations because the matrices are \underline{SYMMETRIC})\\
+which can be written in matrix form as ,
+$$\underbrace{\left[ \begin{array}{ccc}1 & 2 & 4 \\ 2 & 1 & -1 \\ 1 & 1 & 1 \end{array} \right]}_{det=0 } \begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}. $$
+Because the determinant is zero, there will exist a non-trivial solution. Indeed, one solution is
+$$\begin{bmatrix}
+\alpha\\ \beta \\ \gamma
+\end{bmatrix} = \begin{bmatrix}
+2\\-3\\1
+\end{bmatrix}$$
+Hence, the set is \underline{linearly dependent}.
+\bigskip
+
+%Prob. 4 Span
+\noindent \textbf{Problem 4:}
+\medskip \\
+\underline{Claim}: Let $Y \subset X$ be a subspace and $S\subset Y$. Then $ \spanof{S}\subset Y$.
+\medskip \\
+\underline{Proof}: From the definition of span, if $S_1\subset S_2$, then $\spanof{S_1}\subset\spanof{S_2}$. Also, if $Y$ is a subspace, then $\spanof{Y}=Y$. Putting these two observations together we have\\
+\null\hfill$S\subset Y$, $Y$ a subspace $\implies \spanof{S}\subset Y$. \hfill $\square$
+\bigskip
+\newpage
+
+%Prob. 5 Direct Sums
+\noindent \textbf{Problem 5:}
+\medskip \\
+$(a) \implies (b)$:\\
+Suppose $x\in V+W$ is written as
+$$x=v_1+w_1,$$
+and as
+$$x=v_2+w_2,$$
+where $v_1, \; v_2 \in V$ and $w_1, \; w_2 \in W$.\\
+\underline{To Show}: $v_1=v_2$ and $w_1=w_2$.
+\medskip \\
+\underline{Proof}:
+$$0=x-x=(v_1-v_2)+(w_1-w_2).$$
+Because $V$ and $W$ are subspaces,
+$$v_1-v_2\in V~~ \text{and}~~ w_1-w_2\in W .$$
+Because $v_1-v_2=w_2-w_1=-(w_1-w_2)$, we have
+$$v_1-v_2\in W~~\text{and}~~ w_1-w_2\in V.$$
+Hence,
+$$(v_1-v_2)\in V \cap W ~~\text{and}~~ (w_1-w_2)\in V\cap W.$$
+However, $V\cap W=\left\lbrace 0 \right\rbrace$, and thus $v_1-v_2=0$ and $w_1-w_2=0$, which is what we needed to show. \hfill $\square$
+\bigskip \\
+$(b) \implies (a)$:\\
+In order to prove $(b)\implies (a)$, we will prove that $\sim(a)\implies \sim(b).$
+$$\begin{aligned}\sim(a)\Leftrightarrow \exists u\in V \cap W~~ &\text{with}~~ u \neq 0. \\
+\sim(b)\Leftrightarrow \exists x\in V+W ~~ &\text{that can be expressed in at least two}\\& \text{different ways (i.e., NOT UNIQUE)} .\end{aligned} $$
+
+Because $x\in V+W$, $\exists v\in V$ and $w\in W$ such that $x=v+w$. We have that
+$$x=v+w+u-u=(v+u)+(w-u)$$
+also holds. Moreover, because $u\in V\cap W$, and because $V$ and $W$ are subspaces, we have that $v+u\in V$ and $w-u\in W$. Because $u\neq 0$, we have that
+$$v\neq v+u~~ \text{and}~~ w\neq w-u.$$
+$\therefore x=v+w$ and $x=(v+w)+(w-u)$ are distinct ways of expressing $x$ as a sum of elements from $V$ and $W$, and thus the representation is not unique. \hfill $\square$
+\bigskip \\
+
+%Prob. 6 Bases
+\noindent \textbf{Problem 6:} Let $v^1=\begin{bmatrix} 1\\2\\-1\\3 \end{bmatrix}, ~~ v^2=\begin{bmatrix} 1\\0\\0\\2 \end{bmatrix}, ~~ v^3=\begin{bmatrix} 2\\8\\-4\\8 \end{bmatrix}, ~~ v^4=\begin{bmatrix} 1\\1\\1\\1 \end{bmatrix}, ~~ v^5=\begin{bmatrix} 3\\3\\0\\6 \end{bmatrix}$.\\
+We observe that
+\medskip\\
+$\bullet$ $\left\lbrace v^1, v^2 \right\rbrace$ linearly independent.
+\medskip\\
+$\bullet$ $v^3=4v^1-2v^2$.
+\medskip\\
+$\bullet$ $\left\lbrace v^1, v^2, v^4\right\rbrace$ linearly independent.
+\medskip\\
+$\bullet$ $v^5=v^1+v^2+v^4$.
+\medskip\\
+$\bullet$ $\spanof{v^1, v^2, v^3, v^4, v^5} = \spanof{v^1, v^2, v^4}$, and $\left\lbrace v^1, v^2, v^4\right\rbrace$ is linearly independent.
+\medskip\\
+$\therefore$ dimension is 3. $\hfill \square$
+\bigskip \\
+
+%Prob. 7 Representation of a vector
+\noindent \textbf{Problem 7:}We write
+$$x=\alpha_1 u_{1s}+\alpha_2 u_{2s}+\alpha_3 u_{3s}$$
+and solve for the coefficients. Hense,
+$$\begin{aligned}\begin{bmatrix} 8\\7\\4 \end{bmatrix} &= \left[\begin{array}{ccc}1&1&1\\1&2&2\\1&2&3 \end{array}\right] \begin{bmatrix}\alpha_1\\\alpha_2\\\alpha_3 \end{bmatrix}, \\
+\begin{bmatrix}\alpha_1\\\alpha_2\\\alpha_3 \end{bmatrix}&=\left[\begin{array}{ccc}1&1&1\\1&2&2\\1&2&3 \end{array}\right]^{-1}\begin{bmatrix} 8\\7\\4 \end{bmatrix}=\begin{bmatrix} 9\\2\\-3 \end{bmatrix}. \end{aligned}$$
+
+$\therefore \left[x\right]_u=\begin{bmatrix} 9\\2\\-3 \end{bmatrix}$.
+\bigskip \\
+
+%Prob. 8 Change of basis matrix
+\noindent \textbf{Problem 8:} Let the change of basis matrices be
+$$P = [P_1|P_2|P_3],$$ where $P_i=[e_i]_u\;$, and
+$$\bar{P}=[\bar{P}_1|\bar{P}_2|\bar{P}_3],$$
+where $\bar{P}_i = [u_{is}]_{\left\lbrace e_1, e_2, e_r\right\rbrace}=[u_{is}]_e\;$.\\
+
+We compute
+$$\bar{P_1}=\begin{bmatrix} 1\\1\\1 \end{bmatrix},~~\bar{P_2}=\begin{bmatrix} 1\\2\\2 \end{bmatrix}, ~~ \bar{P_3}=\begin{bmatrix} 1\\2\\3 \end{bmatrix},$$
+and thus
+$$P=\bar{P}^{-1}=\left[\begin{array}{ccc}1&1&1\\1&2&2\\1&2&3\end{array}\right]^{-1}=\left[\begin{array}{ccc} 2&-1&0\\-1&2&-1\\0&-1&1\end{array}\right].$$
+
+\underline{Remark}:
+$$[x]_u=P[x]_e=\left[\begin{array}{ccc} 2&-1&0\\-1&2&-1\\0&-1&1\end{array}\right]\begin{bmatrix} 8\\7\\4 \end{bmatrix}=\begin{bmatrix} 9\\2\\-3 \end{bmatrix},$$
+which is consistent with our answer in Prob. 7. \hfill $\square$
+\bigskip \\
+
+\newpage
+%Prob. 9 
+\noindent \textbf{Problem 9:}
+
+Let the change of basis matrices be
+$$P = [P_1|P_2],$$ where $P_i=[u^W_i]_{u^R}\;$,and
+$$\bar{P}=[\bar{P}_1|\bar{P}_2],$$
+where $\bar{P}_i = [u^R_i]_{u^W}$.\\
+
+Using trigonometry we know 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.4\linewidth]{Robot_change_of_basis.pdf}
+\end{figure}
+Thus,
+$$\bar{P_1}=\begin{bmatrix} \cos\theta\\\sin\theta \end{bmatrix},~~\bar{P_2}=\begin{bmatrix} -\sin\theta\\\cos\theta \end{bmatrix},$$
+
+$$P=\bar{P}^{-1}=\begin{bmatrix} \cos\theta & -\sin\theta \\\sin\theta & \cos\theta \\\end{bmatrix}^{-1} = \begin{bmatrix} \cos\theta & \sin\theta \\-\sin\theta & \cos\theta \\\end{bmatrix} $$
+
+
+%Prob. 10 Extra practice
+\noindent \textbf{Problem 10:}(Do not turn in)
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item We need to show that $\left\lbrace M_1,\;M_2, \;M_3, \;M_4 \right\rbrace$ is linearly independent. Hence, consider
+$$\alpha_1 M_1+\alpha_2 M_2 +\alpha_3 M_3+\alpha_4 M_4 = \left[\begin{array}{cc} 0&0\\0&0 \end{array}\right].$$
+Then
+$$\left[\begin{array}{cc} 0&\alpha_1\\\alpha_1&0 \end{array}\right]+\left[\begin{array}{cc} 0&-\alpha_2\\\alpha_2&0 \end{array}\right]+\left[\begin{array}{cc} \alpha_3&0\\0&\alpha_3 \end{array}\right]+\left[\begin{array}{cc} \alpha_4&0\\0&-\alpha_4 \end{array}\right]=\left[\begin{array}{cc} 0&0\\0&0 \end{array}\right].$$
+\medskip\\
+Hence, we have
+$$\begin{aligned} \alpha_3+\alpha_4&=0\,,\\ \alpha_1-\alpha_2&=0\,,\\ \alpha_1+\alpha_2&=0\,,\\ \alpha_3-\alpha_4&=0\,. \end{aligned}$$
+That is
+$$\left[\begin{array}{cc}1&-1\\1&1\end{array}\right] \begin{bmatrix} \alpha_1\\\alpha_2 \end{bmatrix} = \begin{bmatrix} 0\\0 \end{bmatrix},$$
+and
+$$\left[\begin{array}{cc}1&1\\1&-1\end{array}\right] \begin{bmatrix} \alpha_3\\\alpha_4 \end{bmatrix} = \begin{bmatrix} 0\\0 \end{bmatrix}.$$
+Because both matrices are non-singular, we deduce that the \underline{only} solution is $\alpha_1=\alpha_2=\alpha_3=\alpha_4=0$, and thus the set is linearly independent.
+
+\item We write
+$$A=\alpha_1 M_1+\alpha_2 M_2 +\alpha_3 M_3+\alpha_4 M_4 $$
+Using our work from part (a), we deduce that
+$$\begin{aligned} \alpha_3+\alpha_4&=1\,,\\ \alpha_1-\alpha_2&=2\,,\\ \alpha_1+\alpha_2&=3\,,\\ \alpha_3-\alpha_4&=4\,. \end{aligned}$$
+Hence,
+$$\left[\begin{array}{cc}1&-1\\1&1\end{array}\right] \begin{bmatrix} \alpha_1\\\alpha_2 \end{bmatrix} = \begin{bmatrix} 2\\3 \end{bmatrix},$$
+and
+$$\left[\begin{array}{cc}1&1\\1&-1\end{array}\right] \begin{bmatrix} \alpha_3\\\alpha_4 \end{bmatrix} = \begin{bmatrix} 1\\4 \end{bmatrix}.$$
+Which yields
+$$\begin{aligned}\alpha_1&=2\frac{1}{2}\,,\\\alpha_2&=\frac{1}{2}\,,\\\alpha_3&=2\frac{1}{2}\,,\\\alpha_4&=-1\frac{1}{2}\,.\end{aligned}$$
+That is,
+$$[A]_M = \begin{bmatrix} 2.5\\0.5\\2.5\\-1.5 \end{bmatrix}.$$
+
+\end{enumerate}
+\end{document}
+
+
+
+

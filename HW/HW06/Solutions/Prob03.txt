@@ -1,0 +1,36 @@
+\begin{verbatim}
+    A=diag([1 0.5 0.5 1 0.5]);
+    B=[1 0 2 0 3]';
+    C=0.2; D=B';
+    AplusBCD=A+B*C*D;
+    invA=inv(A);
+    [InvAplusBCD] = MatInvLemma(invA,B,C,D);
+    test=AplusBCD*InvAplusBCD 
+
+    test =
+
+    1.0000         0         0         0    0.0000
+         0    1.0000         0         0         0
+   -0.0000         0    1.0000         0    0.0000
+         0         0         0    1.0000         0
+         0         0    0.0000         0    1.0000
+
+
+
+function [InvAplusBCD] = MatInvLemma(invA,B,C,D)
+%
+% A, B, C, D are matrices of compatible dimensions so that
+% A+BCD makes sense. 
+%
+% inv(A) = invA is assumed to be provided to us because we 
+% typically use this function in a recursuive process
+%
+% We also assume (and do check) that C is invertible. 
+%
+if cond(C) < 1e-8
+    InvAplusBCD=[];
+else
+    InvAplusBCD=invA-invA*B*inv(inv(C)+D*invA*B)*D*invA;
+end
+end
+\end{verbatim}

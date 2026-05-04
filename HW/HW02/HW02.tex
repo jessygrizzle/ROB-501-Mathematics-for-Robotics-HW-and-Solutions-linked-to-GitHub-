@@ -1,0 +1,176 @@
+\documentclass[letterpaper]{article}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{epsfig,float,alltt}
+\usepackage{psfrag,xr}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\author{Prof. Grizzle}
+\title{Rob 501 - Mathematics for Robotics\\
+HW \#2}
+
+\begin{document}
+\date{}
+\maketitle
+
+
+ \newcommand{\trace}{\mathrm{trace}}
+\newcommand{\real}{\mathbb R}  % real numbers  {I\!\!R}
+\newcommand{\nat}{\mathbb N}   % Natural numbers {I\!\!N}
+\newcommand{\cp}{\mathbb C}    % complex numbers  {I\!\!\!\!C}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\mf}[2]{\frac{\ds #1}{\ds #2}}
+\newcommand{\book}[2]{{Luenberger, Page~#1, }{Prob.~#2}}
+\newcommand{\Nagy}[2]{{Nagy, Page~#1, }{Prob.~#2}}
+\newcommand{\spanof}[1]{\textrm{span} \{ #1 \}}
+\parindent 0pt
+
+
+\begin{flushright}
+{\bfseries Due Sept. 20, 2018} \\
+{\bfseries 3PM via Gradescope} \\[3mm]
+\end{flushright}
+
+\noindent \textbf{Preliminaries:} \\
+Review logic symbols here: \url{http://en.wikipedia.org/wiki/List_of_logic_symbols} \\
+Read about truth tables here:\\
+\url{http://sites.millersville.edu/bikenaga/math-proof/truth-tables/truth-tables.html}
+
+
+%\noindent \textbf{Terminology:} Any function from a set $S$ to the
+%real numbers is often called a functional. ${\rm ker}~f$ is the
+%nullspace of $f$. $\spanof {x} = [x]$.
+
+\begin{enumerate}
+
+%Prob. 1 Negation
+\item Negate the following statements. For each one, construct a truth table to prove that your negation is correct. Note that "or" in logic is always non-exclusive!
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item  (P $\land$ Q)
+
+\item (P $ \lor$ Q)
+
+\end{enumerate}
+
+%Prob. 2 Negation
+
+\item Negate the following statements. No truth table is required. You do not have to provide your steps. It is enough to just give an answer.
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+
+\item  For every integer $n$, $2n+1$ is odd.
+
+\item For some integer $n$, $2^n + 1$ is prime.
+
+\item Let $A$ be an $n \times n$ real matrix and $ \lambda \in \real$ . Statement: $\exists~v\in \real^n, ~ v\not= 0,$ such that $Av = \lambda v$.
+
+\item  Let $f: \real \to \real$ be a function. Statement: $\forall~\eta>0,~\exists~\delta>0$ such that $|x| \le \delta~\implies |f(x)| \le \eta |x|$
+
+\end{enumerate}
+
+
+%Prob. 3 Proof by contradiction
+\item Prove that $\sqrt{7}$ is irrational. In your proof, you may use as \textbf{true} the following statement: ``Let $m$ be an integer. If 7 divides $m^2$, then 7 also divides $m$.''
+
+
+
+%Prob. 4 Proof by contrapositive
+\item Let $A$ be a square matrix. Prove: If  $\det(A) = 0 $, then $A$ is not invertible.\\
+
+\textbf{Remark:}
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item As part of your solution, look up the definition of an inverse of  a matrix and write it down carefully.
+\item You may use as known: $\det(AB) = \det(A) \det(B)$ for square matrices of the same size.
+\end{enumerate}
+
+%Prob. 5 Proof by induction
+\item Prove that, for all integers $n \ge 1$, $\sum \limits_{k=1}^{n} \frac{1}{k(k+1)} = \frac{n}{n+1}$.
+
+%Prob. 6 Proof by induction
+\item These use strong induction:
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item  Prove that, for all integers $n \ge 12$, there exist non-negative integers $k_1$ and $k_2$ such that $n=k_1 4 + k_2 5$. Is the same statement true for $n \ge 8$?
+
+\item Prove that, for all \underline{even} integers $n\ge 6$, there exist non-negative integers $k_1$ and $k_2$ such that $n=k_1 3 + k_2 5$.
+
+\end{enumerate}
+
+\newpage
+
+%Prob. 7 Lagrange Multipliers
+\item \textbf{More Lagrange Multipliers:} Let $M$ be an $n \times n$ real symmetric matrix. Use the method of Lagrange multipliers to do the following
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item For $x\in \real^n$, solve $\max~x^\top M x$, subject to the constraint, $x^\top x = 1$. Find both the maximum value and an $x$ that solves the problem.
+
+\item For $x\in \real^n$, solve $\min~x^\top M x$, subject to the constraint, $x^\top x = 1$. Find both the minimum value and an $x$ that solves the problem.
+
+\end{enumerate}
+
+%\noindent \textbf{Note:} The result of this problem shows that for all $x\in \real^n$, the following inequalities hold:
+%$$ \lambda_{min} ~x^\top x \le x^\top M x \le \lambda_{max} ~x^\top x$$
+
+%Prob. 8 Vector spaces and subspaces
+\item \Nagy{117}{4.1.1}. Note that the $x_i$ are components of the vector, namely
+$$x = \left[ \begin{array}{c} x_1 \\ x_2 \\ \vdots \\ x_n \end{array} \right] $$
+
+
+
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+{\bf Hints}
+\end{center}
+
+\noindent \textbf{Hints: Prob. 2} For (c) and (d), you may find it easier to replace the symbols $\forall$ and $\exists$ by appropriate words in English BEFORE you negate the statement. Once you have negated the statement expressed in English, reinsert the symbolic expression as appropriate. With practice, you can skip this intermediate step. \\
+
+In (d), there is an implied quantifier.  Here is an equivalent statement that I will call (d') Let $f: \real \to \real$ be a function. Statement: (d') $\forall~\eta>0,~\exists~\delta>0$ such that $\forall x\in \real$ satisfying $|x| \le \delta$ it is true that $|f(x)| \le \eta |x|$ \\
+
+Another way to think about the statement: Let $A_\delta:=\{x\in \real~| ~ |x|\le \delta \}$.\\
+
+(d'') $\forall~\eta>0,~\exists~\delta>0$ such that $x\in A_\delta$  implies $|f(x)| \le \eta |x|$
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 3} Definition: An integer $m$ divides an integer $n$ if there exists an integer $k$ such that $n = m k$.
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 5} Write down carefully $P(n)$, followed by the base case, the induction step, and what is to be shown. Then the problem becomes easy.
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 6}   (a) is worked in the handout, except for the part about $n\ge 8$. For (b), you should really try to do it without any further help.
+
+\vspace{1cm}
+
+
+\noindent \textbf{Hints: Prob. 7}
+\begin{itemize}
+\item No additional hints given in Office Hours! This can be a hard problem. If you get it, great! If not, no big deal, study the solution and remember the answer. We will use the result later in the term. This could have been part of HW 1, but I wanted to keep the initial HW set as short as possible.
+    \item $x$ is a column vector and thus $x^\top M x$ is a scalar.
+    \item When you form your Lagrange function, write it as $x^\top M x + \lambda (1 -x^\top x)$.
+\item Eigenvalues of real symmetric matrices are real; the eigenvectors are real too. You can easily find proofs of this on the web.
+\item Because the eigenvalues are real and finite in number, there exists a largest eigenvalue, denoted $\lambda_{max}$, and a smallest eigenvalue, denoted $\lambda_{min}$.
+\item For a symmetric matrix $M$, $\frac{\partial }{\partial x} (x^\top M x) = 2 M x$, where we are writing the gradient as a column vector, with $i$-th entry $\frac{\partial }{\partial x_i} (x^\top M x)$. Though we are not doing so here, it is often more convenient to write it as a row vector, in which case $\frac{\partial }{\partial x} (x^\top M x) = 2 x^\top M $ (recall that $M$ is symmetric).
+%\item For a scalar $\lambda$, $\lambda x^\top x = \lambda x^\top I_n x$ where $I_n$ is the $n \times n$ identity matrix.
+
+\end{itemize}
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 8} Be very brief when giving reasons. For example (a) Not a subspace. \textit{Reason:} Not closed under multiplication by a constant, such as $-1$.
+
+
+\end{document}
+

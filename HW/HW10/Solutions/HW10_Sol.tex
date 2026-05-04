@@ -1,0 +1,249 @@
+\documentclass[letterpaper]{article}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{epsfig,float,alltt}
+\usepackage{psfrag,xr}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage{float}
+
+\begin{document}
+
+\newcommand{\trace}{\mathrm{trace}}
+\newcommand{\real}{\mathbb R}  % real numbers  {I\!\!R}
+\newcommand{\nat}{\mathbb R}   % Natural numbers {I\!\!N}
+\newcommand{\cp}{\mathbb C}    % complex numbers  {I\!\!\!\!C}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\mf}[2]{\frac{\ds #1}{\ds #2}}
+\newcommand{\book}[2]{{Luenberger, Page~#1, }{Prob.~#2}}
+\newcommand{\spanof}[1]{\textrm{span} \{ #1 \}}
+\parindent 0pt
+
+
+\begin{center}
+{\large \bf HW \# 10 Solutions}
+\end{center}
+
+\vspace*{1cm}
+
+\begin{enumerate}
+%Prob. 1   Under determined continued
+\item \noindent \textbf{Problem 1:}
+
+$$\left\Vert x\right\Vert _{\infty} = \max\limits_{i}|x_{i}| \le \sum_{i=1}^{n}|x_{i}|=\left\Vert x\right\Vert _{1}$$
+$$\left\Vert x\right\Vert _{1}=\sum_{i=1}^{n}|x_{i}| \le \sum_{i=1}^{n} \max\limits_{i}\left\Vert x\right\Vert = n \left\Vert x_{i}\right\Vert _{\infty}$$
+$$\left\Vert x\right\Vert _{2}=\sqrt{\sum_{i=1}^{n}x_{i}^2} \le \sqrt{\sum_{i=1}^{n} \max\limits_{i} x_{i}^2} = \sqrt{\sum_{i=1}^{n} \left(\max\limits_{i} |x_{i}|\right)^2} = \sqrt{n\left\Vert x\right\Vert _{\infty}^2} = \sqrt{n}\left\Vert x\right\Vert _{\infty} $$
+$$\left\Vert x\right\Vert _{2}=\sqrt{\sum_{i=1}^{n}x_{i}^2} \ge \sqrt{ \max\limits_{i} |x_{i}|^2} = \sqrt{ \left(\max\limits_{i} |x_{i}|\right)^2} = \left\Vert x\right\Vert _{\infty} $$
+$$\left\Vert x\right\Vert _{2}^2 =\sum_{i=1}^{n}x_{i}^2 \le \max\limits_{i} |x_{i}| \sum_{i=1}^{n}|x_{i}|=\left\Vert x\right\Vert _{\infty}\left\Vert x\right\Vert _{1}$$
+Since $\left\Vert x\right\Vert _{\infty} \le \left\Vert x\right\Vert _{2}$, we have $$\left\Vert x\right\Vert _{2} \le \left\Vert x\right\Vert _{1}$$
+for $x\not=0$. Clearly, the inequality is valid also at $x=0$. Finally, using the inequality
+$$2ab \le a^2 + b^2$$
+it can be shown by induction that $\left\Vert x\right\Vert_{1} \le \sqrt{n}\left\Vert x\right\Vert_{2}$. For suppose
+$$ \left(\sum_{i=1}^{n-1}|x_{i}|\right)^2 \le (n-1)\sum_{i=1}^{n-1} x_{i}^{2}$$
+then
+$$\begin{aligned}
+\left(\sum_{i=1}^{n}|x_{i}|\right)^2 &= \left(\sum_{i=1}^{n-1}|x_{i}|\right)^2 + 2|x_{n}|\left(\sum_{i=1}^{n-1}|x_{i}|\right) + |x_{n}|^2 \\
+&\le (n-1)\sum_{i=1}^{n-1}x_{i}^{2}+\sum_{i=1}^{n-1}(|x_{n}|^2 + |x_{i}|^2) + |x_{n}|^2 \\
+&=n\sum_{i=1}^{n}x_{i}^{2}
+\end{aligned}$$
+\\
+
+\underline{Alternative way of showing that $\forall x\in \real^{n}, \left\Vert x\right\Vert_{1} \le \sqrt{n} \left\Vert x\right\Vert _{2}$}\\
+
+Suppose that $\forall x\in \real^{n},~\left\Vert x\right\Vert_{1} \le K\left\Vert x\right\Vert_{2}$. We seek to find the smallest $K$.
+$$\forall x \in \real^{n},~x\not=0,~K\ge \frac{\left\Vert x\right\Vert_{1}}{\left\Vert x\right\Vert_{2}}$$
+$$\therefore K \ge \max\limits_{\substack{x\in \real^{n} \\ x\not=0}}\frac{\left\Vert x\right\Vert_{1}}{\left\Vert x\right\Vert_{2}}=\max\limits_{\left\Vert x\right\Vert_{2}=1} \sum_{i=1}^{n}|x_{i}|$$
+Since for $x=(x_1 , \cdots , x_n ) \in \real^n ,~\left\Vert (|x_1| , \cdots , |x_n| )\right\Vert_{\alpha} = \left\Vert (x_1 , \cdots , x_n )\right\Vert_{\alpha},~\alpha \ge 1$, the above maximization problem is equivalent to
+$$K \ge \max\limits_{\substack{\left\Vert x\right\Vert_{2}=1 \\ x_{i} \ge 0}} \sum_{i=1}^{n}x_{i} = \max\limits_{\substack{x_{i} \ge 0 \\ \lambda \not= 0}} \sum_{i=1}^{n}x_{i} + \lambda \left(1-\sum_{i=1}^{n}(x_{i})^2\right)$$
+Using Lagrange multipliers.
+\begin{align*}
+&\therefore 0=\frac{\partial}{\partial x_{i}} \Rightarrow 1-2\lambda x_{i} =0,~i=1,2,\cdots n \\
+&\therefore 0=\frac{\partial}{\partial \lambda} \Rightarrow 1-\sum_{i=1}^{n} (x_{i})^2 =0 \\
+&\Rightarrow x_{i} = \frac{1}{2\lambda},i = 1,2,\cdots,n
+\end{align*}
+and thus, $\lambda=\dfrac{\sqrt{n}}{2}$ and $x_{i}= \dfrac{1}{\sqrt{n}}$
+$$\therefore \max\limits_{\substack{\left\Vert x\right\Vert_{2}=1 \\ x_{i} \ge 0}} \sum_{i=1}^{n}x_{i} = \frac{n}{\sqrt{n}} = \sqrt{n}$$
+$\therefore$ We can take $\boxed{K=\sqrt{n}}$. Moreover, we now know that this is the smallest possible value for $K$. \hfill$\square$
+
+
+%Prob. 2
+\item \noindent \textbf{Problem 2:}
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item  From the definition of a ball of radius $a$ and the definition of equivalent norms
+\begin{align*}
+ x\in B_a(x_0) &:=\{x\in {\cal X}~|~||x-x_0|| < a \}  \\
+ & \Rightarrow K_1 |||x-x_0||| \le ||x-x_0|| < a  \medskip \\
+ & \Rightarrow |||x-x_0||| < \frac{a}{K_1 } \\
+ &  \Rightarrow x \in \widetilde{B}_{\frac{a}{K_1}}(x_0).
+ \end{align*}
+
+ Thus, $B_a(x_0) \subset \widetilde{B}_{\frac{a}{K_1}}(x_0)$. To establish the other inclusion,
+
+\begin{align*}
+ x\in  \widetilde{B}_{\frac{a}{K_2}}(x_0). &:=\{x\in {\cal X}~|~|||x-x_0||| < \frac{a}{K_2} \}  \\
+ & \Rightarrow  ||x-x_0|| \le K_2|||x-x_0||| <K_2 \frac{a}{K_2}  \\
+ & \Rightarrow ||x-x_0|| < a \\
+ &  \Rightarrow x \in{B}_{a}(x_0).
+ \end{align*}
+
+ Thus, $\widetilde{B}_{\frac{a}{K_2}}(x_0) \subset B_a(x_0) $.
+
+\item Let $p_0\in P$ be arbitrary. Because  $P$ is open in  $({\cal X}, \real, ||\cdot ||)$, there exists $\delta>0$ such that $B_\delta(p_0) \subset P$. From part (a), we know that  $\widetilde{B}_{\frac{\delta}{K_2}}(p_0) \subset B_\delta(p_0)$, and thus  $\widetilde{B}_{\frac{\delta}{K_2}}(p_0) \subset P$, showing the $P$ is open in $({\cal X}, \real, |||\cdot |||)$. The reverse argument is the same and we do not give it.
+
+    \item  Let $(x_n)$ be Cauchy in $({\cal X}, \real, ||\cdot ||)$. We wish to show that it is Cauchy in $({\cal X}, \real, |||\cdot |||)$, that is, for each $\epsilon >0$, there exists $N<\infty$ such that for all $n,m \ge N$, $|||x_n-x_m||| < \epsilon$. We set $\bar{\epsilon}:=K_1{\epsilon}>0$. Because $(x_n)$ is Cauchy in $({\cal X}, \real, ||\cdot ||)$, there exists ${N} < \infty$ such that for all $n, m >N$, $||x_n-x_m|| < \bar{\epsilon}:=K_1{\epsilon}$. Because the norms are equivalent, we have that $|||x_n-x_m||| \le \frac{1}{K_1} ||x_n-x_m||$, and thus, for all $m, n \ge N$, $|||x_n-x_m|||< \frac{K_1{\epsilon}}{K_1} = \epsilon$, and thus the result holds. The reverse argument is the same and we do not give it.
+\end{enumerate}
+
+%Prob. 3
+\item \noindent \textbf{Problem 3:} We do the problem in two parts.
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item  \textbf{To show:} The sequence $(f(x_n))$ converges to $f(x_0)$. \\
+
+Let $\epsilon >0$ be arbitrary. Because $f$ is continuous at $x_0$, there exists $\delta>0$ such that $|x-x_0| < \delta \Rightarrow |f(x)-f(x_0)| < \epsilon$. Because $x_n \rightarrow x_0$, there exists $N < \infty$ such that $n\ge N \Rightarrow |x_n-x_0| < \delta$. Hence, for all $n \ge N$,
+$|f(x)-f(x_0)| < \epsilon$, and thus $f(x_n) \rightarrow f(x_0)$.
+
+\item  \textbf{Will exhibit:} An $\epsilon>0$ and a sequence $(x_n)$ that that for all $n\ge 1$, $|x_n-x_0| < \frac{1}{n}$ and $|f(x_n)-f(x_0)|\ge \epsilon.$ It will clearly follow that $x_n \rightarrow x_0$, but $f(x_n) \not \rightarrow f(x_0)$.\\
+
+    Because $f$ is not continuous at $x_0$, there exists some $\epsilon >0$ such that, for all $\delta>0$, there exists $x \in B_{\delta}(x_0)$ such that $|f(x) - f(x_0)| \ge \epsilon$.  We set $\delta = \frac{1}{n}$, and choose $x_n$ such that $|x_n-x_0| < \frac{1}{n}$ and $|f(x_n)-f(x_0)|\ge \epsilon.$ We are done!
+
+\end{enumerate}
+
+%Prob. 4
+\item \noindent \textbf{Problem 4:} We apply the Newton Raphson Algorithm. We obtain, with $\epsilon=1$,
+$$x_0=\left[ \begin{array}{r}  0\\ 0\end{array}\right] \Rightarrow x^* = \left[ \begin{array}{r} -1.228587399\\ 0.058778400\end{array}\right]~~\text{and}~~F(x^*) =  \left[ \begin{array}{r}  6.3048e-025\\ -4.0551e-025\end{array}\right],$$
+and
+$$x_0=\left[ \begin{array}{r}  7\\ 8\end{array}\right] \Rightarrow x^* = \left[ \begin{array}{r}1.4295339808362\\ 2.777389781624\end{array}\right]~~\text{and}~~F(x^*) =  \left[ \begin{array}{r}   -1.8302e-022\\ -1.6213e-022\end{array}\right].$$
+The maximum number of iterations was 8.\\
+
+The MATLAB code is not very elegant. I set it up so that I could easily change the function and have MATLAB compute the gradient using the Symbolic Toolbox. I am not so sure that was a great idea.
+\begin{verbatim}
+
+    syms x1 x2
+    x=[x1;x2];
+    F= [3;4]+[1 2; 3 4]*x - x*transpose(x)*[1;2]
+    x0=1*[7;8]
+
+    tic
+    [xstar,count]=NewtonRaphson(F,x,x0)
+    toc
+
+    for k = 1:length(x0)
+        Kay=num2str(k);
+        eval(['x',Kay,'=xstar(k);']);
+    end
+    subs(F)
+
+function [xstar,count]=NewtonRaphson(F,x,x0)
+%
+Jac=jacobian(F,x);Jac=simple(Jac);
+xnew=x0;
+epsilon=1;
+err=1;
+count=0;
+while err>1e-8
+    xold=xnew;
+    for k = 1:length(x0)
+        Kay=num2str(k);
+        eval(['x',Kay,'=xold(k);'])
+    end
+    J=vpa(subs(Jac),10);
+    Fval=vpa(subs(F),10);
+    xnew=xold-epsilon*(J)\Fval;
+    err=norm(double(xold-xnew));
+    count=count+1;
+    if count > 1e3, break, end
+end
+xstar=xnew;
+end
+\end{verbatim}
+
+\item \noindent \textbf{Problem 5:}
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item $$\widehat{x}=\left[ \begin{array}{r}1.40\\0.80\\0.20\\-0.40\end{array} \right]$$
+Here $H=I_{4 \times 4}$ (we can ignore the $\frac{1}{2}$ in the cost function because $f=0$)
+\begin{verbatim}
+    Ain=[1 2 3 4; 5 6 7 8], bin = [9;10]
+    Aeq=[1 1 1 1]; beq=2;
+
+    X = quadprog(eye(4),[ 0 0 0 0],Ain,bin,Aeq,beq)
+\end{verbatim}
+
+\item $$\widehat{x}=\left[ \begin{array}{r}-3.2957\\0.4005\\1.0860\\2.0591\end{array} \right]$$
+\begin{verbatim}
+    Q=diag([2 4 6 8]) + diag([1 1 1],1) +  diag([1 1 1],-1)
+    x0=[1 2 3 4]';
+    H=2*Q, f=-2*x0'*Q
+    Ain = [ 1 2 3 4; 5 6 7 8], bin=[9; 10]
+
+    X = quadprog(H,f,Ain,bin)
+    \end{verbatim}
+\end{enumerate}
+
+\item
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item In the first problem, we are minimizing the 1-norm. From lecture, the equivalent linear programming problem is
+$$ \min_{A_{in} X \le b_{in}} c X$$
+with
+$$X=\left[ \begin{array}{r}x \\ s\end{array} \right],$$
+where $s$ are the ``slack'' variables, and
+$$ c=\left[ \begin{array}{ccccc} 0 & 0 & 1 & 1 & 1  \end{array} \right],$$
+$$A_{in}=\left[ \begin{array}{rr}A & -I_{3 \times 3}  \\ -A & - I_{3 \times 3} \end{array} \right]~~\text{and}~~b_{in}=\left[ \begin{array}{r}b \\ -b\end{array} \right]$$
+
+We obtain
+
+$$\widehat{x} = \left[ \begin{array}{r}1.7209\\1.0233\end{array} \right]~\text{and}~ ||A\widehat{x} -b||_1=0.7674$$
+
+\item In the second problem, we are minimizing the max-norm. From lecture, the equivalent linear programming problem is
+
+$$ \min_{A_{in} X \le b_{in}} c X$$
+with
+$$X=\left[ \begin{array}{r}x \\ s\end{array} \right],$$
+where $s$ are the ``slack'' variables, and
+$$ c=\left[ \begin{array}{ccc} 0 & 0 & 1  \end{array} \right],$$
+$$A_{in}=\left[ \begin{array}{rr}A & \textbf{1}  \\ -A & -\textbf{1} \end{array} \right]~~~~b_{in}=\left[ \begin{array}{r}b \\ -b\end{array} \right]~~\text{and}~~ \textbf{1} = \left[ \begin{array}{r}1 \\1 \\ 1 \end{array} \right]$$
+
+We obtain
+
+$$\widehat{x} = \left[ \begin{array}{r}1.6949\\0.9322\end{array} \right]~\text{and}~ ||A\widehat{x} -b||_\infty=0.55932$$
+
+\end{enumerate}
+
+The MATLAB code follows:
+
+\begin{verbatim}
+    A=[1 2; -3 7; 4 5];
+    b=[3 2 12]';
+
+    %% L1 norm
+
+    f=[0 0 1 1 1]
+    Ain1=[A -eye(3)], bin1=b
+    Ain2=[-A,-eye(3)], bin2=-b
+
+    [X,Fval]=linprog(f,[Ain1;Ain2],[bin1;bin2])
+    xhat1=X(1:2)
+    norm(A*xhat1-b,1)
+
+    %% L infinity norm
+    f=[0 0 1]
+    Ain1=[A -ones(3,1)], bin1=b
+    Ain2=[-A,-ones(3,1)], bin2=-b
+
+    [X,Fval]=linprog(f,[Ain1;Ain2],[bin1;bin2])
+    xhatinf=X(1:2)
+    norm(A*xhatinf-b,inf)
+    \end{verbatim}
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,260 @@
+\documentclass[letterpaper]{article}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{epsfig,float,alltt}
+\usepackage{psfrag,xr}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+
+
+\begin{document}
+
+\newcommand{\trace}{\mathrm{trace}}
+\newcommand{\real}{\mathbb R}  % real numbers  {I\!\!R}
+\newcommand{\nat}{\mathbb R}   % Natural numbers {I\!\!N}
+\newcommand{\cp}{\mathbb C}    % complex numbers  {I\!\!\!\!C}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\mf}[2]{\frac{\ds #1}{\ds #2}}
+\newcommand{\book}[2]{{Luenberger, Page~#1, }{Prob.~#2}}
+\newcommand{\spanof}[1]{\textrm{span} \{ #1 \}}
+\parindent 0pt
+
+
+\begin{center}
+{\large \bf HW \# 07 Solutions}
+\end{center}
+
+\vspace*{1cm}
+
+%Prob. 1 Matrices
+\noindent \textbf{Problem 1:}
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item  $P_1$ is positive semi-definite because
+$$ \lambda_{\min}(P_1) = 0 $$
+$$P_1 = N^\top N, \text{where}~ N=\left[\begin{array}{rr} 1 & 3\end{array} \right].$$
+Also OK to say $N=\left[ \begin{array}{rr}  0&   0\\  1&   3\end{array} \right].$ In fact, there are an infinite number of possible answers. If you multiply $N$ by an arbitrary orthognal matrix, you can check that the matrix is still a square root.\\
+
+\noindent \textbf{Remark:} Our results on the Schur complement provide Necessary and Sufficient Conditions for positive definite matrices. You can use them to prove that this matrix is NOT positive definite, but you cannot use them to prove that the matrix is semi-definite. Why? Because not positive definite also includes matrices that are indefinite, such as $P_3$.
+
+\item $P_2$ is positive definite because
+$$\lambda_{\min}(P_2)=0.1856$$
+$$P_2 = N^\top N, \text{where}~ N=\left[\begin{array}{rrrr} -0.3767 & 0.1409 & 0.1543\\ -0.0255 & -0.7991 & 0.6671 \\ 3.2401 & 3.6886 & 4.5417\end{array} \right].$$
+Other answers are possible, such as
+$$ N=\left[\begin{array}{rrr} 1 & 3 & 2\\ 2 & 3 & 4 \\ 1 & 1 & 1\end{array} \right]$$
+
+\noindent \textbf{Remark:} It is perfectly fine to show that $P_2$ is positive definite using the results on Schur complements, as in Problem 2.
+
+ \item $P_3$ is not positive semi-definite because
+ $$\lambda_{\min}(P_3)=-2.9165<0$$
+\end{enumerate}
+\bigskip
+
+%Prob. 2 Matrices
+\noindent \textbf{Problem 2:}
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item  $P_1>0 \Leftrightarrow 1>0$ and $8-3(1)3>0$. But $8-9=-1<0$ \\[2ex]
+$\therefore$ Not Positive Definite.
+
+\item  $P_2>0 \Leftrightarrow A=\left[\begin{array}{rr} 1 & 0\\ 0 & 4\end{array} \right]>0$ and $10-\left[\begin{array}{rr}6&7\end{array}\right]\left[\begin{array}{rr} 1 & 0\\ 0 & 4\end{array} \right]^{-1}\left[\begin{array}{r} 6 \\7\end{array} \right]>0$. \\[2ex]
+$A>0$ is obvious, $10-\left[\begin{array}{rr} 6&7\end{array} \right]\left[\begin{array}{cc} 1 & 0\\ 0 & \dfrac{1}{4}\end{array} \right]\left[\begin{array}{r} 6 \\7\end{array} \right]=-38.25$ \\[2ex]
+$\therefore$ Not Positive Definite.
+
+\item  $P_3>0 \Leftrightarrow \left[\begin{array}{rr} 1 & 2\\ 2 & 5\end{array} \right]>0$ and $a-\left[\begin{array}{rr} 6&7\end{array}\right]\left[\begin{array}{rr} 1 & 2\\ 2 & 5\end{array} \right]^{-1}\left[\begin{array}{r} 6 \\7\end{array} \right]>0$. \\[2ex]
+$\left[\begin{array}{rr} 1 & 2\\ 2 & 5\end{array} \right]>0$ because $1>0$ and $5-4>0$ \\[2ex]
+$\left[\begin{array}{rr} 1 & 2\\ 2 & 5\end{array} \right]^{-1}=\dfrac{1}{1}\left[\begin{array}{rr} 5 & -2\\ -2 & 1\end{array} \right]$ \\[2ex]
+$a-\left[\begin{array}{rr} 6&7\end{array}\right]\left[\begin{array}{rr} 5 & -2\\ -2 & 1\end{array} \right]\left[\begin{array}{r} 6 \\7\end{array} \right]>0$ if and only if $a-\left[\begin{array}{rr} 6&7\end{array}\right]\left[\begin{array}{r} 16 \\-5\end{array} \right]=a-61>0$ \\[2ex]
+$\therefore \boxed{a>61}$
+\end{enumerate}
+\bigskip
+
+%Prob. 3 Underdetermine equations
+\noindent \textbf{Problem 3:} For $<x,y>=x^\top Qy$, the minimum norm solution is
+$$\hat{x}=Q^{-1}A^\top (AQ^{-1}A^\top)^{-1}b$$
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item $Q=I$, and we have
+$$\hat{x}=\left[\begin{array}{r} -0.0952 \\0.0476 \\ 0.4762\end{array} \right]$$
+
+\item $Q\not=I$, and we have
+$$\hat{x}=\left[\begin{array}{r} -0.6497 \\0.3248 \\ 0.3376\end{array} \right]$$
+\end{enumerate}
+\bigskip
+
+ %Prob. 4  BLUE
+\noindent \textbf{Problem 4:}
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item
+$$ \hat{x}=\left[\begin{array}{r} 0.6195 \\0.4591\end{array} \right],~\text{Covariance}~ \Sigma=\left[\begin{array}{rr} 4.0000 & -2.7500\\ -2.7500 & 2.0000\end{array} \right],$$
+$$~\hat{K}=\left[\begin{array}{rr}-2.0000& 1.0000\\1.5000& -0.5000\end{array}\right]$$
+
+\item
+$$ \hat{x}=\left[\begin{array}{r} -1.4303 \\1.8791\end{array} \right],~\text{Covariance}~ \Sigma=\left[\begin{array}{rr} 0.0679 & -0.0260\\ -0.0260 & 0.1129\end{array} \right],$$
+$$~\hat{K}=\left[\begin{array}{rrr} -0.1050 & -0.0525 & 0.1895 \\ 0.1872 & 0.1564 & -0.1313 \end{array} \right]$$
+\item
+$$ \hat{x}=\left[\begin{array}{r} -1.2201 \\1.5368\end{array} \right],~\text{Covariance}~ \Sigma=\left[\begin{array}{rr} 0.0487 & 0.0054\\ 0.0054 & 0.0618\end{array} \right]$$
+$$~\hat{K}=\left[\begin{array}{rrrr} -0.0540 & 0.1046 & 0.1480 & -0.0518 \\ 0.1041 & 0.0715 & -0.0637 & 0.0843\end{array} \right]$$
+
+\end{enumerate}
+\bigskip
+\newpage
+% Prob. 5 Jointly Gaussian Random Variables
+\noindent \textbf{Problem 5:}
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item From the handout,we identify
+$$X_1=\left[\begin{array}{c} X \\Y\end{array} \right],~X_2=Z,$$
+$$\Sigma_{11}=\left[\begin{array}{rr} 2& 2\\ 2 & 4\end{array} \right],~\Sigma_{12}=\left[\begin{array}{r} 1\\ 2\end{array} \right],~\Sigma_{21}=\Sigma_{12}^\top,~\Sigma_{22}=2$$
+$$\mu_{1}=\left[\begin{array}{r} -1 \\ 0\end{array} \right],~\mu_{2}=\left[\begin{array}{r} 1\end{array}\right]$$
+$$\begin{aligned}
+\therefore \mu_{1|2}&=\mu_1+\Sigma_{12}\Sigma^{-1}_{22}(z-\mu_2) \\[2ex]
+&=\left[\begin{array}{r} -1 \\ 0\end{array} \right]+\left[\begin{array}{c} 0.5 \\ 1\end{array} \right](z-1) \\
+&=\left[\begin{array}{r} -\dfrac{3}{2}+\dfrac{z}{2} \\[2ex] z-1\end{array} \right] \\
+\Sigma_{1|2}&=\Sigma_{11}-\Sigma_{12}\Sigma^{-1}_{22}\Sigma_{21}=\left[\begin{array}{cc} \dfrac{3}{2} & 1\\[2ex] 1 & 2\end{array} \right]
+\end{aligned}$$
+
+\item We have
+$$\begin{aligned}
+\mu &= \mu_{1|2}=\left[\begin{array}{r} -\dfrac{3}{2}+\dfrac{z}{2} \\[2ex] z-1\end{array} \right] \\
+\Sigma &= \Sigma_{1|2}=\left[\begin{array}{cc} \dfrac{3}{2} & 1\\[2ex] 1 & 2\end{array} \right]\end{aligned}$$
+We apply the handout to compute
+$$\begin{aligned}
+\mu_{1|2}&=\left(-\frac{3}{2}+\frac{z}{2}\right)+(1)\left(\frac{1}{2}\right)(y-(z-1))=-1+\frac{y}{2} \\[2ex]
+\Sigma_{1|2}&=\frac{3}{2}-(1)\left(\frac{1}{2}\right)(1)=\frac{3}{2}-\frac{1}{2}=1
+\end{aligned}$$
+$\therefore$ The random variable $X\big|_{Z=z}$ conditioned on $Y\big|_{Z=z}=y$ has a normal distribution with
+$$\begin{aligned}
+\text{mean}&=-1+\frac{y}{2} \\
+\sigma^2 &= 1
+\end{aligned}$$
+
+\item We go back to the beginning and identity
+$$X_1=X,~X_2=\left[\begin{array}{c} Y \\Z\end{array} \right],~x_2=\left[\begin{array}{c} y \\z\end{array} \right]$$
+$$\Sigma_{11}=2,~\Sigma_{12}=\left[\begin{array}{rr} 2 & 1\end{array} \right],~\Sigma_{21}=\left[\begin{array}{r} 2 \\ 1\end{array} \right],~\Sigma_{22}=\left[\begin{array}{rr} 4 & 2\\ 2& 2\end{array} \right]$$
+$$\mu_{1}=-1 \text{~and~}\mu_{2}=\left[\begin{array}{r} 0 \\ 1\end{array} \right]$$
+$$\begin{aligned}
+\therefore \mu_{1|2}&=\mu_1+\Sigma_{12}\Sigma^{-1}_{12}\left(\left[\begin{array}{c} y \\z\end{array} \right]-\mu_2\right) \\[2ex]
+&= -1+\left[\begin{array}{cc} \dfrac{1}{2} & 0\end{array} \right]\left[\begin{array}{c} y \\ z-1\end{array} \right]\\[2ex]
+&=-1+\frac{y}{2} \\
+\sigma^2&=2-\left[\begin{array}{cc} 2 & 1\end{array} \right]\left[\begin{array}{cc} 4 & 2\\ 2 & 2\end{array} \right]^{-1}\left[\begin{array}{cc} 2 \\ 1\end{array} \right]=1
+\end{aligned}$$
+\item They are the same !
+\end{enumerate}
+\bigskip
+
+%Prob. 6  Recursion
+\noindent \textbf{Problem 6:} We give two approaches to part (a)
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item {\bf Method I}:
+We apply Gram-Schmidt to build an orthonormal basis for $M_k$, that is $M_k=\spanof{v^1,\cdots,v^k}$ with $<v^i,v^j>=\left\{\begin{array}{ll}
+1, & i=j\\
+0, & i\not=j
+\end{array}\right.$. \\[2ex]
+We then know that
+$$\hat{x}_k=\hat{\alpha}_1 v^1 + \cdots + \hat{\alpha}_k v^k$$
+where $\hat{\alpha}_i =<x,v^i>$.
+
+Because $y_{k+1} \perp M_k = \spanof{v^1,\cdots,v^k}$, we define
+$$v^{k+1}=\frac{y_{k+1}}{||y_{k+1}||}$$
+Hence, we have
+$$\hat{x}_{k+1}=\hat{\alpha}_1 v^1 + \cdots + \hat{\alpha}_k v^k+ \hat{\alpha}_{k+1} v^{k+1}$$
+where $\hat{\alpha}_i=<x,v^i>$.\\
+Therefore,
+$$\begin{aligned}
+\hat{x}_{k+1}&=\hat{x}_k +\hat{\alpha}_{k+1}v^{k+1} \\
+&=\hat{x}_k + \hat{\alpha}_{k+1} \frac{y_{k+1}}{||y_{k+1}||} \\
+\therefore \hat{x}_{k+1}&=\hat{x}_{k}+\beta y_{k+1}
+\end{aligned}$$
+where $$\begin{aligned}
+\beta&=\frac{1}{||y_{k+1}||}<x,v^{k+1}> \\
+&=\frac{1}{||y_{k+1}||^2}<x,y_{k+1}> \\
+&=\frac{<x,y_{k+1}>}{<y_{k+1},y_{k+1}>}.
+\end{aligned}$$
+
+\newpage
+
+{\bf Method II}:
+The solution to $\hat{x}_{k}={\rm arg min}_{m\in M_{k}}||x-m||$ is
+\begin{equation*}
+  \hat{x}_{k} = \alpha_{k,1}y_{1}+\alpha_{k,2}y_{2}+\ldots+\alpha_{k,k}y_{k}
+\end{equation*}
+where the parameter vector $\alpha_{k} =\begin{bmatrix}\alpha_{k,1} & \alpha_{k,2} & \ldots &\alpha_{k,k}\end{bmatrix}^{\top}$ satisfies the normal equation
+\begin{equation*}
+    G_{k}^{\top}\alpha_{k}=\beta_{k}
+\end{equation*}
+and $[G_{k}]_{i,j}=<y_{i}, y_{j}>$, $[\beta_{k}]_{i}=<x, y_{i}>, \;{\rm for }\;i,j=1,2,\ldots, k$.\\
+
+Similarly, the solution to $\hat{x}_{k+1}={\rm arg min}_{m\in M_{k+1}}||x-m||$ is
+\begin{equation*}
+  \hat{x}_{k+1} = \alpha_{k+1,1}y_{1}+\alpha_{k+1,2}y_{2}+\ldots+\alpha_{k+1,k}y_{k}+\alpha_{k+1,k+1}y_{k+1}
+\end{equation*}
+where $\alpha_{k+1} =\begin{bmatrix}\alpha_{k+1,1} & \alpha_{k+1,2} & \ldots &\alpha_{k+1,k}&\alpha_{k+1,k+1}\end{bmatrix}^{\top}$ satisfies the  normal equation
+$$G_{k+1}^{\top}\alpha_{k+1}=\beta_{k+1}$$
+and $[G_{k+1}]_{i,j}=<y_{i}, y_{j}>$, $[\beta_{k+1}]_{i}=<x, y_{i}>, \;{\rm for }\;i,j=1,2,\ldots, k+1$. \\
+
+We note that $y_{k+1}\bot M_{k}\Rightarrow <y_{k+1}, y_{i}>=0\;{\rm for }\;i=1,2,\ldots, k$, and thus the normal equation partitions as $G_{k+1}^{\top}\alpha_{k+1}=\beta_{k+1}$ into
+\begin{equation*}
+  \left[
+    \begin{array}{ccc|c}
+      <y_{1}, y_{1}> & \cdots & <y_{1}, y_{k}> & 0 \\
+      \vdots & \ddots & \vdots & \vdots \\
+      <y_{k}, y_{1}> & \cdots & <y_{k}, y_{k}> & 0 \\\hline
+      0 & \cdots & 0 & <y_{k+1}, y_{k+1}> \\
+    \end{array}
+  \right]
+  \left[
+    \begin{array}{c}
+      \alpha_{k+1,1} \\  \vdots \\\alpha_{k+1,k}\\\hline \alpha_{k+1,k+1}\\
+    \end{array}
+  \right]
+  =\left[
+    \begin{array}{c}
+      <x, y_{i}> \\  \vdots \\ <x, y_{k}>\\\hline <x, y_{k+1}>\\
+    \end{array}
+  \right],
+\end{equation*}
+which is equivalent to
+\begin{equation*}
+\begin{split}
+    \left\{
+      \begin{array}{c}
+        G_{k}^{\top}[\alpha_{k+1}]_{1:k}=\beta_{k}\\
+        <y_{k+1}, y_{k+1}>\alpha_{k+1,k+1}=<x, y_{k+1}>
+      \end{array}
+    \right.
+  \end{split}.
+\end{equation*}
+Thus, $[\alpha_{k+1}]_{1:k}=(G_{k}^{\top})^{-1}\beta_{k}=\alpha_{k}$ and $\alpha_{k+1,k+1}=\dfrac{<x, y_{k+1}>}{<y_{k+1}, y_{k+1}>}$, leading to
+\begin{align*}
+  \hat{x}_{k+1} &= \alpha_{k,1}y_{1}+\alpha_{k,2}y_{2}+\ldots+\alpha_{k,k}y_{k}+\dfrac{<x, y_{k+1}>}{<y_{k+1}, y_{k+1}>} y_{k+1} \\
+   &=\hat{x}_{k}+\dfrac{<x, y_{k+1}>}{||y_{k+1}||^2} y_{k+1}.
+\end{align*}
+
+\item From the Projection Theorem,
+$$y_{k+1}-\hat{y}_{k+1|k} \perp M_k$$
+moreover, $\hat{y}_{k+1|k} \in M_k$, and thus
+$$\begin{aligned}
+M_{k+1}&=\spanof{y_1,\cdots,y_k,y_{k+1}} \\
+&=\spanof{y_1,\cdots,y_k,y_{k+1}-\hat{y}_{k+1|k}} \\
+&=\spanof{y_1,\cdots,y_k,\tilde{y}_{k+1}}
+\end{aligned}$$
+where $\tilde{y}_{k+1}=y_{k+1}-\hat{y}_{k+1|k}$ is orthogonal to $M_k$. Hence, from (a),
+$$\hat{x}_{k+1}=\hat{x}_k + \beta \tilde{y}_{k+1}$$
+where $\beta = \dfrac{<x,\tilde{y}_{k+1}>}{<\tilde{y}_{k+1},\tilde{y}_{k+1}>}$.\\[2ex]
+Substituting in for $\tilde{y}_{k+1}$, we have
+$$\hat{x}_{k+1}=\hat{x}_k + \beta (y_{k+1}-\hat{y}_{k+1|k})$$
+where $$\beta=\dfrac{<x,y_{k+1}-\hat{y}_{k+1|k}>}{<y_{k+1}-\hat{y}_{k+1|k},y_{k+1}-\hat{y}_{k+1|k}>}=\dfrac{<x,y_{k+1}-\hat{y}_{k+1|k}>}{||y_{k+1}-\hat{y}_{k+1|k}||^2}$$
+\hfill $\square$ \\ [4ex]
+%\oint
+\end{enumerate}
+\end{document} 

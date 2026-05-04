@@ -1,0 +1,8 @@
+\begin{verbatim}
+    A=[2 -1 -0; -1 2 1;; 0 1 2]
+    [O,Lambda]=eig(A);
+    O
+    Lambda
+    O*O'
+    O*Lambda*O'-A
+\end{verbatim}

@@ -1,0 +1,1074 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dr. Sette Diop            %
+% Charge de Recherche CNRS  %
+% LAGEP,  UCB Lyon I        %
+% 43 Bd. 11 Nov. 1918       %
+% 69622 Villeurbanne cedex  %
+% France                    %
+%                           %
+% Tel. +33 72448516         %
+% Fax. +33 72431197         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% This is an input file for TeX. %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   Fonts                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\font\teneufb=eufb10
+\font\seveneufb=eufb7
+\font\fiveeufb=eufb5
+\newfam\eufbfam
+\textfont\eufbfam=\teneufb
+\scriptfont\eufbfam=\seveneufb
+\scriptscriptfont\eufbfam=\fiveeufb
+\def\eufb#1{{\fam\eufbfam\relax#1}}
+
+\font\teneufm=eufm10
+\font\seveneufm=eufm7
+\font\fiveeufm=eufm5
+\newfam\eufmfam
+\textfont\eufmfam=\teneufm
+\scriptfont\eufmfam=\seveneufm
+\scriptscriptfont\eufmfam=\fiveeufm
+\def\eufm#1{{\fam\eufmfam\relax#1}}
+
+\font\teneurm=eurm10
+\font\seveneurm=eurm7
+\font\fiveeurm=eurm5
+\newfam\eurmfam
+\textfont\eurmfam=\teneurm
+\scriptfont\eurmfam=\seveneurm
+\scriptscriptfont\eurmfam=\fiveeurm
+\def\eurm#1{{\fam\eurmfam\relax#1}}
+
+\font\teneusb=eusb10
+\font\seveneusb=eusb7
+\font\fiveeusb=eusb5
+\newfam\eusbfam
+\textfont\eusbfam=\teneusb
+\scriptfont\eusbfam=\seveneusb
+\scriptscriptfont\eusbfam=\fiveeusb
+\def\eusb#1{{\fam\eusbfam\relax#1}}
+
+\font\teneusm=eusm10
+\font\seveneusm=eusm7
+\font\fiveeusm=eusm5
+\newfam\eusmfam
+\textfont\eusmfam=\teneusm
+\scriptfont\eusmfam=\seveneusm
+\scriptscriptfont\eusmfam=\fiveeusm
+\def\eusm#1{{\fam\eusmfam\relax#1}}
+
+\font \tenbsy=cmbsy10
+% \font \ninebsy=cmbsy9
+% \font \eightbsy=cmbsy8
+% \font \sevenbsy=cmbsy7
+% \font \sixbsy=cmbsy6
+% \font \fivebsy=cmbsy5
+
+% Computer Modern Bold Extended
+\font \twentyfourbf = cmbx10 scaled \magstep5
+\font \twentybf = cmbx10 scaled \magstep4
+\font \seventeenbf = cmbx10 scaled \magstep3
+\font \fourteenbf = cmbx10 scaled \magstep2
+\font \twelvebf = cmbx10 scaled \magstep1
+\font \elevenbf = cmbx10 scaled \magstephalf
+\font \tenbf = cmbx10
+\font \ninebf = cmbx9
+\font \eightbf = cmbx8
+\font \sevenbf = cmbx7
+\font \sixbf = cmbx6
+\font \fivebf = cmbx5
+
+\font \twentyfourbxti = cmbxti10 scaled \magstep5
+\font \twentybxti = cmbxti10 scaled \magstep4
+\font \seventeenbxti = cmbxti10 scaled \magstep3
+\font \fourteenbxti = cmbxti10 scaled \magstep2
+\font \twelvebxti = cmbxti10 scaled \magstep1
+\font \elevenbxti = cmbxti10 scaled \magstephalf
+\font \tenbxti = cmbxti10
+% \font \ninebxti=cmbxti9    % Lacking
+% \font \eightbxti=cmbxti8   % Lacking
+% \font \sevenbxti=cmbxti7   % Lacking
+% \font \sixbxti=cmbxti6     % Lacking
+% \font \fivebxti=cmbxti5    % Lacking
+
+% \font \twentyfoursc=cmcsc10 scaled \magstep5
+% \font \twentysc=cmcsc10 scaled \magstep4
+% \font \seventeensc=cmcsc10 scaled \magstep3
+% \font \fourteensc=cmcsc10 scaled \magstep2
+% \font \twelvesc=cmcsc10 scaled \magstep1
+% \font \elevencsc=cmcsc10 scaled \magstephalf
+% \font \tencsc=cmcsc10
+% \font \ninecsc=cmcsc9
+% \font \eightcsc=cmcsc8
+% \font \sevencsc=cmcsc7   % Lacking
+% \font \sixcsc=cmcsc6     % Lacking
+% \font \fivecsc=cmcsc5    % Lacking
+
+% Computer Modern Math Extension
+\font \twentyfourex=cmex10 scaled \magstep5
+\font \twentyex=cmex10 scaled \magstep4
+\font \seventeenex=cmex10 scaled \magstep3
+\font \fourteenex=cmex10 scaled \magstep2
+\font \twelveex=cmex10 scaled \magstep1
+\font \elevenex=cmex10 scaled \magstephalf
+\font \tenex=cmex10
+% \font \nineex=cmex9
+% \font \eightex=cmex8
+% \font \sevenex=cmex7
+% \font \sixex=cmex6    % Lacking
+% \font \fiveex=cmex5   % Lacking
+
+% CM Funny Roman
+\font \twentyfourfi = cmfi10 scaled \magstep5
+\font \twentyfi = cmfi10 scaled \magstep4
+\font \seventeenfi = cmfi10 scaled \magstep3
+\font \fourteenfi = cmfi10 scaled \magstep2
+\font \twelvefi = cmfi10 scaled \magstep1
+\font \elevenfi = cmfi10 scaled \magstephalf
+\font \tenfi = cmfi10
+% \font \ninefi = cmfi9    % Lacking
+% \font \eightfi = cmfi8   % Lacking
+% \font \sevenfi = cmfi7   % Lacking
+% \font \sixfi = cmfi6     % Lacking
+% \font \fivefi = cmfi5    % Lacking
+
+% \font \tenitt=cmitt10
+% \font \nineitt=cmitt9    % Lacking
+% \font \eightitt=cmitt8   % Lacking
+% \font \sevenitt=cmitt7   % Lacking
+% \font \sixitt=cmitt6     % Lacking
+% \font \fiveitt=cmitt5    % Lacking
+
+% Computer Modern Math Italic
+\font \twentyfouri=cmmi10 scaled \magstep5
+\font \twentyi=cmmi10 scaled \magstep4
+\font \seventeeni=cmmi10 scaled \magstep3
+\font \fourteeni=cmmi10 scaled \magstep2
+\font \twelvei=cmmi10 scaled \magstep1
+\font \eleveni=cmmi10 scaled \magstephalf
+\font \teni=cmmi10
+\font \ninei=cmmi9
+\font \eighti=cmmi8
+\font \seveni=cmmi7
+\font \sixi=cmmi6
+\font \fivei=cmmi5
+
+\font \tenib=cmmib10
+% \font \nineib=cmmib9
+% \font \eightib=cmmib8
+\font \sevenib=cmmib7
+% \font \sixib=cmmib6
+\font \fiveib=cmmib5
+
+% Computer Modern Text Roman
+\font \twentyfourrm=cmr10 scaled \magstep5
+\font \twentyrm=cmr10 scaled \magstep4
+\font \seventeenrm=cmr10 scaled \magstep3
+\font \fourteenrm=cmr10 scaled \magstep2
+\font \twelverm=cmr10 scaled \magstep1
+\font \elevenrm=cmr10 scaled \magstephalf
+\font \tenrm=cmr10
+\font \ninerm=cmr9
+\font \eightrm=cmr8
+\font \sevenrm=cmr7
+\font \sixrm=cmr6
+\font \fiverm=cmr5
+
+% Computer Modern Slanted Roman
+\font \twentyfoursl=cmsl10 scaled \magstep5
+\font \twentysl=cmsl10 scaled \magstep4
+\font \seventeensl=cmsl10 scaled \magstep3
+\font \fourteensl=cmsl10 scaled \magstep2
+\font \twelvesl=cmsl10 scaled \magstep1
+\font \elevensl=cmsl10 scaled \magstephalf
+\font \tensl=cmsl10
+\font \ninesl=cmsl9
+\font \eightsl=cmsl8
+% \font \sevensl=cmsl7   % Lacking
+% \font \sixsl=cmsl6     % Lacking
+% \font \fivesl=cmsl5    % Lacking
+
+% \font \tensltt=cmsltt10
+% \font \ninesltt=cmsltt9    % Lacking
+% \font \eightsltt=cmsltt8   % Lacking
+% \font \sevensltt=cmsltt7   % Lacking
+% \font \sixsltt=cmsltt6     % Lacking
+% \font \fivesltt=cmsltt5    % Lacking
+
+\font \tenss=cmss10
+\font \niness=cmss9
+\font \eightss=cmss8
+% \font \sevenss=cmss7      % Lacking
+% \font \sixss=cmss6        % Lacking
+% \font \fivess=cmss5       % Lacking
+
+% \font \tenssb=cmssbx10
+% \font \ninessb=cmssbx9    % Lacking
+% \font \eightssb=cmssbx8   % Lacking
+% \font \sevenssb=cmssbx7   % Lacking
+% \font \sixssb=cmssbx6     % Lacking
+% \font \fivessb=cmssbx5    % Lacking
+
+% \font \tenssd=cmssdc10
+% \font \ninessd=cmssdc9    % Lacking
+% \font \eightssd=cmssdc8   % Lacking
+% \font \sevenssd=cmssdc7   % Lacking
+% \font \sixssd=cmssdc6     % Lacking
+% \font \fivessd=cmssdc5    % Lacking
+
+\font \tenssi=cmssi10
+\font \ninessi=cmssi9
+\font \eightssi=cmssi8
+% \font \sevenssi=cmssi7   % Lacking
+% \font \sixssi=cmssi6     % Lacking
+% \font \fivessi=cmssi5    % Lacking
+
+% Computer Modern Math Symbols
+\font \twentyfoursy=cmsy10 scaled \magstep5
+\font \twentysy=cmsy10 scaled \magstep4
+\font \seventeensy=cmsy10 scaled \magstep3
+\font \fourteensy=cmsy10 scaled \magstep2
+\font \twelvesy=cmsy10 scaled \magstep1
+\font \elevensy=cmsy10 scaled \magstephalf
+\font \tensy=cmsy10
+\font \ninesy=cmsy9
+\font \eightsy=cmsy8
+\font \sevensy=cmsy7
+\font \sixsy=cmsy6
+\font \fivesy=cmsy5
+
+% Computer Modern Text Italic
+\font \twentyfourit=cmti10 scaled \magstep5
+\font \twentyit=cmti10 scaled \magstep4
+\font \seventeenit=cmti10 scaled \magstep3
+\font \fourteenit=cmti10 scaled \magstep2
+\font \twelveit=cmti10 scaled \magstep1
+\font \elevenit=cmti10 scaled \magstephalf
+\font \tenit=cmti10
+\font \nineit=cmti9
+\font \eightit=cmti8
+\font \sevenit=cmti7
+% \font \sixit=cmti6    % Lacking
+% \font \fiveit=cmti5   % Lacking
+
+% Computer Modern True Type
+\font \twentyfourtt=cmtt10 scaled \magstep5
+\font \twentytt=cmtt10 scaled \magstep4
+\font \seventeentt=cmtt10 scaled \magstep3
+\font \fourteentt=cmtt10 scaled \magstep2
+\font \twelvett=cmtt10 scaled \magstep1
+\font \eleventt=cmtt10 scaled \magstephalf
+\font \tentt=cmtt10
+\font \ninett=cmtt9
+\font \eighttt=cmtt8
+% \font \seventt=cmtt7   % Lacking
+% \font \sixtt=cmtt6     % Lacking
+% \font \fivett=cmtt5    % Lacking
+
+% \font \tenvt=cmvtt10
+% \font \ninevt=cmvtt9    % Lacking
+% \font \eightvt=cmvtt8   % Lacking
+% \font \sevenvt=cmvtt7   % Lacking
+% \font \sixvt=cmvtt6     % Lacking
+% \font \fivevt=cmvtt5    % Lacking
+
+% AMS Fonts Math Symbols (Group 2)
+\font \twentyfourbm = msbm10 scaled \magstep5
+\font \twentybm = msbm10 scaled \magstep4
+\font \seventeenbm = msbm10 scaled \magstep3
+\font \fourteenbm = msbm10 scaled \magstep2
+\font \twelvebm = msbm10 scaled \magstep1
+\font \elevenbm = msbm10 scaled \magstephalf
+\font \tenbm = msbm10
+% \font \ninebm = msbm9      % Lacking
+% \font \eightbm = msbm8     % Lacking
+\font \sevenbm = msbm7
+% \font \sixbm = msbm6     % Lacking
+\font \fivebm = msbm5
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                    Size-switching font facilities                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newskip\ttglue
+\def\twentypoint{\def\rm{\fam0\twentyrm} % switch to 20-point type
+  \textfont0 = \twentyrm \scriptfont0 = \fourteenrm \scriptscriptfont0 = \tenrm
+  \textfont1 = \twentyi  \scriptfont1 = \fourteeni  \scriptscriptfont1 = \teni
+  \textfont2 = \twentysy \scriptfont2 = \fourteensy \scriptscriptfont2 = \tensy
+  \textfont3 = \twentyex \scriptfont3 = \twentyex   \scriptscriptfont3 =
+\twentyex
+  \def\it{\fam\itfam\twentyit}
+  \textfont\itfam = \twentyit
+  \def\sl{\fam\slfam\twentysl}
+  \textfont\slfam = \twentysl
+  \def\tt{\fam\ttfam\twentytt}
+  \textfont\ttfam = \twentytt
+  \def\bf{\fam\bffam\twentybf}
+  \textfont\bffam = \twentybf
+  \scriptfont\bffam = \fourteenbf
+  \scriptscriptfont\bffam = \tenbf
+%  \def\sc{\fam\scfam\twentycsc}
+%  \textfont\scfam = \twentycsc
+  \tt \ttglue = .5em plus.25em minus.15em
+  \normalbaselineskip = 25pt
+  \setbox\strutbox = \hbox{\vrule height20pt depth5pt width0pt}
+  \normalbaselines\rm}
+
+\def\seventeenpoint{\def\rm{\fam0\seventeenrm} % switch to 17-point type
+  \textfont0 = \seventeenrm \scriptfont0 = \twelverm    \scriptscriptfont0
+= \ninerm
+  \textfont1 = \seventeeni  \scriptfont1 = \twelvei     \scriptscriptfont1
+= \ninei
+  \textfont2 = \seventeensy \scriptfont2 = \twelvesy    \scriptscriptfont2
+= \ninesy
+  \textfont3 = \seventeenex \scriptfont3 = \seventeenex \scriptscriptfont3
+= \seventeenex
+  \def\it{\fam\itfam\seventeenit}
+  \textfont\itfam = \seventeenit
+  \def\sl{\fam\slfam\seventeensl}
+  \textfont\slfam = \seventeensl
+  \def\tt{\fam\ttfam\seventeentt}
+  \textfont\ttfam = \seventeentt
+  \def\bf{\fam\bffam\seventeenbf}
+  \textfont\bffam = \seventeenbf
+  \scriptfont\bffam = \twelvebf
+  \scriptscriptfont\bffam = \ninebf
+%  \def\sc{\fam\scfam\seventeencsc}
+%  \textfont\scfam = \seventeencsc
+  \tt \ttglue = .5em plus.25em minus.15em
+  \normalbaselineskip = 21pt
+  \setbox\strutbox = \hbox{\vrule height17pt depth4pt width0pt}
+  \normalbaselines\rm}
+
+\def\fourteenpoint{\def\rm{\fam0\fourteenrm} % switch to 14-point type
+  \textfont0 = \fourteenrm \scriptfont0 = \tenrm      \scriptscriptfont0 =
+\sevenrm
+  \textfont1 = \fourteeni  \scriptfont1 = \teni       \scriptscriptfont1 =
+\seveni
+  \textfont2 = \fourteensy \scriptfont2 = \tensy      \scriptscriptfont2 =
+\sevensy
+  \textfont3 = \fourteenex \scriptfont3 = \fourteenex \scriptscriptfont3 =
+\fourteenex
+  \def\it{\fam\itfam\fourteenit}
+  \textfont\itfam = \fourteenit
+  \def\sl{\fam\slfam\fourteensl}
+  \textfont\slfam = \fourteensl
+  \def\tt{\fam\ttfam\fourteentt}
+  \textfont\ttfam = \fourteentt
+  \def\bf{\fam\bffam\fourteenbf}
+  \textfont\bffam = \fourteenbf
+  \scriptfont\bffam = \tenbf
+  \scriptscriptfont\bffam = \sevenbf
+%  \def\sc{\fam\scfam\fourteencsc}
+%  \textfont\scfam = \fourteencsc
+  \tt \ttglue = .5em plus.25em minus.15em
+  \normalbaselineskip = 17pt
+  \setbox\strutbox = \hbox{\vrule height11.9pt depth6.3pt width0pt}
+  \normalbaselines\rm}
+
+\def\twelvepoint{\def\rm{\fam0\twelverm} % switch to 12-point type
+  \textfont0 = \twelverm \scriptfont0 = \ninerm   \scriptscriptfont0 = \sevenrm
+  \textfont1 = \twelvei  \scriptfont1 = \ninei    \scriptscriptfont1 = \seveni
+  \textfont2 = \twelvesy \scriptfont2 = \ninesy   \scriptscriptfont2 = \sevensy
+  \textfont3 = \twelveex \scriptfont3 = \twelveex \scriptscriptfont3 = \twelveex
+  \def\it{\fam\itfam\twelveit}
+  \textfont\itfam = \twelveit
+  \def\sl{\fam\slfam\twelvesl}
+  \textfont\slfam = \twelvesl
+  \def\tt{\fam\ttfam\twelvett}
+  \textfont\ttfam = \twelvett
+  \def\bf{\fam\bffam\twelvebf}
+  \textfont\bffam = \twelvebf
+  \scriptfont\bffam = \ninebf
+  \scriptscriptfont\bffam = \sevenbf
+%  \def\sc{\fam\scfam\twelvecsc}
+%  \textfont\scfam = \twelvecsc
+  \tt \ttglue = .5em plus.25em minus.15em
+  \normalbaselineskip = 14pt
+  \setbox\strutbox = \hbox{\vrule height9.5pt depth4.5pt width0pt}
+  \normalbaselines\rm}
+
+\def\elevenpoint{\def\rm{\fam0\elevenrm} % switch to 11-point type
+  \textfont0 = \elevenrm \scriptfont0 = \eightrm  \scriptscriptfont0 = \sixrm
+  \textfont1 = \eleveni  \scriptfont1 = \eighti   \scriptscriptfont1 = \sixi
+  \textfont2 = \elevensy \scriptfont2 = \eightsy  \scriptscriptfont2 = \sixsy
+  \textfont3 = \elevenex \scriptfont3 = \elevenex \scriptscriptfont3 = \elevenex
+  \def\it{\fam\itfam\elevenit}
+  \textfont\itfam = \elevenit
+  \def\sl{\fam\slfam\elevensl}
+  \textfont\slfam = \elevensl
+  \def\tt{\fam\ttfam\eleventt}
+  \textfont\ttfam = \eleventt
+  \def\bf{\fam\bffam\elevenbf}
+  \textfont\bffam = \elevenbf
+  \scriptfont\bffam = \eightbf
+  \scriptscriptfont\bffam = \sixbf
+%  \def\sc{\fam\scfam\elevencsc}
+%  \textfont\scfam = \elevencsc
+  \tt \ttglue = .5em plus.25em minus.15em
+  \normalbaselineskip = 14pt
+  \setbox\strutbox = \hbox{\vrule height9pt depth4pt width0pt}
+  \normalbaselines\rm}
+
+\def\tenpoint{\def\rm{\fam0\tenrm} %  switch to 10-point type
+  \textfont0 = \tenrm \scriptfont0 = \sevenrm \scriptscriptfont0 = \fiverm
+  \textfont1 = \teni  \scriptfont1 = \seveni  \scriptscriptfont1 = \fivei
+  \textfont2 = \tensy \scriptfont2 = \sevensy \scriptscriptfont2 = \fivesy
+  \textfont3 = \tenex \scriptfont3 = \tenex   \scriptscriptfont3 = \tenex
+  \def\it{\fam\itfam\tenit}
+  \textfont\itfam = \tenit
+  \def\sl{\fam\slfam\tensl}
+  \textfont\slfam=\tensl
+  \def\tt{\fam\ttfam\tentt}
+  \textfont\ttfam = \tentt
+  \def\bf{\fam\bffam\tenbf}
+  \textfont\bffam = \tenbf
+  \scriptfont\bffam = \sevenbf
+  \scriptscriptfont\bffam = \fivebf
+  \tt \ttglue = .5em plus.25em minus.15em
+  \normalbaselineskip = 12pt
+  \setbox\strutbox=\hbox{\vrule height8.5pt depth3.5pt width0pt}
+  \let\sc = \eightrm \let\big = \tenbig \normalbaselines\rm}
+
+\def\ninepoint{\def\rm{\fam0\ninerm} % switch to 9-point type
+  \textfont0 = \ninerm \scriptfont0 = \sixrm \scriptscriptfont0 = \fiverm
+  \textfont1 = \ninei  \scriptfont1 = \sixi  \scriptscriptfont1 = \fivei
+  \textfont2 =\ninesy  \scriptfont2 = \sixsy \scriptscriptfont2 = \fivesy
+  \textfont3 = \tenex  \scriptfont3 = \tenex \scriptscriptfont3 = \tenex
+  \def\it{\fam\itfam\nineit}
+  \textfont\itfam = \nineit
+  \def\sl{\fam\slfam\ninesl}
+  \textfont\slfam = \ninesl
+  \def\tt{\fam\ttfam\ninett}
+  \textfont\ttfam = \ninett
+  \def\bf{\fam\bffam\ninebf}
+  \textfont\bffam = \ninebf
+  \scriptfont\bffam = \sixbf
+  \scriptscriptfont\bffam = \fivebf
+  \tt \ttglue = .5em plus.25em minus.15em
+  \normalbaselineskip = 11pt
+  \setbox\strutbox = \hbox{\vrule height8pt depth3pt width0pt}
+  \let\sc = \sevenrm \let\big = \ninebig \normalbaselines\rm}
+
+\def\eightpoint{\def\rm{\fam0\eightrm} % switch to 8-point type
+  \textfont0 = \eightrm \scriptfont0 = \sixrm \scriptscriptfont0 = \fiverm
+  \textfont1 = \eighti  \scriptfont1 = \sixi  \scriptscriptfont1 = \fivei
+  \textfont2 = \eightsy \scriptfont2 = \sixsy \scriptscriptfont2 = \fivesy
+  \textfont3 = \tenex \scriptfont3 = \tenex \scriptscriptfont3 = \tenex
+  \def\it{\fam\itfam\eightit}
+  \textfont\itfam = \eightit
+  \def\sl{\fam\slfam\eightsl}
+  \textfont\slfam = \eightsl
+  \def\tt{\fam\ttfam\eighttt}
+  \textfont\ttfam = \eighttt
+  \def\bf{\fam\bffam\eightbf}
+  \textfont\bffam = \eightbf
+  \scriptfont\bffam = \sixbf
+  \scriptscriptfont\bffam = \fivebf
+  \tt \ttglue = .5em plus.25em minus.15em
+  \normalbaselineskip = 9pt
+  \setbox\strutbox=\hbox{\vrule height7pt depth2pt width0pt}
+  \let\sc = \sixrm \let\big = \eightbig \normalbaselines\rm}
+\def\sevenpoint{\def\rm{\fam0\sevenrm} % switch to a 7-point type
+  \textfont0 = \sevenrm \scriptfont0 = \fiverm \scriptscriptfont0 = \fiverm
+  \textfont1 = \seveni  \scriptfont1 = \fivei  \scriptscriptfont1 = \fivei 
+  \textfont2 = \sevensy \scriptfont2 = \fivesy \scriptscriptfont2 = \fivesy
+  \textfont3 = \tenex   \scriptfont3 = \tenex  \scriptscriptfont3 = \tenex 
+  \def\it{\fam\itfam\sevenit}
+  \textfont\itfam = \sevenit
+  \def\sl{\fam\slfam\sevenit} % \sevensl is lacking. Replaced by \sevenit
+  \textfont\slfam = \sevenit  % \sevensl is lacking. Replaced by \sevenit
+  \def\tt{\fam\ttfam\sevenit} % \seventt is lacking. Replaced by \sevenit
+  \textfont\ttfam = \sevenit  % \seventt is lacking. Replaced by \sevenit
+  \def\bf{\fam\bffam\sevenbf}
+  \textfont\bffam = \sevenbf
+  \scriptfont\bffam = \fivebf
+  \scriptscriptfont\bffam = \fivebf
+  \tt \ttglue = .5em plus.25em minus.15em
+  \normalbaselineskip = 10pt
+  \setbox\strutbox = \hbox{\vrule height7.5pt depth2.5pt width0pt}
+  \let\sc = \sixrm \let\big = \sevenbig \normalbaselines\rm}
+
+\def\tenbig#1{{\hbox{$\left#1\vbox to8.5pt{}\right.\n@space$}}}
+\def\ninebig#1{{\hbox{$\textfont0 = \tenrm\textfont2 = \tensy
+  \left#1\vbox to7.25pt{}\right.\n@space$}}}
+\def\eightbig#1{{\hbox{$\textfont0 = \ninerm\textfont2 = \ninesy
+  \left#1\vbox to6.5pt{}\right.\n@space$}}}
+\def\sevenbig#1{{\hbox{$\textfont0 = \eightrm\textfont2 = \eightsy
+  \left#1\vbox to5.0pt{}\right.\n@space$}}}
+\def\tenmath{\tenpoint\fam-1 } % for 10-point in 9-point territory
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                    Selecting pages to be printed                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\let\Shipout=\shipout
+\newread\pages \newcount\nextpage \openin\pages=pages
+\def\getnextpage{\ifeof\pages\else
+ {\endlinechar=-1\read\pages to\next \ifx\next\empty % in this case we
+should have eof now \else\global\nextpage=\next\fi}\fi}
+\ifeof\pages\else\message{OK, I'll ship only the requested pages!}
+ \getnextpage\fi
+\def\shipout{\ifeof\pages\let\next=\Shipout
+ \else\ifnum\pageno=\nextpage\getnextpage\let\next=\Shipout
+  \else\let\next=\Tosspage\fi\fi \next}
+\newbox\garbage \def\Tosspage{\deadcycles=0\setbox\garbage=}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            Two Columns Format                            %
+%                         From TeXBook, 1986, D. Knuth                     %
+%                                pp. 416-417                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifx\mbrdeuxcol\relax\endinput\else\let\mbrdeuxcol=\relax\fi
+%
+%    definition of variables
+%
+% \hoffset = -10 true mm
+% \voffset = -5 true mm
+% \hsize = 185 true mm
+% \vsize = 235 true mm
+\newdimen\colwidth
+\newdimen\bigcolheight
+% \newdimen\separatorwidth
+% \separatorwidth = 15 true mm
+\newdimen\pagewidth
+\pagewidth=\hsize
+\newdimen\pageheight
+\pageheight=\vsize
+
+\output{\onepageout{\boxmaxdepth=\maxdepth \pagecontents}}
+\newbox\partialpage
+\newdimen\savesize
+%
+%    macro \onepageout
+%
+\def\onepageout#1{\shipout\vbox{\vbox to 0pt{\vskip-22.5pt
+                                    \hbox to\pagewidth{\vbox to8.5pt{}
+                                          \the\headline}
+                                    \vss}\nointerlineskip
+                                \vbox to \pageheight{#1}
+                                \baselineskip=24pt
+                                \hbox to\pagewidth{\the\footline}}
+                  \advancepageno
+                  \ifnum\outputpenalty>-20000 \else\dosupereject\fi
+                 }
+%
+%     Macro \begindoublecolumns
+%
+\outer\def\begindoublecolumns{\begingroup
+  \pagewidth=\hsize \pageheight=\vsize
+  \bigcolheight=\pageheight
+  \advance\bigcolheight by\pageheight
+  \advance\bigcolheight by\baselineskip
+  \colwidth=\pagewidth
+  \advance\colwidth by -\separatorwidth
+  \divide\colwidth by 2
+  \output={\global\setbox\partialpage=\vbox{\unvbox255}}\eject
+  \output={\doublecolumnout} \hsize=\colwidth \vsize=\bigcolheight
+  \advance\vsize by -2\ht\partialpage}
+%
+%     Macro \enddoublecolumns
+%
+\outer\def\enddoublecolumns{\output={\balancecolumns}\eject
+  \global\output={\onepageout{\boxmaxdepth=\maxdepth \pagecontents}}
+  \global\vsize=\pageheight
+  \dimen0=\ht255 \divide\dimen0 by 2
+  \ht255=\dimen0
+  \endgroup \pagegoal=\vsize}
+%
+%    Macros called by \begindoublecolumns et \enddoublecolumns
+%
+\def\doublecolumnout{
+  \dimen0=\dp255
+  \advance\dimen0 by \ht255
+  \divide\dimen0 by 2 \splittopskip=\topskip
+  \setbox0=\vsplit255 to\dimen0 \setbox2=\vsplit255 to\dimen0
+  \onepageout\pagesofarp
+  \global\vsize=\bigcolheight
+  \unvbox255 \penalty\outputpenalty\relax}
+\def\pagesofarp{\ifvoid\topins\else\unvbox\topins\fi
+  \pagesofar
+  \ifvoid\footins\else
+    \vfill
+    \vskip\skip\footins \footnoterule \unvbox\footins \fi}
+\def\pagesofar{\unvbox\partialpage
+  \wd0=\hsize \wd2=\hsize \hbox to\pagewidth{\box0\hfil\box2}}
+\def\balancecolumns{\setbox0=\vbox{\unvbox255} \dimen0=\ht0
+  \advance\dimen0 by\topskip \advance\dimen0 by-\baselineskip
+  \divide\dimen0 by2 \splittopskip=\topskip
+  {\vbadness=10000 \loop \global\setbox3=\copy0
+    \global\setbox1=\vsplit3 to\dimen0
+    \ifdim\ht3>\dimen0 \global\advance\dimen0 by1pt \repeat}
+  \setbox0=\vbox to\dimen0{\unvbox1}
+  \setbox2=\vbox to\dimen0{\unvbox3}
+  \global\output={\balancingerror}
+  \pagesofar}
+\newhelp\balerrhelp{Please change the page into one that works}
+\def\balancingerror{\errhelp=\balerrhelp
+   \errmessage{Page can't be balanced}
+   \onepageout{\unvbox255}}
+%
+%   Modified Plain TeX
+%
+\catcode`@=11
+\def\vfootnote#1{\insert\footins\bgroup
+  \interlinepenalty=\interfootnotelinepenalty
+  \splittopskip=\ht\strutbox
+  \splitmaxdepth=\dp\strutbox \floatingpenalty=20000
+  \leftskip=0pt \rightskip=0pt \spaceskip=0pt \xspaceskip=0pt
+  \hsize=\pagewidth
+  \textindent{#1}\footstrut\futurelet\next\fo@t}
+\catcode`@=12
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             Bourbaki notations for standard sets: N, Z, Q, ...           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\vbar{\mathchoice{\vrule height6.3ptdepth-.5ptwidth.8pt\kern-.8pt}
+   {\vrule height6.3ptdepth-.5ptwidth.8pt\kern-.8pt}
+   {\vrule height4.1ptdepth-.35ptwidth.6pt\kern-.6pt}
+   {\vrule height3.1ptdepth-.25ptwidth.5pt\kern-.5pt}}
+\def\fudge{\mathchoice{}{}{\mkern.5mu}{\mkern.8mu}}
+\def\bbc#1#2{{\rm \mkern#2mu\vbar\mkern-#2mu#1}}
+\def\bbb#1{{\rm I\mkern-3.5mu #1}}
+\def\bba#1#2{{\rm #1\mkern-#2mu\fudge #1}}
+\def\bb#1{{\count4=`#1 \advance\count4by-64 \ifcase\count4\or\bba A{11.5}\or
+   \bbb B\or\bbc C{5}\or\bbb D\or\bbb E\or\bbb F \or\bbc G{5}\or\bbb H\or
+   \bbb I\or\bbc J{3}\or\bbb K\or\bbb L \or\bbb M\or\bbb N\or\bbc O{5} \or
+   \bbb P\or\bbc Q{5}\or\bbb R\or\bbc S{4.2}\or\bba T{10.5}\or\bbc U{5}\or
+%   \bbb P\or\bbc Q{5}\or\bbb R\or\bba S{8}\or\bba T{10.5}\or\bbc U{5}\or
+   \bba V{12}\or\bba W{16.5}\or\bba X{11}\or\bba Y{11.7}\or\bba Z{7.5}\fi}}
+
+\def \setN {\bb N} % Natural Integers
+\def \setZ {\bb Z} % Rational Integers
+\def \setQ {\bb Q} % Rational Numbers
+\def \setR {\bb R} % Real Numbers
+\def \setC {\bb C} % Complexe Numbers
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             BTXMAC: An input file for use of BibTeX with TeX             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\edef\cite{\the\catcode`@}%
+\catcode`@ = 11
+\let\@oldatcatcode = \cite
+\chardef\@letter = 11
+\chardef\@other = 12
+\def\@innerdef#1#2{\edef#1{\expandafter\noexpand\csname #2\endcsname}}%
+\@innerdef\@innernewcount{newcount}%
+\@innerdef\@innernewdimen{newdimen}%
+\@innerdef\@innernewif{newif}%
+\@innerdef\@innernewwrite{newwrite}%
+\def\@gobble#1{}%
+\ifx\inputlineno\@undefined
+   \let\@linenumber = \empty % Pre-3.0.
+\else
+   \def\@linenumber{\the\inputlineno:\space}%
+\fi
+\def\@futurenonspacelet#1{\def\cs{#1}%
+   \afterassignment\@stepone\let\@nexttoken=
+}%
+\begingroup % The grouping here avoids stepping on an outside use of `\\'.
+\def\\{\global\let\@stoken= }%
+\\
+\endgroup
+\def\@stepone{\expandafter\futurelet\cs\@steptwo}%
+\def\@steptwo{\expandafter\ifx\cs\@stoken\let\@@next=\@stepthree
+   \else\let\@@next=\@nexttoken\fi \@@next}%
+\def\@stepthree{\afterassignment\@stepone\let\@@next= }%
+\def\@getoptionalarg#1{%
+   \let\@optionaltemp = #1%
+   \let\@optionalnext = \relax
+   \@futurenonspacelet\@optionalnext\@bracketcheck
+}%
+\def\@bracketcheck{%
+   \ifx [\@optionalnext
+      \expandafter\@@getoptionalarg
+   \else
+      \let\@optionalarg = \empty
+      \expandafter\@optionaltemp
+   \fi
+}%
+%
+\def\@@getoptionalarg[#1]{%
+   \def\@optionalarg{#1}%
+   \@optionaltemp
+}%
+\def\@nnil{\@nil}%
+\def\@fornoop#1\@@#2#3{}%
+%
+\def\@for#1:=#2\do#3{%
+   \edef\@fortmp{#2}%
+   \ifx\@fortmp\empty \else
+      \expandafter\@forloop#2,\@nil,\@nil\@@#1{#3}%
+   \fi
+}%
+%
+\def\@forloop#1,#2,#3\@@#4#5{\def#4{#1}\ifx #4\@nnil \else
+       #5\def#4{#2}\ifx #4\@nnil \else#5\@iforloop #3\@@#4{#5}\fi\fi
+}%
+%
+\def\@iforloop#1,#2\@@#3#4{\def#3{#1}\ifx #3\@nnil
+       \let\@nextwhile=\@fornoop \else
+      #4\relax\let\@nextwhile=\@iforloop\fi\@nextwhile#2\@@#3{#4}%
+}%
+\@innernewif\if@fileexists
+%
+\def\@testfileexistence{\@getoptionalarg\@finishtestfileexistence}%
+\def\@finishtestfileexistence#1{%
+   \begingroup
+      \def\extension{#1}%
+      \immediate\openin0 =
+         \ifx\@optionalarg\empty\jobname\else\@optionalarg\fi
+         \ifx\extension\empty \else .#1\fi
+         \space
+      \ifeof 0
+         \global\@fileexistsfalse
+      \else
+         \global\@fileexiststrue
+      \fi
+      \immediate\closein0
+   \endgroup
+}%
+\def\bibliographystyle#1{%
+   \@readauxfile
+   \@writeaux{\string\bibstyle{#1}}%
+}%
+\let\bibstyle = \@gobble
+\let\bblfilebasename = \jobname
+\def\bibliography#1{%
+   \@readauxfile
+   \@writeaux{\string\bibdata{#1}}%
+   \@testfileexistence[\bblfilebasename]{bbl}%
+   \if@fileexists
+      % We just output a non-discardable item (the `whatsit' with the
+      % \bibdata command).  This means that the glue that will be
+      % inserted next (\parskip or \baselineskip, most likely) will be a
+      % legal breakpoint.  Most likely, this is after some kind of
+      % heading, where we don't want to allow a page break.  So:
+      \nobreak
+      \@readbblfile
+   \fi
+}%
+\let\bibdata = \@gobble
+\def\nocite#1{%
+   \@readauxfile
+   \@writeaux{\string\citation{#1}}%
+}%
+%
+\@innernewif\if@notfirstcitation
+\def\cite{\@getoptionalarg\@cite}%
+\def\@cite#1{%
+   \let\@citenotetext = \@optionalarg
+   \printcitestart
+   \nocite{#1}%
+   \@notfirstcitationfalse
+   \@for \@citation :=#1\do
+   {%
+      \expandafter\@onecitation\@citation\@@
+   }%
+   \ifx\empty\@citenotetext\else
+      \printcitenote{\@citenotetext}%
+   \fi
+   \printcitefinish
+}%
+%
+\def\@onecitation#1\@@{%
+   \if@notfirstcitation
+      \printbetweencitations
+   \fi
+   %
+   \expandafter \ifx \csname\@citelabel{#1}\endcsname \relax
+      \if@citewarning
+         \message{\@linenumber Undefined citation `#1'.}%
+      \fi
+      % Give it a dummy definition:
+      \expandafter\gdef\csname\@citelabel{#1}\endcsname{%
+         {\tt
+            \escapechar = -1
+            \nobreak\hskip0pt
+            \expandafter\string\csname#1\endcsname
+            \nobreak\hskip0pt
+         }%
+      }%
+   \fi
+   % Now produce the text, whether it was undefined or not.
+   \csname\@citelabel{#1}\endcsname
+   \@notfirstcitationtrue
+}%
+\def\@citelabel#1{b@#1}%
+\def\@citedef#1#2{\expandafter\gdef\csname\@citelabel{#1}\endcsname{#2}}%
+\def\@readbblfile{%
+   \ifx\@itemnum\@undefined
+      \@innernewcount\@itemnum
+   \fi
+   %
+   \begingroup
+      \def\begin##1##2{%
+         \setbox0 = \hbox{\biblabelcontents{##2}}%
+         \biblabelwidth = \wd0
+      }%
+      \def\end##1{}% ##1 is `thebibliography' again.
+      \@itemnum = 0
+      \def\bibitem{\@getoptionalarg\@bibitem}%
+      \def\@bibitem{%
+         \ifx\@optionalarg\empty
+            \expandafter\@numberedbibitem
+         \else
+            \expandafter\@alphabibitem
+         \fi
+      }%
+      \def\@alphabibitem##1{%
+         \expandafter \xdef\csname\@citelabel{##1}\endcsname {\@optionalarg}%
+         \ifx\biblabelprecontents\@undefined
+            \let\biblabelprecontents = \relax
+         \fi
+         \ifx\biblabelpostcontents\@undefined
+            \let\biblabelpostcontents = \hss
+         \fi
+         \@finishbibitem{##1}%
+      }%
+      %
+      \def\@numberedbibitem##1{%
+         \advance\@itemnum by 1
+         \expandafter \xdef\csname\@citelabel{##1}\endcsname{\number\@itemnum}%
+         \ifx\biblabelprecontents\@undefined
+            \let\biblabelprecontents = \hss
+         \fi
+         \ifx\biblabelpostcontents\@undefined
+            \let\biblabelpostcontents = \relax
+         \fi
+         \@finishbibitem{##1}%
+      }%
+      %
+      \def\@finishbibitem##1{%
+         \biblabelprint{\csname\@citelabel{##1}\endcsname}%
+         \@writeaux{\string\@citedef{##1}{\csname\@citelabel{##1}\endcsname}}%
+         \ignorespaces
+      }%
+      \let\em = \bblem
+      \let\newblock = \bblnewblock
+      \let\sc = \bblsc
+      \frenchspacing
+      \clubpenalty = 4000 \widowpenalty = 4000
+      \tolerance = 10000 \hfuzz = .5pt
+      \everypar = {\hangindent = \biblabelwidth
+                      \advance\hangindent by \biblabelextraspace}%
+      \bblrm
+      \parskip = 1.5ex plus .5ex minus .5ex
+      \biblabelextraspace = .5em
+      \bblhook
+      \input \bblfilebasename.bbl
+   \endgroup
+}%
+\@innernewdimen\biblabelwidth
+\@innernewdimen\biblabelextraspace
+\def\biblabelprint#1{%
+   \noindent
+   \hbox to \biblabelwidth{%
+      \biblabelprecontents
+      \biblabelcontents{#1}%
+      \biblabelpostcontents
+   }%
+   \kern\biblabelextraspace
+}%
+\def\biblabelcontents#1{{\bblrm [#1]}}%
+\def\bblrm{\rm}%
+\def\bblem{\it}%
+\def\bblsc{\ifx\@scfont\@undefined
+              \font\@scfont = cmcsc10
+           \fi
+           \@scfont
+}%
+\def\bblnewblock{\hskip .11em plus .33em minus .07em }%
+\let\bblhook = \empty
+\def\printcitestart{[}%         left bracket
+\def\printcitefinish{]}%        right bracket
+\def\printbetweencitations{, }% comma, space
+\def\printcitenote#1{, #1}%     comma, space, note (if it exists)
+\let\citation = \@gobble
+\@innernewcount\@numparams
+\def\newcommand#1{%
+   \def\@commandname{#1}%
+   \@getoptionalarg\@continuenewcommand
+}%
+\def\@continuenewcommand{%
+   \@numparams = \ifx\@optionalarg\empty 0\else\@optionalarg \fi \relax
+   \@newcommand
+}%
+\def\@newcommand#1{%
+   \def\@startdef{\expandafter\edef\@commandname}%
+   \ifnum\@numparams=0
+      \let\@paramdef = \empty
+   \else
+      \ifnum\@numparams>9
+         \errmessage{\the\@numparams\space is too many parameters}%
+      \else
+         \ifnum\@numparams<0
+            \errmessage{\the\@numparams\space is too few parameters}%
+         \else
+            \edef\@paramdef{%
+               % This is disgusting, but \loop doesn't work inside \edef,
+               % because \body isn't defined.
+               \ifcase\@numparams
+                  \empty  No arguments.
+               \or ####1%
+               \or ####1####2%
+               \or ####1####2####3%
+               \or ####1####2####3####4%
+               \or ####1####2####3####4####5%
+               \or ####1####2####3####4####5####6%
+               \or ####1####2####3####4####5####6####7%
+               \or ####1####2####3####4####5####6####7####8%
+               \or ####1####2####3####4####5####6####7####8####9%
+               \fi
+            }%
+         \fi
+      \fi
+   \fi
+   \expandafter\@startdef\@paramdef{#1}%
+}%
+\def\@readauxfile{%
+   \if@auxfiledone \else % remember: \@auxfiledonetrue if \noauxfile is defined
+      \global\@auxfiledonetrue
+      \@testfileexistence{aux}%
+      \if@fileexists
+         \begingroup
+            \endlinechar = -1
+            \catcode`@ = 11
+            \input \jobname.aux
+         \endgroup
+      \else
+         \message{\@undefinedmessage}%
+         \global\@citewarningfalse
+      \fi
+      \immediate\openout\@auxfile = \jobname.aux
+   \fi
+}%
+\newif\if@auxfiledone
+\ifx\noauxfile\@undefined \else \@auxfiledonetrue\fi
+\@innernewwrite\@auxfile
+\def\@writeaux#1{\ifx\noauxfile\@undefined \write\@auxfile{#1}\fi}%
+\ifx\@undefinedmessage\@undefined
+   \def\@undefinedmessage{No .aux file; I won't give you warnings about
+                          undefined citations.}%
+\fi
+\@innernewif\if@citewarning
+\ifx\noauxfile\@undefined \@citewarningtrue\fi
+\catcode`@ = \@oldatcatcode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   Macro to allow block comments in TeX                   %
+%                       J.C. Alexander,  May, 1986                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\edef\Saveatcatcode{\the\catcode`\@}
+\catcode`\@=11
+\def\newcodes@{\edef\S@veslashcatcode{\the\catcode`\\}
+               \edef\S@velbraccatcode{\the\catcode`\{}
+               \edef\S@verbraccatcode{\the\catcode`\}}
+               \edef\S@venumsgcatcode{\the\catcode`\#}
+               \edef\S@veperctcatcode{\the\catcode`\%}
+\catcode`\\=12 \catcode`\{=12 \catcode`\}=12 \catcode`\#=12
+\catcode`\%=12\relax}
+\def\oldcodes@{\catcode`\\=\S@veslashcatcode
+               \catcode`\{=\S@velbraccatcode
+               \catcode`\}=\S@verbraccatcode
+               \catcode`\#=\S@venumsgcatcode
+               \catcode`\%=\S@veperctcatcode
+               \relax}
+\def\begincomment{\newcodes@\endlinechar=10 \comment@}
+{\lccode`\!=`\\
+\lowercase{\gdef\comment@#1^^J{\comment@@#1!endcomment\comment@@@}%
+\gdef\comment@@#1!endcomment{\futurelet\next\comment@@@}%
+\gdef\comment@@@#1\comment@@@{\ifx\next\comment@@@\let
+\next=\comment@\else\def\next{\oldcodes@\endlinechar=`\^^M\relax}%
+\fi\next}}}
+\catcode`\@=\Saveatcatcode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   Misc.                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def \BA {{\bf A}}
+\def \BB {{\bf B}}
+\def \BC {{\bf C}}
+\def \BE {{\bf E}}
+\def \BF {{\bf F}}
+\def \BG {{\bf G}}
+\def \BH {{\bf H}}
+\def \BI {{\bf I}}
+\def \BJ {{\bf J}}
+\def \Bk {{\bf k}}
+\def \BK {{\bf K}}
+\def \BL {{\bf L}}
+\def \BM {{\bf M}}
+\def \BN {{\bf N}}
+\def \BQ {{\bf Q}}
+\def \BP {{\bf P}}
+\def \BQ {{\bf Q}}
+\def \BR {{\bf R}}
+\def \BS {{\bf S}}
+\def \BV {{\bf V}}
+
+\def \Ga   {{\eufm a}}
+\def \CA   {{\eusm A}}
+\def \Gb   {{\eufm b}}
+\def \CB   {{\eusm B}}
+\def \CC   {{\eusm C}}
+\def \CD   {{\eusm D}}
+\def \CE   {{\eusm E}}
+\def \CF   {{\eusm F}}
+\def \CG   {{\eusm G}}
+\def \CH   {{\eusm H}}
+\def \CI   {{\eusm I}}
+\def \GI   {{\eufm I}}
+\def \CJ   {{\eusm J}}
+\def \CK   {{\eusm K}}
+\def \CL   {{\eusm L}}
+\def \CM   {{\eusm M}}
+\def \Cm   {{\eurm m}}
+\def \Gm   {{\eufm m}}
+\def \CN   {{\eusm N}}
+\def \Gp   {{\eufm p}}
+\def \CP   {{\eusm P}}
+\def \Gq   {{\eufm q}}
+\def \CQ   {{\eusm Q}}
+\def \CR   {{\eusm R}}
+\def \CS   {{\eusm S}}
+\def \CT   {{\eusm T}}
+\def \CU   {{\eusm U}}
+\def \CV   {{\eusm V}}
+\def \CW   {{\eusm W}}
+\def \CX   {{\eusm X}}
+\def \CXeb {{\eusm X}_{\rm eb}}
+\def \CY   {{\eusm Y}}
+\def \CZ   {{\eusm Z}}
+
+% Footnote symbols
+\def \fndag       {\hbox{${}^{{}^{\dag}}$}}
+\def \fnast       {\hbox{${}^{{}^\ast}$}}
+\def \fndast      {\hbox{${}^{{}^{\ast\ast}}$}}
+\def \fntast      {\hbox{${}^{{}^{\ast\ast\ast}}$}}
+\def \fnone       {\hbox{${}^{{}^1}$}}
+\def \fntwo       {\hbox{${}^{{}^2}$}}
+\def \fnthree     {\hbox{${}^{{}^3}$}}
+\def \fnfour      {\hbox{${}^{{}^4}$}}
+\def \fnfive      {\hbox{${}^{{}^5}$}}
+\def \fnsix       {\hbox{${}^{{}^6}$}}
+\def \fnseven     {\hbox{${}^{{}^7}$}}
+\def \fneight     {\hbox{${}^{{}^8}$}}
+\def \fnnine      {\hbox{${}^{{}^9}$}}
+\def \fnten       {\hbox{${}^{{}^10}$}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+

@@ -1,0 +1,264 @@
+\documentclass[letterpaper]{article}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{epsfig,float,alltt}
+\usepackage{psfrag,xr}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\author{Prof. Grizzle}
+\title{Rob 501 - Mathematics for Robotics\\
+HW \#1}
+
+\begin{document}
+\date{}
+\maketitle
+
+
+ \newcommand{\trace}{\mathrm{trace}}
+\newcommand{\real}{\mathbb R}  % real numbers  {I\!\!R}
+\newcommand{\nat}{\mathbb R}   % Natural numbers {I\!\!N}
+\newcommand{\cp}{\mathbb C}    % complex numbers  {I\!\!\!\!C}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\mf}[2]{\frac{\ds #1}{\ds #2}}
+\newcommand{\book}[2]{{Luenberger, Page~#1, }{Prob.~#2}}
+\newcommand{\spanof}[1]{\textrm{span} \{ #1 \}}
+\parindent 0pt
+
+
+\begin{flushright}
+\textbf{Due 3 PM on Thurs, Sept 13, 2018}\\
+\textbf{We are using Gradescope.}\\[3mm]
+\end{flushright}
+
+\noindent \textbf{Remarks:}  The initial lectures in Rob 501 are not required for working this HW set. These problems should be doable using standard undergraduate material. That does not mean that they are easy. Some of them will make you review material you have not thought about in a while, or make you think about the material in a different way than you are used to doing. Other concepts may be new, such as the trace of a matrix, but it should be within your ability to learn the material on your own with a few hints.  You will probably be scratching your head on a few of these problems. \textbf{Hints are given} at the very end of the HW set. I put them at the end so that you can first attempt a problem without consulting the hints. Normally, I will NOT give this many hints, but for this first HW set, given that it covers a lot of ground, I thought they might be welcome.
+
+\begin{enumerate}
+
+%Prob. 1 Partitioned matrices
+\item Many problems with matrices are easier to work out when the matrices are \textit{partitioned} nicely, often into rows or columns. Let $A$ be an $n \times m$ matrix and $B$ an $m \times p$ matrix. Denote the $i$-th row of $A$ by $a^i$ and the $j$-th column of $B$ by $b^j$. Show the following
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item $AB=\big[ A b^1|Ab^2| \ldots | Ab^p \big]$
+
+\item $AB=\begin{bmatrix}  a^1 B \\ a^2 B \\ \vdots \\ a^n B \end{bmatrix}$
+
+\item $[AB]_{ij} = a^i b^j$\\
+
+\textbf{Notation:} For a matrix $M$, where the entry of the $i$-th row and $j$-th column is $m_{ij}$, we use the notation
+$$\big[ M \big]_{ij} = m_{ij}.$$
+
+\end{enumerate}
+
+
+
+%Prob. 2  trace of a matrix
+\item Let $A$ be an $n \times n$ (i.e., square) real matrix, and denote the entry of the $i$-th row and $j$-th column by $a_{ij}$. The \textbf{trace of a matrix} is the sum of its diagonal entries, and thus
+    $$\mbox{trace of}~A = \mathrm{tr}(A) = \sum \limits_{i=1}^{n} a_{ii}.$$ Compute the trace of the following matrices:
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item $A=\left[  \begin{array}{ccc} 1 & 2 & 3\\ 4 & 5 &6\\ 7 & 8 & 9 \end{array}\right]$
+
+\item Let $x=\begin{bmatrix}  x_1\\ x_2 \\ \vdots \\ x_n\end{bmatrix}$ be an vector in $\real^n$. Compute $ \trace \big( x x^\top \big)$.
+
+    \item Suppose that $K$ is an $n \times m$ real matrix and $Q$ is a square $n \times n $ matrix. Let $k^i$ be the $i$-th column of $K$. Compute $$\mathrm{tr}(K^\top Q K)$$
+        where $K^\top$ denotes the transpose of $K$.
+
+\end{enumerate}
+
+%Prob. 3 Symmetric matrices
+\item Recall that a real matrix $M$ is \textbf{symmetric} if it is equal to its transpose: $M^\top=M$. Hence, a symmetric matrix is square.
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item By hand, compute the eigenvalues and eigenvectors of $M=\left[  \begin{array}{cc} 2 & 1 \\ 1 & 3 \end{array}\right]$.
+
+\item Let $v^1$ and $v^2$ be the e-vectors computed above and compute $(v^1)^\top v^2$.
+
+\item Show that $M=A^\top A$ is symmetric for any real $n \times m$ matrix $A$. [Yes, this is trivial, but useful to know].
+
+\item Use the \texttt{rand} command in MATLAB to form 10 different real $n \times m$ matrices $A$, for $n \ge m$ of your choice, as long as some of the $m$ are greater than or equal to 3. For each matrix, do the following
+
+    \begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item Form the $m\times m$ matrix $M=A^\top A$.
+
+\item Use the \texttt{eig} command in MATLAB to compute e-values and e-vectors of $M$.
+
+\item Denoting the e-vectors by $\{ v^1, \cdots, v^m \}$,  form the ``inner product'' $(v^i)^\top v^j$ for a few of the e-vectors, with $i \not = j$, and see what you get. Note that $(v^i)^\top v^j$ should be a real number.
+
+\item Sum up the e-values and compare to the trace of the matrix.
+
+\item Summarize your observations on the e-values and the e-vectors in a few sentences. Please do not report your matrices and calculations. There is no need to turn in your MATLAB code.
+
+\end{enumerate}
+
+\end{enumerate}
+
+%Prob. 4 Gaussian Random Variables
+\item Let $X$ be a Gaussian random variable with mean $\mu$ and standard deviation $\sigma>0$; hence $X$ has density
+$$ f_X(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{(x-\mu)^2}{2 \sigma^2}}$$
+If you prefer to call it a normal distribution, that is fine too!
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item On the same graph, plot the density for $\mu =0$ and $\sigma = 1$ as well as for $\mu =0$ and $\sigma = 3$. Obviously, you cannot represent $-\infty < x < \infty$, so just choose a reasonable subset.
+
+\item For $\mu=2$ and $\sigma=5.0$, determine
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item $P\{ X \ge 4\}$
+
+\item $P\{  -2 \le X  \le 4 \}$
+
+\item  $P( X \in A)$, where $ A=[-2,4] \cup [8, 100]$
+
+\end{enumerate}
+
+\item What is the density of the random variable $Y = 2X + 4$?
+
+\end{enumerate}
+
+\newpage
+
+%Prob. 5  Marginal and Conditional Density
+\item  Let $X$ and $Y$ be jointly distributed random variables with joint density
+ $$ f_{XY}(x,y) = K (x+y)^2, ~~0 \le x \le 1,~~ 0 \le y \le 2.$$
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item Determine the constant $K$ so that $f_{XY}(x,y)$ is a density. Fix $K$ at this value for the rest of the problem.
+
+\item  Determine the marginal distributions of $X$ and $Y$; in particular, give their densities.
+
+\item  Determine the conditional distribution of $X$ given $Y=y$; in particular, give the conditional density.
+
+\end{enumerate}
+
+
+
+%Prob. 6  Lagrange Multipliers
+\item Use the method of Lagrange multipliers to solve the following minimization problem, for $x_1\in \real$ and $x_2 \in R$:
+\begin{align*}
+\min~~ (x_1)^2  + (x_2)^2\\
+\\
+\text{subject to:}~~ x_1 + 3 x_2 =4.
+\end{align*}
+
+\noindent \textbf{No cheating:} If you solve for $x_1$ in terms of $x_2$ and substitute into the minimization problem, you get zero points! The purpose is really to review something you learned in Calculus on a simple problem.
+
+%Prob. 7  Jointly Gaussian Random Variables
+\item  \textbf{Challenge Problem:} Let $X$ and $Y$ be jointly Gaussian random variables with means $\mu_X=1$ and $\mu_Y=2$, and covariance matrix $\Sigma = \left[ \begin{array}{cc} 3 & \sqrt{5} \\ \sqrt{5} & 2 \end{array} \right]$. (If you prefer to call these bivariate normal random variables, that is fine too.)
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item  Determine the marginal distributions of $X$ and $Y$; in particular, give their densities.
+
+\item  Determine the conditional distribution of $X$ given $Y=y$; in particular, give the conditional density.
+
+\item Is the variance of $X$ given $Y=y$ greater or less than the variance of $X$ without knowing anything about the value of $Y$?
+
+\item Plot the conditional density of $X$ given $Y=10$.
+\end{enumerate}
+
+\noindent \textbf{Remark:} If you cannot work Prob.~7, do not worry too much about it. However, do take it as motivation to start reading on your own about jointly Gaussian random variables. We will need this material when we cover the Kalman filter.
+
+%End of list of HW Problems
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+{\bf Hints}
+\end{center}
+
+
+\noindent \textbf{Hints: Prob. 1} While these are technically proofs, they are \textit{direct proofs}, and the approach for each of the three is the same: simply show that the $ij$ entry of the left hand side is equal to the $ij$ entry of the right hand side.  Note that by definition of matrix multiplication,
+$$ [AB]_{ij} = \sum \limits_{k=1}^{m} a_{ik} b_{kj} $$
+
+Notation that is useful for (a): For a column vector, we let subscript $i$ denote its $i$-th component. Hence, $[b^j]_{i} = b_{ij}$.\\
+
+Notation that is useful for (b): For a row vector, we let subscript $j$ denote its $j$-th component. Hence, $[a^i]_{j} = a_{ij}$.
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 2} For facts about the trace operator, see\\
+ \url{http://en.wikipedia.org/wiki/Trace_(linear_algebra)}. \\
+Among the many facts on the above web page, it is worth knowing that if $A$ is an $n \times m$ matrix and $B$ is an $m \times n$ matrix, then
+$$ \trace(AB) = \trace(BA). $$ This can be used to quickly simplify part (b), for example. For part (c), use your results on partitioned matrices from Prob.~1.
+
+\vspace{1cm}
+
+
+\noindent \textbf{Hints: Prob. 3} In MATLAB, try these commands: \\
+\texttt{ >> help rand} \\
+\texttt{ >> A=rand(3,4)}\\
+The command defaults to the uniform distribution. In (d)-(iii), you can form ALL of the inner products very quickly as follows:
+\begin{itemize}
+\item  Define a matrix $V$ with the columns being the eigenvectors; in fact, this is what the \texttt{eig} command gives in MATLAB.
+    \item Evaluate $V^\top V$, and note from Prob.~1(c), that $[V^\top V]_{ij} = (v^i)^\top v^j$.
+\end{itemize}
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 4}
+\begin{itemize}
+\item \texttt{>> help plot}
+\item \texttt{>> help hold}
+\item Part (b) requires integration of the density. Once you set up the integrals, you do NOT have to do them analytically. You can do them numerically in MATLAB. Try \texttt{>> help quad}.
+    \item Part (c) We will review this later in the term. See Example 4 here:\\
+    \url{http://www.statlect.com/normal_distribution_linear_combinations.htm}
+\end{itemize}
+
+\newpage
+
+\noindent \textbf{Hints: Prob. 5}
+\begin{itemize}
+\item It must integrate to 1. You may find it easier to expand $(x+y)^2$ before integrating.
+\item Recall $f_{X}(x) = \int \limits_{0}^{2} f_{XY}(x,y) dy $.
+\item There is a ratio of two densities involved!
+\end{itemize}
+
+\vspace{1cm}
+
+
+\noindent \textbf{Hints: Prob. 6} Review your Lagrange multipliers online, for example
+\begin{itemize}
+\item \url{https://www.youtube.com/watch?v=ry9cgNx1QV8}
+\item Google ``lagrange multipliers'' if you need more help.
+\end{itemize}
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 7}
+\begin{itemize}
+\item No further hints given in office hours. This problem will not count towards assignment points.
+\item  $X$ and $Y$ are Gaussian random variables. You can read their means and variances from the provided data without doing any calculations.
+\item $X$ given $Y$ is also a Gaussian random variable. You can determine its mean and variance from the given data with very simple calculations. If you try to derive it from
+    $$f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_Y(y)}$$
+    you are in for a lot of algebra.  I realize that you may not have covered this material in your undergraduate probability course, and we will review it later in the term. In the meantime, search on  the web to figure out the answer.
+    \item %If your search fails, look at page 22 of the following link and set $n=m=1$.\\
+    If your search fails, look at the following link.\\
+    \url{http://fourier.eng.hmc.edu/e161/lectures/gaussianprocess/node7.html}
+    %\url{http://users.isr.ist.utl.pt/~mir/pub/probability.pdf}
+\end{itemize}
+
+\vspace{1cm}
+
+
+
+\end{document}
+

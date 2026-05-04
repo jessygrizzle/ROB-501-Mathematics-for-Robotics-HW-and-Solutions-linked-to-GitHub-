@@ -1,0 +1,48 @@
+
+\begin{verbatim}
+>> A3=[1 4 10; 0 2 0; 0 0 3];
+>> [V,D]=eig(A3)
+
+V =
+
+    1.0000    0.9701    0.9806
+         0    0.2425         0
+         0         0    0.1961
+
+
+D =
+
+     1     0     0
+     0     2     0
+     0     0     3
+\end{verbatim}
+
+MATLAB normalizes the e-vectors so that the sum of the squares of the components equals 1.0. Here is how to check our answers
+
+\begin{verbatim}
+
+>> (A3-eye(3))*[1 0 0]'
+
+ans =
+
+     0
+     0
+     0
+
+>> (A3-2*eye(3))*[4 1 0]'
+
+ans =
+
+     0
+     0
+     0
+
+>> (A3-3*eye(3))*[5 0 1]'
+
+ans =
+
+     0
+     0
+     0
+
+\end{verbatim}

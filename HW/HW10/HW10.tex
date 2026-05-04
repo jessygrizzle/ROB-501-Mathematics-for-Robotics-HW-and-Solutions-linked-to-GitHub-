@@ -1,0 +1,183 @@
+\documentclass[letterpaper]{article}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{epsfig,float,alltt}
+\usepackage{psfrag,xr}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage{pdfpages}
+%\includepdfset{pagecommand=\thispagestyle{fancy}}
+\author{Prof. Grizzle}
+\title{Rob 501 - Mathematics for Robotics\\
+HW \#10}
+
+\begin{document}
+\date{}
+\maketitle
+
+
+ \newcommand{\trace}{\mathrm{trace}}
+\newcommand{\real}{\mathbb R}  % real numbers  {I\!\!R}
+\newcommand{\nat}{\mathbb N}   % Natural numbers {I\!\!N}
+\newcommand{\cp}{\mathbb C}    % complex numbers  {I\!\!\!\!C}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\mf}[2]{\frac{\ds #1}{\ds #2}}
+\newcommand{\Nagy}[2]{{Nagy, Page~#1, }{Prob.~#2}}
+\newcommand{\spanof}[1]{\textrm{span} \{ #1 \}}
+\parindent 0pt
+
+
+\begin{flushright}
+{\bfseries Due Monday, Dec 10, 2018} \\
+{\bfseries 3PM via Gradescope} \\[3mm]
+\end{flushright}
+
+\noindent \textbf{Remarks:}
+ \begin{itemize}
+ \item Final Exam is an in-class exam, similar to your midterm. It will be held on the date and time of our final as set by the registrar of the university, that is Monday, December 17, 1:30 PM - 3:20 PM.
+     \item  The Problems on QPs and LPs will \underline{not} be on your final exam.
+     \end{itemize}
+
+     \vspace*{1cm}
+
+ \noindent \textbf{Definition:} Let $({\cal X}, \real)$ be a vector space. Two norms $||\cdot||:{\cal X} \to[0, \infty)$ and $|||\cdot|||:{\cal X} \to [0, \infty)$ are \underline{equivalent} if there exist positive constants $K_1$ and $K_2$ such that, for all $x\in {\cal X}$,
+    $$K_1 |||x||| \le ||x|| \le K_2 |||x|||. $$
+
+    \noindent \textbf{Remark:} It follow s from the definition of equivalent norms that
+$ \frac{1}{K_2}||x|| \le |||x||| \le \frac{1}{K_1} ||x||. $  \\
+
+
+ \noindent \textbf{Theorem:}  A vector space $({\cal X}, \real)$ is finite dimensional if, and only if, all norms defined on it are equivalent.\\ \\
+
+
+
+\begin{enumerate}
+
+%%Prob 1
+\item  For any
+$x\in\mathbb{R}^{n}$, show that
+\begin{align*}
+\left\Vert x\right\Vert _{2} & \le\left\Vert x\right\Vert _{1}\le\sqrt{n}\left\Vert x\right\Vert _{2}\\
+\left\Vert x\right\Vert _{\infty} & \le\left\Vert x\right\Vert _{2}\le\sqrt{n}\left\Vert x\right\Vert _{\infty}\\
+\left\Vert x\right\Vert _{\infty} & \le\left\Vert x\right\Vert _{1}\le n\left\Vert x\right\Vert _{\infty}
+\end{align*}
+ In  the above, you may wish to try the case $x\in \real^2$ first.
+In fact, working correctly the problem for $x \in \real^2$ will earn full credit.
+
+%%Prob 2
+\item Assume that $||\cdot||$ and $|||\cdot|||$ are equivalent norms on $({\cal X}, \real)$, with $K_1$ and $K_2$ defined in the definition.
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\setlength{\itemsep}{.1in}
+
+    \item  Let $B_a(x_0)$ be an open ball of radius $a>0$ about $x_0$  in the norm $ ||\cdot||$ and let $\widetilde{B}_r(x_0)$ be an open ball of radius $r>0$ about $x_0$ in the norm $ |||\cdot|||$. Show that
+        $$ \widetilde{B}_{\frac{a}{K_2}}(x_0) \subset B_a(x_0) \subset \widetilde{B}_{\frac{a}{K_1}}(x_0) $$
+
+        \item Show that a set $P$ is open in $({\cal X}, \real, ||\cdot ||)$ if, and only if, it is open in $({\cal X}, \real, |||\cdot |||)$. In other words, equivalent norms define the same open\footnote{Because a set is closed if, and only if its complement is open, we see that equivalent norms also define the same closed sets.} sets.
+
+            \item Show that a sequence $(x_n)$ is Cauchy in $({\cal X}, \real, ||\cdot ||)$ if, and only if, it is Cauchy in $({\cal X}, \real, |||\cdot |||)$. In other words, equivalent norms define the same Cauchy sequences and similarly, the same convergent sequences.
+
+\end{enumerate}
+
+
+
+%%Prob 3
+\item Prove that if $f:\mathbb{R}\longrightarrow\mathbb{R}$ is continuous
+at $x_{0}$, and if $\lim_{n\rightarrow\infty}x_{n}=x_{0}$, then
+$\lim_{n\rightarrow\infty}f\left(x_{n}\right)=f\left(x_{0}\right)$. Conversely, if $f$ is discontinuous at $x_0$, then there exists a sequence $(x_n)$ such that $\lim_{n\rightarrow\infty} x_{n}=x_{0}$, but the sequence defined by $y_n = f(x_n)$ does not converge to $f(x_0)$.
+
+
+
+%%Prob 4
+\item Find $x_0$ such that $F(x_0)=0$, where
+    $$F(x_1,x_2) = F(x) = \left[\begin{array}{r} 3\\  4\end{array} \right] +   \left[\begin{array}{cc} 1 & 2 \\ 3 & 4\end{array} \right] x - x x^\top \left[\begin{array}{r} 1\\  2\end{array} \right]. $$
+    Is the answer unique? Try several initial guesses and see what you get. Note that
+    $$x x^\top =\left[\begin{array}{cc} x_1^2 & x_1x_2 \\ x_2 x_1 & x_2^2\end{array} \right].$$
+
+    %%Prob 5
+    \item Use the \texttt{quadprog} command in MATLAB to solve the following problems;
+    \begin{enumerate}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\setlength{\itemsep}{.1in}
+
+    \item The under determined problem
+    $$ \widehat{x} = {\rm arg}~\min_{A_{eq} x = b_{eq}, A_{in} x \le b_{in}} ||x||_2,$$
+    where
+    $$A_{eq} = \left[\begin{array}{rrrr}  1 & 1 & 1 &1\end{array} \right] ~\text{and} ~~ b_{eq} = \left[\begin{array}{c}  2\end{array} \right].$$
+ $$A_{in}=\left[\begin{array}{rrrr}  1 & 2 & 3 &4 \\  5& 6 & 7 & 8\end{array} \right]~~\text{and} ~~ b_{in} = \left[\begin{array}{c}  9 \\ 10\end{array} \right].$$
+
+ \item  A cost function with an offset
+ $$ \widehat{x} = {\rm arg}~\min_{A_{in} x \le b_{in}} (x-x_0)^\top Q (x-x_0),$$
+ where
+ $$Q=\left[\begin{array}{rrrr}  2 & 1 & 0 &0 \\  1& 4 & 1 &0 \\ 0 & 1 & 6 & 1 \\ 0 & 0 &1 & 8\end{array} \right],~~~x_0=\left[\begin{array}{r}  1 \\ 2 \\ 3 \\ 4\end{array} \right]$$
+
+
+  $$A_{in}=\left[\begin{array}{rrrr}  1 & 2 & 3 &4 \\  5& 6 & 7 & 8\end{array} \right]~~\text{and} ~~ b_{in} = \left[\begin{array}{c}  9 \\ 10\end{array} \right].$$
+
+\end{enumerate}
+    %%Prob 6
+    \item Use the \texttt{linprog} command in MATLAB to solve the over determined problem
+    $$ \widehat{x} = {\rm arg}~\min ||Ax-b||_1,$$
+    for $$A=\left[\begin{array}{rr}  1 & 2 \\
+    -3& 7 \\
+    4 & 5\end{array} \right]~~\text{and} ~~ b = \left[\begin{array}{c}  3 \\ 2 \\ 12\end{array} \right].$$
+    Repeat the problem using the $\infty$-norm (i.e., $||\cdot||_\infty = \max \{ |x_1|, |x_2|\}$) and note that the answers are not the same.\\
+
+    \noindent \textbf{Remark:} Equivalent norms do not give rise to the same optimization problems! So, if you seek to prove that something converges and you are working in a finite-dimensional normed space, you can use whatever norm you wish to prove convergence. However, for an optimization problem, the natural notion of distance is often imposed by the ``physics'' of the problem, and thus you may not have a choice.\\
+
+    \noindent \textbf{Remark:}   Another way to access the optimization tools in MATLAB is through \texttt{optimtool}. Type it in a command window, and it will open a GUI.
+
+
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+{\bf Hints}
+\end{center}
+\noindent \textbf{Hints: Prob. 1 } When working with the 2-norm, it is often easier to work with its square. For example, proving $$\left\Vert x\right\Vert _{2}  \le\left\Vert x\right\Vert _{1}$$ is equivalent to proving
+$$\left\Vert x\right\Vert _{2}^{2}  \le\left\Vert x\right\Vert _{1}^{2},$$
+that is
+$$ |x_1|^2 + |x_2|^2 \le (|x_1| + |x_2|)^2,$$
+which is clearly true! Each of the inequalities requires a clever arrangement of terms. Just play with the them and do the best you can. What is important here is to become aware that bounds relating the most common norms on $\real^n$ are well known. \\
+
+\textbf{Handy Inequality:} $2ab\le\left(a^{2}+b^{2}\right).$ It comes from the fact that $0 \le (a-b)^2 = a^2 + b^2 - 2ab$ and rearranging terms.
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 2 } (a) It is just a matter of applying inequalities. Write down what it means for $ x\in B_a(x_0)$ and relate that to $|||x-x_0|||$.
+For (b), look at the definition of an open set.
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 3} Proving that $(f(x_n)) \rightarrow f(x_0)$ when  $x_n \rightarrow x_0$ and $f$ is continuous at $x_0$ is a matter of applying the definitions. First apply the definition of continuity to find a condition on $x$ and $x_0$ to ensure that $f(x)$ is within $\epsilon$ of $f(x_0)$. Then apply the definition of convergence of the sequence $(x_n)$ to make that condition hold true for $x_n$ and $x_0$. \\
+
+The other direction is not nearly as easy. What makes it hard is that you have to write down what it means for a sequence NOT to converge and what it means for a function NOT to be continuous at a point. I will give you these properties, but not more help, even in office hours.\\
+
+
+\textbf{Sequence does not converge:} $y_n$ does not converge to $y_0$ if  there exists some $\epsilon >0$ such that, for all $N < \infty$, there exists $n \ge N$ such that $|y_n -  y_0| \ge \epsilon$.\\
+
+\textbf{Discontinuous at a point:} $f$ is discontinuous at $x_0$ if there exists some $\epsilon >0$ such that, for all $\delta>0$, there exists $x \in B_{\delta}(x_0)$ such that $|f(x) - f(x_0)| \ge \epsilon$. \\
+
+What happens if you set $\delta = \frac{1}{n}$ and choose $x_n$ so that $|x_n-x_0 |< \frac{1}{n}$, but ....I cannot do it all for you!
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 4 } Newton-Raphson Algorithm.
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 5 }  For (b), note that $(x-x_0)^\top Q (x-x_0) = x^\top Q x - 2 x_0^\top Qx + x_0^\top Q x_0^\top$. Also note that adding or subtracting a constant changes the VALUE of the function being minimized, but does NOT change the ARGUMENT of the MINIMUM.
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 6 } You need the lecture notes to know how to set these up as linear programming problems!
+
+\vspace{1cm}
+
+
+
+\end{document}
+
+

@@ -1,0 +1,340 @@
+\documentclass[letterpaper]{article}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{epsfig,float,alltt}
+\usepackage{psfrag,xr}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+
+
+\begin{document}
+
+\newcommand{\trace}{\mathrm{trace}}
+\newcommand{\real}{\mathbb R}  % real numbers  {I\!\!R}
+\newcommand{\nat}{\mathbb R}   % Natural numbers {I\!\!N}
+\newcommand{\cp}{\mathbb C}    % complex numbers  {I\!\!\!\!C}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\mf}[2]{\frac{\ds #1}{\ds #2}}
+\newcommand{\book}[2]{{Luenberger, Page~#1, }{Prob.~#2}}
+\newcommand{\spanof}[1]{\textrm{span} \{ #1 \}}
+\parindent 0pt
+
+
+\begin{center}
+{\large \bf HW \# 08 Solutions}
+\end{center}
+
+\vspace*{1cm}
+
+\begin{enumerate}
+%Prob. 1 Matrices
+\item \noindent \textbf{Problem 1:}
+
+$$ \widehat{K}=PC^\top ( C P C^\top + Q)^{-1} ~~\mbox{and}~~ \widehat{x}=  \widehat{K}y$$
+$$E\{ (\hat{x}-x)(\hat{x}-x)^\top \}=P - PC^\top(CPC^\top + Q)^{-1}CP$$
+
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item  %%1
+
+$\widehat{K} =
+\left[ \begin{array}{r}0.2222\\0.2778\end{array} \right]$
+
+$\widehat{x} =
+\left[ \begin{array}{r}0.3417\\0.4271\end{array} \right]$
+
+
+$E\{ (\hat{x}-x)(\hat{x}-x)^\top \}=
+\left[ \begin{array}{rr}0.27778& -0.02778\\-0.02778& 0.15278\end{array} \right]$
+
+
+\item %%2
+
+$\widehat{K} =
+\left[ \begin{array}{rr}-0.0375& 0.1375\\0.1125& 0.0875\end{array} \right]$
+
+
+
+$\widehat{x} =
+\left[ \begin{array}{r}0.4504\\0.4963\end{array} \right]
+$
+
+
+$E\{ (\hat{x}-x)(\hat{x}-x)^\top \} =
+\left[ \begin{array}{rr}0.19375& -0.08125\\-0.08125& 0.11875\end{array} \right]$
+
+\item %%3
+
+$\widehat{K} =
+\left[ \begin{array}{rrr}-0.0695& 0.0599& 0.1461\\0.1287& 0.1269& -0.0743\end{array} \right]
+$
+
+
+$\left[ \begin{array}{r}-1.0134\\1.2402\end{array} \right]
+$
+
+
+$E\{ (\hat{x}-x)(\hat{x}-x)^\top \} =
+\left[ \begin{array}{rr}0.05449& -0.01048\\-0.01048& 0.08278\end{array} \right]$
+
+
+\item %%4
+$\widehat{K} =
+\left[ \begin{array}{rrrr}-0.0441& 0.0962& 0.1297& -0.0429\\0.0873& 0.0674& -0.0474& 0.0703\end{array} \right]$
+
+
+
+$\widehat{x} =
+\left[ \begin{array}{r}-1.0296\\1.2667\end{array} \right]
+$
+
+
+$E\{ (\hat{x}-x)(\hat{x}-x)^\top \} =
+\left[ \begin{array}{rr}0.04370& 0.00720\\0.00720& 0.05384\end{array} \right]
+$
+
+\item[ ] \textbf{We note the decrease in the covariance with each measurement.}
+\end{enumerate}
+
+\newpage
+\item \textbf{Problem 2}
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item  $\widehat{x}=(C^\top C)^{-1} C^\top y $ and thus
+$$ \widehat{x}=\left[ \begin{array}{r}-1.31687\\1.43685\end{array} \right]$$
+
+\item  For BLUE with $Q=I$, $ \widehat{K}=(C^\top C)^{-1} C^\top$ and thus
+$$ \widehat{x}=\left[ \begin{array}{r}-1.31687\\1.43685\end{array} \right]$$
+
+\item For MVE with $Q=I$ and $P=\rho I$, $ \widehat{K}=P C^\top(C PC^\top +Q)^{-1}  = (C^\top Q^{-1}C + P^{-1})^{-1} C^\top Q^{-1}$
+
+
+
+    $$P=100 I \Longrightarrow \widehat{x}=\left[ \begin{array}{r}-1.31634\\1.43646\end{array} \right]$$
+
+$$P=10^6 I \Longrightarrow \widehat{x}=\left[ \begin{array}{r}-1.31687\\1.43685\end{array} \right]$$
+
+\item All are the same. BLUE equals weighted deterministic least squares with the weight matrix equal to the inverse of the covariance matrix of the noise (the inverse of the covariance matrix is often called the information matrix). And MVE reduces to BLUE when the covariance of the unknown $x$ becomes very large. Why is this useful to know?
+
+    \begin{itemize}
+    \item BLUE $\Longleftrightarrow$ Weighted Least Squares might provide a reason for selecting $Q \not = I$. In particular, terms with larger variance are weighted less (due to the inverse of the covariance being the weight).
+
+    \item MVE $\not =$ BLUE when $P$ is ``small'' says that in general you get a better estimate with MVE when you  know something about the covariance of the unknown $x$. This provides a reason to determine the covariance of $x$: depending on the problem, this may be more or less difficult. It is rarely easy!
+    \end{itemize}
+
+    \end{enumerate}
+
+    \item \textbf{Problem 3}   $ \widehat{x} = \left[ \begin{array}{r}-0.8836\\1.0802\end{array} \right]$ and
+    ${\rm E}\{(x-\widehat{x})(x-\widehat{x})^\top \}=\left[ \begin{array}{rr}0.04370& 0.00720\\0.00720& 0.05384\end{array} \right].$
+
+
+%\newpage
+
+    \item \textbf{Problem 4}
+
+    \begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item  Here is one way to do the MATLAB code
+\begin{verbatim}
+clear all
+
+load SegwayData4KF
+
+
+phi_hat=zeros(N,1);
+theta_hat=zeros(N,1);
+dphi_hat=zeros(N,1);
+dtheta_hat=zeros(N,1);
+x_hat=x0;
+P=P0;
+tic
+for k =1:N
+    uk=u(k);
+    %Kalman Filter Equations
+    K = (P*C')/(C*P*C' + Q);
+    x_hat_next = A *x_hat + B*u(k) + A*K*(y(k)- C*x_hat);
+    P_next= A*(P - K*C*P)*A' + G*R*G';
+    %
+    % Store Calculations for plotting
+    %
+    phi_hat(k)=[1 0 0 0]*x_hat;
+    theta_hat(k)=[0 1 0 0]*x_hat;
+    dphi_hat(k)=[0 0 1 0]*x_hat;
+    dtheta_hat(k)=[0 0 0 1]*x_hat;
+    KalGain(k,:)=K;
+    %
+    % Update variables in Kalman Filter
+    x_hat=x_hat_next;
+    P=P_next;
+end
+toc
+cond(P)
+[U,Sig]=svd(P)
+
+[Kss,Pss] = dlqe(A,G,C,R,Q);
+
+[K,Kss]
+
+Segway_anim(t,phi_hat,theta_hat,Ts);
+
+figure(1)
+plot(t,KalGain,'linewidth',3)
+grid on
+xlabel('t','FontSize',18)
+ylabel('Kalman Gains','FontSize',18)
+legend({'$K_{\theta}$', '$K_{\varphi}$', '$K_{\dot{\theta}}$', ...
+'$K_{\dot{\varphi}}$' },'interpreter','latex','FontSize',18)
+
+print -dpng KalmanGains
+
+figure(3)
+plot(t,theta_hat,'r',t,phi_hat,'g','linewidth',3)
+grid on
+xlabel('t','FontSize',18)
+ylabel('Angles (rad)','FontSize',18)
+legend({'$\widehat{\theta}$', '$\widehat{\varphi}$'},'interpreter','latex')
+print -dpng AnglesThetaPhi
+
+figure(4)
+plot(t,dtheta_hat,'r',t,dphi_hat,'g','linewidth',3)
+grid on
+xlabel('t','FontSize',18)
+ylabel('Angles (rad)','FontSize',18)
+legend({'$\widehat{\dot{\theta}}$', '$\widehat{\dot{\varphi}}$'},'interpreter','latex')
+
+print -dpng AnglularVelocitiesThetaPhi
+\end{verbatim}
+
+\item \textbf{}
+\begin{figure}[h!]
+	\begin{minipage}[t]{\linewidth}
+		\centering
+		\includegraphics[width=0.7\textwidth]{AnglesThetaPhi.png}
+		\setlength{\abovecaptionskip}{0pt}
+%		\caption{Naive Estimate}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{minipage}[t]{\linewidth}
+		\centering
+		\includegraphics[width=0.7\textwidth]{AnglularVelocitiesThetaPhi.png}
+		\setlength{\abovecaptionskip}{0pt}
+%		\caption{Naive Estimate}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{minipage}[t]{\linewidth}
+		\centering
+		\includegraphics[width=0.7\textwidth]{KalmanGains.png}
+		\setlength{\abovecaptionskip}{0pt}
+%		\caption{Naive Estimate}
+	\end{minipage}
+\end{figure}
+\newpage
+\item The asymptotic Kalman gain from running the filter is
+$$K= \left[ \begin{array}{r}0.21127\\0.25594\\-0.17443\\0.48162\end{array} \right]$$
+and the value from \texttt{[Kss,Pss] = dlqe(A,G,C,R,Q);} is
+$$K_{ss} = \left[ \begin{array}{r}0.21127\\0.25594\\-0.17443\\0.48162\end{array} \right]
+$$
+
+\end{enumerate}
+
+%\item Please typeset the scanned file \texttt{UnderDeterminedProblems.pdf}. I will then insert in to the solutions! Wherever you see a red $m$, it will be over a black $p$. I wish to stay with the letter $p$. Hence, replace red $m$'s with $p$'s.
+\item \textbf{Problem 5}
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item Write $x_0 = \beta_1 y_1+~...~ +\beta_p y_p$. We obtain the normal equations, by computing $<x_0, y_i>$ for $1 \le i \le p$, and using the fact that $<x_0,y_i>=c_i$ because $x_0 \in V$.
+    $$\left[ \begin{array}{cccc}
+<y_1, y_1> & <y_2, y_1> & \cdots & <y_p, y_1> \\
+\vdots & \vdots& & \vdots\\
+<y_1, y_p> & <y_2, y_p> & \cdots & <y_p, y_p>
+\end{array} \right] \begin{bmatrix} \beta_1 \\ \vdots \\ \beta_p \end{bmatrix} = \begin{bmatrix} c_1\\ \vdots \\c_p \end{bmatrix}$$
+From previous work, we know that the Gram matrix is invertible if, and only if, $\{y_1, \cdots, y_p  \}$ is linearly independent. Hence, there exists one and only one point in $V\cap \{y_1, \cdots, y_p  \}$. $\hfill \square$
+
+\newpage
+
+\item \underline{Notation:} $[y_1, ..., y_p] := \spanof{y_1,...,y_p}$.\\
+
+\underline{Proposition} $V = x_0 + [y_1, ..., y_p]^\perp$\\
+
+\underline{Proof}
+$$\begin{aligned}  \text{To show:} ~~ x\in V &\iff x-x_0 \perp [y_1, ..., y_p] \\
+\\
+x\in V &\iff <x, y_i>~ =~ c_i, ~~ i = 1, ..., p \\
+&\iff <x-x_0, y_i>~ = ~<x, y_i> - <x_0, y_i> ~= ~c_i - c_i = 0, ~~ i = 1,...,p\\
+&\iff (x-x_0) \perp [y_1, ..., y_p] \end{aligned} $$
+$\hfill \square$
+
+\item Define $M = [y_1, ..., y_p]^\perp$ and write $V=x_0+M$. The problem is to determine
+$$\inf_{v\in V} ||v|| = \inf_{m\in M} ||x_0 + m|| = \inf_{m\in M} ||x_0 - m||$$
+because $M$ is a subspace. By the Projection Theorem, $\exists ! x^* \in M$ such that
+$$||x_0 - x^*|| = \inf_{m\in M} ||x_0 - m||,$$
+and $x^*$ is characterized by $x_0 - x^* \perp M$. We set $v^* = x_0 - x^*$, and then\\
+$$||v^*|| = \inf_{v\in V} ||v||~~ \text{and} ~~v^* \perp M.$$ $\hfill \square$\\
+
+\underline{Remark} $v^* \perp [y_1, ..., y_p]^\perp \iff v^* \in ([y_1, ..., y_p]^\perp)^\perp \iff v^* \in [y_1, ..., y_p]$\\
+
+\underline{Because} $\mathcal{X} = [y_1, ..., y_p] \oplus [y_1, ..., y_p]^\perp \hfill \bigtriangleup$\\
+
+%\vspace*{1cm}
+%\noindent \textbf{Remark:} When writing $V=x_0+M$, you are not obliged to choose $x_0$ to be the same vector we computed in part (a). It
+
+\end{enumerate}
+
+
+\vspace*{1cm}
+
+\item \textbf{Problem 6} \underline{Proof} From our remark, $v^* \in [y_1, ..., y_p]$. We write $v^* = \beta_1 y_1 + ... +\beta_p y_p$ and then impose $v^* \in V$. This gives the normal equations. $\hfill \square$
+    
+    \vspace*{1cm}
+
+\item \textbf{Problem 7}
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item We apply Fact 1 from the handout, with $X_1 \leftrightarrow X, ~X_2 \leftrightarrow Y, ~x_2 = y$
+$$\mu = \begin{bmatrix} \mu_1 \\ \mu_2 \end{bmatrix} = \begin{bmatrix} \bar{x} \\ \bar{y}\end{bmatrix}$$
+and $$\sum = \left[\begin{array}{cc}
+\sum_{11} & \sum_{12} \\
+\sum_{21} & \sum_{22} \end{array}\right] =
+\left[\begin{array}{cc}
+P & PC^\top \\
+CP & CPC^\top +P \end{array}\right]$$.\\
+
+Then $X|Y=y$ has conditional mean
+$$\begin{aligned}
+\mu_{1|2} &= \mu_1 + \textstyle \sum_{12} \sum_{22}^{-1}(x_2-\mu_2) \\
+&= \bar{x} + PC^\top[CPC^\top +Q]^{-1}(y-\bar{y})
+\end{aligned}$$
+and conditional covariance
+$$\begin{aligned}
+\textstyle \sum_{1|2} &= \textstyle \sum_{11} - \sum_{12} \sum_{22}^{-1} \sum_{21} \\
+&= P-PC^\top [CPC^\top+Q]^{-1}CP \end{aligned}$$
+Comparing to Problem 3, we see that $\hat{x} = \mu_{1|2} = E\{X|Y=y\}$!
+
+\item The Schur complement of $\sum_{22}$ in $\sum=\left[\begin{array}{cc}
+\sum_{11} & \sum_{12} \\
+\sum_{21} & \sum_{22} \end{array}\right]$ is
+$$\textstyle \sum_{11} - \sum_{12} \sum_{22}^{-1} \sum_{21}$$
+
+Identifying $\sum_{11} \leftrightarrow P$, $\sum_{12} \leftrightarrow PC^\top$, $\sum_{21} \leftrightarrow CP$, $\sum_{22} \leftrightarrow CPC^\top+Q$ we see that the Schur complement of $CPC^\top+Q$ in $\sum$ is
+
+$$P-PC^\top(CPC^\top+Q)^{-1}CP$$
+
+and this is the covariance of the conditional random vector $X|Y=y$. $\hfill \square$
+\end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,22 @@
+\begin{verbatim}
+    % 1 t t^2  t^3
+    A=[1+0*t, t, t.^2, t.^3];
+    
+    alpha = inv(A'*A)*A'*f
+    f_hat=A*alpha;
+    
+    figure(2)
+    plot(t,f,'.k',t,f_hat,'g','linewidth',3)
+    grid on
+    xlabel('t','FontSize',18)
+    ylabel('f','FontSize',18)
+    
+    print Prob9RegressionResult -dpng
+    
+    Deriv=[1 2 3];
+    A_deriv=diag(Deriv,1)    
+    T=0.3;
+    df_hat_dt = (A_deriv*alpha)'*[1 T T^2 T^3]'
+    
+    df_dt= (A_deriv*[0;0;-2;3])'*[1 T T^2 T^3]'
+\end{verbatim}

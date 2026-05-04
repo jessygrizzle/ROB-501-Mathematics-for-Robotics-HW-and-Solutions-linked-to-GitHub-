@@ -1,0 +1,264 @@
+\documentclass[letterpaper]{article}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{epsfig,float,alltt}
+\usepackage{psfrag,xr}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+
+
+\begin{document}
+
+\newcommand{\trace}{\mathrm{trace}}
+\newcommand{\real}{\mathbb R}  % real numbers  {I\!\!R}
+\newcommand{\nat}{\mathbb R}   % Natural numbers {I\!\!N}
+\newcommand{\cp}{\mathbb C}    % complex numbers  {I\!\!\!\!C}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\mf}[2]{\frac{\ds #1}{\ds #2}}
+\newcommand{\book}[2]{{Luenberger, Page~#1, }{Prob.~#2}}
+\newcommand{\spanof}[1]{\textrm{span} \{ #1 \}}
+\parindent 0pt
+
+
+\begin{center}
+{\large \bf HW \# 02 Solutions}
+\end{center}
+
+\vspace*{1cm}
+
+
+%Prob. 1 Negation
+\noindent \textbf{Problem 1:}
+(P $\land$ Q) means P and Q, whereas (P $\lor$ Q) means P or Q.
+We use $\sim$ for negation; see also $\neg$.
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item  $\sim$(P $\land$ Q)=$\sim$P $\lor\sim$Q
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+P & Q & P $\land$ Q & $\sim$(P $\land$ Q) & $\sim$P $\lor$ $\sim$Q \\ \hline
+1 & 1 & 1 & 0 & 0 \\
+1 & 0 & 0 & 1 & 1 \\
+0 & 1 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 & 1 \\ \hline
+\end{tabular}
+\end{center}
+
+\item  $\sim$(P $\lor$ Q)=($\sim$ P) $\land$ ($\sim$ Q)
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+P & Q & P $\lor$ Q & $\sim$(P $\lor$ Q) & ($\sim$P) $\land$ ($\sim$Q) \\ \hline
+1 & 1 & 1 & 0 & 0 \\
+1 & 0 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 1 \\ \hline
+\end{tabular}
+\end{center}
+\end{enumerate}
+
+\bigskip
+
+%Prob. 2 Negation
+\noindent \textbf{Problem 2:}
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+%\baselineskip=1.25\baselineskip
+\item  Each of these is correct: \par
+$\bullet$ For some integer $n$, $2n+1$ is even. \par
+$\bullet$ For some integer $n$, $2n+1$ is not odd. \par
+$\bullet$ $\exists$ integer $n$ such that $2n+1$ is even. \par
+$\bullet$ For at least one integer $n$, $2n+1$ is even.
+
+\item Each of these is correct: \par
+$\bullet$ For every integer $n$, $2^{n}+1$ is not prime. \par
+$\bullet$ For every integer $n$, $2^{n}+1$ is composite. \par
+$\bullet$ $\forall~n$ an integer, $2^{n}+1$ is composite.
+
+\item Each of these is correct: \par
+$\bullet$ $\forall~v\in \real^n$ with $~ v\not= 0$, it follows that $Av\not=\lambda v$. \par
+%$\bullet$ $\forall~v\in \real^n, ~ v\not= 0,~Av\not=\lambda v$. \par
+$\bullet$ $\forall~v\in \real^n$, either $v=0$ or $Av\not=\lambda v$. \par
+$\bullet$ $\forall~v\in \real^n, ~ v\not= 0\implies Av\not=\lambda v$.
+\medskip \\
+We can also rewrite (c) as: For at least one $v\in \real^n, ~ v\not= 0$, it is true that $Av=\lambda v$.
+
+We can negate this statement as \par
+$\bullet$ For all $v\in \real^n$ with $v\not= 0,~Av\not=\lambda v$. \par
+$\bullet$ For all nonzero $v\in \real^n,~Av\not=\lambda v$.
+
+\item Each  is correct: \par
+$\bullet$ $\exists~\eta>0$ such that $\forall~\delta>0, ~\exists~x$ such that $|x| \le \delta$, while $|f(x)|> \eta |x|$. \par
+$\bullet$ There is at least one $\eta>0$ such that, for all $\delta>0$, there is at least one $x$ satisfying $|x| \le \delta$ and $|f(x)|> \eta |x|$.
+\end{enumerate}
+
+\bigskip
+
+%Prob. 3 Proof by contradiction
+\noindent \textbf{Problem 3:}
+\medskip \\
+Fact: Let $m$ be an integer. If 7 divides $m^2$, then 7 also divides $m$.
+\medskip \\
+\underline{Claim}: $\sqrt{7}$ is irrational.
+\medskip \\
+\underline{Proof:} To show: There do \underline{not} exist non-zero integers $p$ and $q$ with no common divisors other than 1, such that
+$$\sqrt{7}=\frac{p}{q}$$
+\underline{Method:} Proof by contradiction. Hence we
+\medskip \\
+\underline{Assume:} There do exist nonzero integers $p$ and $q$, having no common divisor other than 1, such that
+$$\sqrt{7}=\frac{p}{q}$$
+Because $\sqrt{7}=\frac{p}{q}$, we have
+$$7=\frac{p^2}{q^2}$$
+and thus $7q^2=p^2$. Thus, 7 is a divisor of $p^2$, and by our Fact, it is also a divisor of p.
+$$\begin{aligned}
+&~~~~~~~~~~~\therefore~p=7\cdot k \text{     for some integer } k \\
+&~~~~~~~~~~~\therefore~p^2=7^2\cdot k^2
+\end{aligned}$$
+and thus
+$$ 7q^2=p^2=7^2 \cdot k^2$$
+Cancelling 7 on both sides, we have
+$$q^2=7\cdot k^2$$
+and 7 is a divisor of $q^2$, and by our Fact, it is also a divisor of q.
+\medskip \\
+Hence, we have shown that 7 is a common divisor of $p$ and $q$, CONTRADICTING our assumption that $p$ and $q$ have no common divisors other than 1.
+\medskip \\
+We conclude that $\sqrt{7}$ cannot be expressed as the ratio of two integers, and hence it is irrational.
+\hfill $\square$
+
+\bigskip
+%Prob. 4 Proof by contrapositive
+\noindent \textbf{Problem 4:}
+\medskip \\
+\underline{Def.} An $n \times n$ matrix $A$ is invertible if there exists an $n \times n$ matrix $B$ such that $AB=BA=I$, where $I$ is the $n \times n$ identity matrix.
+\medskip \\
+\underline{Fact:} $\det(A \cdot B)=\det(A)\cdot \det(B)$
+\medskip \\
+\underline{Proposition:} Let $A$ be an $n \times n$ matrix. If $\det(A)=0$, then $A$ is not invertible.
+\medskip \\
+\underline{Proof:} We prove the \underline{contrapositive}, namely,
+$$ \text{If } A \text{ is invertible, then } \det(A) \not=0$$
+Indeed, if $A$ is invertible, then $\exists$ an $n \times n$ matrix $B$ such that
+$$A \cdot B=I$$
+From our fact, we deduce that
+$$ \det(A) \cdot \det(B) = \det(I) = 1$$
+If the product of two real numbers is non-zero, then neither can be zero. \par
+\null\hfill $\therefore \det(A) \not=0$ \hfill $\square$
+
+\bigskip
+%Prob. 5 Proof by induction
+\noindent \textbf{Problem 5:}
+Proof by (ordinary) induction
+    $$P(n):\sum \limits_{k=1}^{n} \frac{1}{k(k+1)} = \frac{n}{n+1}$$
+We check $P(1):~\sum \limits_{k=1}^{1} \frac{1}{k(k+1)} = \frac{1}{1(1+1)} =\frac{1}{1+1}$ and hence
+$P(1)$ holds. \\
+We assume that $P(k):~\sum \limits_{j=1}^{k} \frac{j}{j(j+1)} = \frac{k}{k+1}$ and seek to show that
+    $$P(k+1)=\frac{k+1}{(k+1)+1}$$
+We can write $P(k+1)$ as
+    $$\begin{aligned}
+        P(k+1) &= \sum \limits_{j=1}^{k+1} \frac{1}{j(j+1)} \\
+        &= \big(\sum \limits_{j=1}^{k} \frac{1}{j(j+1)}\big) + \big(\frac{1}{(k+1)(k+2)}\big) \\
+        &= P(k)+\frac{1}{(k+1)(k+2)}
+    \end{aligned}$$
+By the induction hypothesis, we have that
+    $$\begin{aligned}
+        P(k+1) &= \frac{k}{k+1} + \frac{1}{(k+1)(k+2)} \\
+        &= \frac{k(k+2)}{(k+1)(k+2)} + \frac{1}{(k+1)(k+2)} \\
+        &= \frac{k^2+2k+1}{(k+1)(k+2)} \\
+        &= \frac{(k+1)^2}{(k+1)(k+2)}\\
+        &= \frac{k+1}{k+2} \\
+        &= \frac{k+1}{(k+1)+1}
+    \end{aligned}$$
+which is what we wanted to show.\hfill $\square$
+
+\bigskip
+%Prob. 6 Proof by induction
+\noindent \textbf{Problem 6:}
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item  The first part is proven in the handout. We now check the cases $n=8,9,10~\text{and}~ 11$.
+    $$\begin{aligned}
+        8  &= 2 \times 4 + 0 \times 5 ~~~~ \surd \\
+        9  &= 4 + 5 ~~~~ \surd \\
+        10 &= 0 \times 4 + 2 \times 5 ~~~~ \surd \\
+        11 &= -4 + 3 \times 5, \text{~but negative integers are not allowed!}
+    \end{aligned}$$
+We systematically check $0 \times 4 + 2 \times 5  < 11$, $1 \times 4 + 1 \times 5 <11$,  $2 \times 4 + 0 \times 5 <11$, $1 \times 4 + 2 \times 5  >11$, $2 \times 4 + 1 \times 5 >11$, and conclude that no solution is possible.
+
+\item We do a few base cases and then apply strong induction
+    $$\begin{aligned}
+        6  &= 2 \times 3 + 0 \times 5 \\
+        8  &= 1 \times 3 + 1 \times 5 \\
+        10 &= 0 \times 3 + 2 \times 5 \\
+        12 &= 4 \times 3 + 0 \times 5
+    \end{aligned}$$
+We have shown the result is true for $n\in \{6,8,10,12\}.$ Suppose it holds for $n$ even, $n\in \{6,8,10,...,m\}.$
+\medskip \\
+\textbf{To show}, it holds for $m+2$.
+\medskip \\
+Define: $\bar{n}=(m+2)-8=m-6$
+Then $\bar{n} \in \{6,8,10,...,m\}$, and thus $\exists ~ \bar{k}_1$ and $\bar{k}_2$ such that
+$$ \bar{n} = \bar{k}_1 \times 3 + \bar{k}_2 \times 5 $$
+Then,
+$$ m+2 = \bar{n} +8 = (\bar{k}_1+1)\times 3 + (\bar{k}_2+1) \times 5$$
+and thus $k_1=\bar{k}_1 + 1$ and $k_2 = \bar{k}_2 +1$
+are the required factors. \hfill $\square$
+\end{enumerate}
+
+\bigskip
+%Prob. 7 Lagrange Multipliers
+\noindent \textbf{Problem 7:}
+\medskip \\
+Our function is $f(x)=x^\top M x$ and our constraint is $g(x)=1-x^\top x =0$.
+We form the Lagrange function
+    $$\Lambda(x,\lambda)=f(x)+\lambda g(x)$$
+Stationary points (local max or min) satisfy
+    $$ \frac{\partial}{\partial x}\Lambda(x,\lambda)=0 ~~\text{and}~~ \frac{\partial}{\partial \lambda}\Lambda(x,\lambda)=0 $$
+
+We have
+    $$\begin{aligned}
+        \frac{\partial}{\partial x}\Lambda(x,\lambda) &= 2Mx-2\lambda x = 0 \\
+        \frac{\partial}{\partial \lambda}\Lambda(x,\lambda) &= 1-x^\top x = 0
+    \end{aligned}$$
+
+Thus, we have
+    $$ Mx=\lambda x ~~\text{and}~~ x^\top x = 1 $$
+Because $x^\top x=1$, we have $x\not= 0$ and thus $\lambda$ is an e-value of $M$ and $x$ is a corresponding e-vector, normalized so that $x^\top x=1$. Because $M$ is symmetric, $\lambda$ and $x$ are both real.
+\medskip \\
+Hence, at a stationary point,
+$$ f(x)=x^\top M x = x^\top (\lambda x) = \lambda x^\top x = \lambda $$
+where we have used both $Mx=\lambda x$ and $x^\top x =1$.
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item max $x^\top M x$ subject to $x^\top x =1$ is equal to $\lambda_{max}$, and a maximizing $x$ is an e-vector corresponding to $\lambda_{max},$ normalized so that $x^\top x=1$.
+\item min $x^\top M x$ subject to $x^\top x =1$ is equal to $\lambda_{min}$, and a minimizing $x$ is an e-vector corresponding to $\lambda_{min},$ normalized so that $x^\top x=1$.
+\hfill $\square$
+\end{enumerate}
+
+
+%Prob. 8 Vector spaces and subspaces
+\noindent \textbf{Problem 8:}
+\medskip \\
+(a) Not a subspace. $\begin{bmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix} \in S$, but $-\begin{bmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix} \notin S$ \\
+\medskip \\
+(b) and (d) are special cases of the following:
+\medskip \\
+Let $C$ be a $1 \times n$ row vector. Then $S=\{x\in \real^n | Cx=0\}$ is a subspace.
+\medskip \\
+\underline{Proof}
+
+($i$) Suppose $x_1$ and $x_2 \in S$. Then $C x_1=0$ and $C x_2 = 0$, and thus $C(x_1 + x_2) = C x_1 + C x_2 = 0$
+$$\therefore x_1 +x_2 \in S$$
+($ii$) Suppose $x \in S$ and $\alpha \in \real$. Then $\alpha x \in S$ because $C(\alpha x) = \alpha C(x) = \alpha \cdot 0 = 0$. \hfill $\square$
+\medskip \\
+(c) Not a subspace.
+$x=\begin{bmatrix} 1 \\ 0 \\ 0 \\ \vdots \\ 0 \end{bmatrix}$ and $y=\begin{bmatrix} 0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix}$ are both in $S$, but $x+y=\begin{bmatrix} 1 \\ 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix}\notin S$ \\
+\medskip \\
+(e) and (f) are the same because in (e), we can let $A=\big[ 1,1, \ldots,1\big]$ and $b=1$.
+Not a subspace. Suppose $Ax=b$, that is $x\in S$. Then $2x\notin S$ because $A(2x)=2Ax=2b \not= b$ \hfill $\square$
+\end{document} 

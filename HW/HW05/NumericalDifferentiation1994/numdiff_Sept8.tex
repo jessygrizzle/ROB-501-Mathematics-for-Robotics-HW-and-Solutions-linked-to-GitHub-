@@ -1,0 +1,1280 @@
+\documentstyle[psfig,12pt]{article}
+\input define
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                          %
+%       Numerical differentiation in system theory. Observer design        %
+%                                                                          %
+%       Edited on August 8, 1993                                           %
+%	Converted by Laura to LaTex on Sept. 6, 1993                       %
+%       Section on Examples added on Sept. 7, 1993                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Comment out and adjust the following lines when using Double Columns   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \hoffset = -10 true mm
+% \voffset = -5 true mm
+% \hsize = 185 true mm
+% \vsize = 235 true mm
+% \newdimen\separatorwidth
+% \separatorwidth = 5 true mm
+% \tolerance = 1000
+% \emergencystretch = 25pt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\documentstyle[proc,acc]{article}
+%\pagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                         %
+%	Commented lines below are for two columns                         %
+%                                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\textheight=24cm
+%\textwidth=17.7cm
+%\oddsidemargin=-.4cm
+%\columnsep=1.5cm
+%\topmargin=-2.716cm
+\textheight=9in
+\textwidth=7.0in
+\oddsidemargin=0in
+\topmargin=-.66in
+
+\def\thesection{\arabic{section}.}
+\def\thesubsection{\thesection\arabic{subsection}.}
+\def\theequation{\arabic{equation}}
+\def\figurename{\small Figure}
+
+\newcommand{\r}{\hbox{\sl l\kern-.2em R}}
+\def\thesection{\arabic{section}.}
+\def\theequation{\thesection\arabic{equation}}
+\def\theenumi{\roman{enumi}}\def\labelenumi{(\theenumi).}
+\def\theenumii{\alph{enumii}}\def\labelenumii{(\theenumii)}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proof}{Proof:}
+\def\theproof{}
+\def\thetheorem{\thesection\arabic{theorem}}
+
+\def\setR{\hbox{$l\! \! R$}}
+\def\setN{\hbox{$l\! \! N$}}
+\def\CN{{\cal N}}
+
+\def \BA {{\bf A}}
+\def \BB {{\bf B}}
+\def \BC {{\bf C}}
+\def \BE {{\bf E}}
+\def \BF {{\bf F}}
+\def \BG {{\bf G}}
+\def \BH {{\bf H}}
+\def \BI {{\bf I}}
+\def \BJ {{\bf J}}
+\def \Bk {{\bf k}}
+\def \BK {{\bf K}}
+\def \BL {{\bf L}}
+\def \BM {{\bf M}}
+\def \BN {{\bf N}}
+\def \BQ {{\bf Q}}
+\def \BP {{\bf P}}
+\def \BQ {{\bf Q}}
+\def \BR {{\bf R}}
+\def \BS {{\bf S}}
+\def \BV {{\bf V}}
+
+%\def \CN   {{\eusm N}}
+
+\def\thesubsubsection{\thesubsection\arabic{subsubsection}.}
+
+\begin{document}
+
+\title{Interpolation and Numerical Differentiation \\
+for Observer Design}
+
+\author{S. Diop\thanks{Charg\'e de Recherche CNRS - LAGEP, UCB Lyon I - 43 Bd.
+11 Nov. 1918, 69622 Villeurbanne France;
+work supported in part by a grant from NSF/CNRS and in part 
+by the Control Systems Laboratory of
+the Dept. Elect. Eng. and Comp. Sci., U. of Michigan.}, 
+J.\ W.\ Grizzle\thanks{Control Systems Laboratory, \
+Department of Electrical Engineering and Computer
+Science, \ University of Michigan, Ann Arbor, MI 48109-2122;
+work supported in part by the National Science
+Foundation under contract NSF ECS-92-13551; matching funds to this grant were
+provided by the FORD MO.\ CO.}
+P.\ E.\ Moraal\footnotemark[2] and A. Stefanopoulou\footnotemark[2] }
+%\\[-48pt]}
+
+\maketitle
+%\def\thefootnote{\fnsymbol{footnote}}
+%\footnotetext[1]{\mbox{}\footnotemark[1] Laboratoire d'Automatique et de G\'{e}nie des
+%Proc\'{e}d\'{e}s, CNRS-Universit\'{e} Claude Bernard, B\^{a}t. 721,
+%43 Bd. du 11 Novembre 1918, 69622 Villeurbane-France; work supported in part by
+%a NATO Postdoctoral Fellowship. }
+
+%\footnotetext[2]{\footnotemark[2] Department of Electrical Engineering and Computer
+%Science,University of Michigan, Ann Arbor, MI 48109-2122;
+%work supported in part by the National Science
+%Foundation under contract NSF ECS-88-96136; matching funds to this grant were
+%provided by the FORD MO.\ CO.}
+
+
+\abstract  
+This paper explores interpolation and numerical differentiation
+as a basis for constructing a new approach to the design of nonlinear
+observers.  
+Numerical differentiation is well known to be an ill-conditioned problem in the
+sense that small perturbations on the function to be differentiated may induce
+large changes in the derivatives.
+We illustrate through examples that some specific methods may be able to overcome this
+difficulty, turning numerical differentiation techniques into a possible
+challenger to existing observer design methods.
+
+\medskip\noindent
+{\bf Keywords:}
+Observer design; Interpolation; Numerical differentiation; System theory. 
+
+\section{Introduction.}  Observer design is a fundamental problem in system theory and 
+control practice.  Indeed, many feedback  design techniques, especially for nonlinear
+system models,  start with the assumption that the full state is available for
+feedback and that the {\it user} will design separately a suitable observer
+for the actual implementation.  This in turn has motivated a great deal of
+research into observer design.   
+
+The specific problem addressed herein involves the situation where
+one seeks to ``estimate'' the states of a continuous-time model from
+observations collected at discrete instants in time.  To date, this problem has
+been addressed only in the context of sampled data systems
+\cite{grizzle1990b,grizzle1990a,grizzle1990c,moraal1992}, where the
+procedure has been to first compute
+a discrete-time model from the continuous-time model, and
+then to design an observer on the basis of the discretized system model.
+Of course, the discretization process sometimes can be quite non-trivial, from
+a numerical or computational point of view; also, it is usually quite important 
+to assume that the observed data has been collected at regular intervals of time,
+and thus dealing with problems where event driven sampling is necessary can be difficult.  
+
+This paper comes out of the observation that
+on the one hand, the numerical analysis literature contains a
+substantial body of results on numerical differentiation, while on
+the other hand, one of the very basic problems in system theory turns
+out to be that of obtaining the time derivatives of a continuous system
+variable, which is usually known only through the differential equations of
+the system, and time samples of this variable.
+We present a first attempt in applying results on numerical differentiation
+to the observer design problem, mainly by
+working out some specific examples.
+
+To see how numerical differentiation and observer design may tie together, 
+let us consider the 
+following simple observer design problem.
+Let a system be given as
+\begin{equation}
+\left\{
+\begin{array}{rcl}
+\dot x_1 & = & x_2\\
+\dot x_2 & = & -ux_1^3\\
+y & = & x_1\end{array}
+\right. \label{1}
+\end{equation}
+and let the question be to build an observer for (\ref{1}); that is,
+to reconstruct the states of the system on the basis of the available
+measurements.
+It is clear that the variable $x_1$ need not be computed since it 
+is directly given by the measurement: $ x_1 = y$.
+From the equations of (\ref{1}), we see that $x_2 = \dot y$.
+If, as is usually the case, we have no access to 
+$\dot y$ then we need to {\it compute} $\dot y$ from the measurement $y$.
+This is where numerical differentiation comes into play:
+we explore the feasibility of {\it numerically
+differentiating} $y$ in order to obtain $x_2$.
+If $y$ is known only through its time samples then numerical 
+differentiation yields an approximation of
+$\dot y$ at the current sampling time $t_k$ by some number
+$\hat {\dot y}(t_k)$.
+An algorithm for the computation of $\hat {\dot y}(t_k)$ from the
+samples of $y$, and {\it estimates of the error bounds} should thus be worked out.
+Usually, not only $\dot y$, but, also, finitely many higher
+derivatives of $y$ should be approximated at time $t_k$ in order to be
+able to compute all of the desired state components.
+
+The intent of this simple example is to 
+illustrate our main objectives in applying 
+numerical differentiation techniques to the observer design problem.
+If efficient numerical 
+differentiation algorithms are available, then they should be
+applicable to many other system theoretic problems that require the
+computation of the derivatives of continuous variables which are
+known only through their time samples and the differential equations they
+satisfy.
+The inversion problem is among other potential applications that come to mind.
+
+Our investigation led us directly to interpolation theory, and more
+generally, to approximation theory.
+As is well known, there is a considerable number of different ways for
+approximating the value of an unknown function at some point.
+One commonly chooses among polynomial, rational, periodic, or exponential
+functions
+as basis elements.
+(See also methods stemming from the Shannon sampling theorem
+\cite{butzer1971,butzer1977,splettstosser1979,splettstosser1983,butzer1983a,butzer1983b,ries1983,schussler1983}.)
+The optimality of any approximation process is, of course, relative to the
+assumed basis functions.
+Approximation methods based on polynomials are the
+simplest ones, but spline approximations seem to have some interesting
+fundamental properties.
+
+
+%{\it Tornambe: talk about his work.}
+%As far as we know, system theorists used to invoke asymptotic 
+%observer design techniques to solve this problem.
+%While this approach is very successful for constant linear systems, the
+%nonlinear case seems restrictive, and even obstructive.
+
+The paper is organized as follows.  Section \ref{observability} briefly reviews
+the notion of observability we are using.  Section \ref{numdiff} provides a 
+considerable review of the numerical analysis literature on numerical
+differentiation.  Section \ref{examples} illustrates on specific examples 
+how numerical
+differentiation
+may be integrated into an overall observer design strategy.  
+%A few concluding remarks are given in Section \ref{conclusions}.
+
+
+\section{An observability property.}\setcounter{equation}{0}
+\label{observability}
+
+Given a system described by the state equations
+\begin{equation}
+\left\{
+\begin{array}{rcl}
+\dot x_i & = g_i(x, u) \quad (1 \le i \le n)\\
+y_j & = h_j(x, u) \quad (1 \le j \le p)\end{array}
+\right.
+\label{2}
+\end{equation}
+we will adopt the following specific observability property (see
+\cite{chung1990,grizzle1990b,grizzle1990c,grizzle1990a,moraal1992,song1992,moraal1993b,moraal1993a}):
+system (\ref{2}) is {\bf observable} if there is an integer $N$ such
+that the map $H\left(u, \dot u, \cdots, u^{(N-2)}, \cdot \right)$ of
+the state space into some space of output values, defined by
+\begin{equation}
+H\left(u, \dot u, \cdots, u^{(N-1)}, x \right) = 
+\left( 
+\begin{array}{c} y \\ \dot
+y \\ \vdots \\ y^{(N-1)} \end{array}\right), \label{3}
+\end{equation}
+is {\it injective} for any fixed {\it universal input}.
+%We shall define later what these universal inputs are.
+It is easiest at this stage to assume that there is actually
+no input in (\ref{2}), or that all inputs are universal in the sense that
+the above map is injective for any input. 
+
+For an observable system (\ref{2}), we then may write
+$$x = L\left(u, \dot u, \cdots, u^{(N-2)}, y, \dot y, \cdots, y^{(N-1)} 
+\right).$$
+The existence of the map $L$ is guaranteed by our definition of 
+observability, but an explicit expression of $L$ may not be easy to 
+obtain so that numerical equation solving methods such as Newton's algorithm
+may be required in order to obtain $L$.  
+When (\ref{2}) is a rational system in the sense that the $g_i$'s and the 
+$h_j$'s are rational functions of their arguments, then the type of 
+observability we just defined corresponds to {\it rational 
+observability} of \cite{diop1991d,diop1992b}, and then the explicit
+expression of $L$ may be  constructively derived through the use of certain
+differential
+algebraic techniques.
+
+%\noindent {\bf Note:} In the literature, it is often tacitly assumed that $N$ should
+%be taken  as $2n + 1$; we shall examine this situation which, {\it a
+%priori}, seems connected to the works \cite{aeyels1981a,aeyels1981b}.
+
+For these observable systems, the observer design problem may thus be 
+seen as a problem of numerical differentiation: once estimates of the
+derivatives
+of $y$ and $u$ can be determined from the available measurements, then $x$ can be
+determined from $L$.
+
+\section{On numerical differentiation.}\setcounter{equation}{0}
+\label{numdiff}
+
+The basic problem we are facing may be roughly stated as follows:
+
+\noindent {\bf Problem P.}
+A real valued function $f$ of one real variable
+(called the  {\it time,} $t$) defined on an interval $\BI$ is known
+only through the differential equations it satisfies and through the
+values it  takes at some instants $t_0, t_1, \cdots, t_k \in \BI$,
+with $t_0 <$ $t_1 < \cdots <$ $t_k$.  The question is to provide
+estimates of the first  $q$ derivatives $f^{(1)}(t_k)$,
+$f^{(2)}(t_k), \cdots$, $f^{(q)}(t_k)$ of $f$ at time $t_j$, for some $0 \le j
+\le k$.
+The difficulty of the problem may be increased by the presence of noise in the samples
+of $f$, in which case, the approximation technique should provide
+{\it smoothing}, and even the values of $f$ would need to be estimated.
+
+\noindent {\bf Remarks:}
+
+\begin{itemize}
+
+\item
+The more general problem we should end up facing in system
+theory is actually a multivariable one in that $f$ is a vector valued function
+instead of scalar valued as in the latter statement.
+
+\item
+If $r$ is the order of the differential equations defining $f$ then only
+at most the first $q = r - 1$ derivatives of $f$ need be estimated, the
+succeeding derivatives being computable from the previous ones
+by means of these differential equations defining $f$.
+
+\item
+Problem~P is a particular case of the general problem of approximation of
+functions on the basis of partial knowledge of these functions.
+Its seems that there is not yet a complete solution with
+expressions of the error bounds in the literature.
+One partial solution consists in taking the derivatives of the
+{\it interpolant} $\hat f$ for those of $f$.
+On this approach, there is a substantial amount of literature.
+Another possible direction consists in trying to overcome
+the ill-conditionedness of the numerical differentiation problem by using
+some regularization techniques.
+The only known works are the one by Cullum~\cite{cullum1971},
+and those in the Russian literature (cited in the latter paper) to which we
+do not yet have access.
+\end{itemize}
+
+\subsection{Generalities on approximation theory.}
+The basic problem that approximation theory addresses is the following:
+Assume that the unknown object to be approximated is an element
+$x$ of a given metric space $\BE$, and find a {\it best estimate}
+$\hat x$ of $x$ in an (also given) subspace $\BF$ of $\BE$ subject to
+$$
+{\rm d}(x,\hat x) = {\rm d}(x,\BF) = \min_{y \in \BF}{\rm d}(x,y),
+$$
+where {\rm d} denotes the distance on $\BE$.
+The word {\it best} is of course relative to the distance used in
+$\BE$ and to the choice of $\BF$.
+For example, for a fixed distance, the larger $\BF$ is, the finer the
+approximation will be.
+This problem has at least one solution if the subspace
+$\BF$ is compact, or if $\BE$ is a normed vector
+space and $\BF$ is a linear subspace of finite dimension, or if $\BE$
+is a Hilbert space and $\BF$ is a closed subspace.
+
+In our case, the object to be approximated is the set of derivatives $f^{(1)}$,
+$f^{(2)}, \cdots$, $f^{(q)}$ of a real valued function $f$ defined
+on, say a compact interval $\BI$ of $\setR$, so that the space $\BE$
+may be taken as the set of real valued functions which are $q-1$ times
+differentiable with $f^{(q-1)}$ absolutely continuous and $f^{(q)}$ square
+integrable on $\BI$, or which are infinitely differentiable, or, even, which
+are analytic on $\BI$.
+$\BE$ is thus endowed with its usual $\setR$-algebra
+structure and may be converted into a real normed vector space by one of
+the following 
+\begin{eqnarray*}
+\| g \|_p & = & \left( \int_\BI |g(t)|^pdt \right)^{1/p}, \, g \in \BE, p
+\in \setR, \, p \ge 1, \\
+\| g \|_\infty & = &\sup_{t \in \BI} |g(t)|, \, g \in \BE, \\
+\| g \|_{(q)} & = &\| g \|_2 + \| g^{(1)} \|_2 + \cdots +
+\| g^{(q)}\|_2, \, g \in \BE, \\
+& \hbox{\rm etc.} &
+\end{eqnarray*}
+The norm $\| \, \|_2$ corresponds to the Hilbert space
+structure on $\BE$, the corresponding inner product being
+$$
+\left( g, h \right) = \int_I g(t)h(t)dt, \, g, h \in \BE.
+$$
+The norm $\| \, \|_\infty$ is usually called the {\it infinity} or {\it
+uniform} norm.
+
+Whenever $\BF$ is a finite dimensional subspace of
+$\BE$ and the norm
+$\| \, \|_2$ is used,
+ the {\it least squares} approximation process results in the existence and 
+uniqueness of the best
+estimate of any given $f$ in $\BE$.
+
+The subset $\BF$ of $\BE$ is usually taken as a subspace of one of
+the following linear subspaces:
+\begin{itemize}
+\item
+$\setR\left[ t \right]$, the subspace of polynomial functions,
+\item
+$\setR\left( t \right)$, the subspace of rational functions,
+\item
+$\setR\left[ \cos t, \sin t \right]$, the subspace of $\setR$-linear
+combinations of $\cos(it)$ and $\sin(it)$, $i \in \setN$.
+\end{itemize}
+%Assume linear, uniform, approximation theory,
+Assume that $\BF$ is finite dimensional, with dimension $N'+1$, and norm $\| \ \|$.
+We then know that, given any $f_0$ in $\BE$, there is at least one
+best estimate $\hat f$ of $f_0$ in the sense of minimizing $\| f-f_0 \|$ over
+$f \in \BF$.  When  $\| \ \| = \| \, \|_\infty$, $\hat f$ is called a best uniform
+estimate.
+A base $(\zeta_0$, $\zeta_1, \ldots$, $\zeta_{N'})$ of $\BF$ is said to
+satisfy the Haar condition if any real linear combination
+$$
+c_1\zeta_1(t) + \cdots + c_N\zeta_{N'}(t)
+$$
+vanishes at less than $N'+1$ distinct points in $\BI$.
+
+\begin{theorem}[\rm (Haar), \cite{delavalleepoussin1970}].\label{thm1}
+A necessary and sufficient condition for the best uniform estimate to be
+unique is that the base $(\zeta_0$, $\zeta_1, \ldots$, $\zeta_{N'})$ of $\BF$
+satisfies the Haar condition.
+\end{theorem}
+
+\subsection{Differentiating the interpolant.}
+Since the interpolation problem has been given a large number of elegant
+and practical solutions, the easiest way to approach Problem~P is to take
+the derivatives of the interpolant $\hat f$ for those of $f$.
+Let us make the following remark at this stage even if we have not yet
+introduced the material which makes it clear:
+There might be, due the reality of a particular
+physical problem, no freedom in the choice of the sampling instants $t_i$,
+but the error bounds for the estimated derivatives are
+reasonably expected to depend on both the number of
+samples and  their distribution on the time interval $\BI$ as apparent from
+the Tchebychev theorem.
+Our study should address this issue, as well, but
+for now, we shall suppose that the current time is $t_N$; later on, we shall
+discuss how we should deal with the succeeding sampling instants $t_{N+1},
+\ldots$ as time evolves.
+
+Let $\BF_{N'}$ be a linear subspace of $\BE$ of finite dimension $N'+1$, and
+with base $(\zeta_0$, $\zeta_1, \ldots$, $\zeta_{N'})$.
+An element
+$$
+\hat \zeta_{N'}(t) = c_0\zeta_0(t) + \cdots + c_{N'}\zeta_{N'}(t)
+$$
+of $\BF_{N'}$ {\it interpolates} $f$ if
+$$
+\hat \zeta_{N'}(t_i) = f(t_i) \, (0 \le i \le N),
+$$
+that is, if
+$$
+\sum_{j=1}^{N'}c_j\zeta_j(t_i) = f(t_i) \, (0 \le i \le N).
+$$
+Therefore,
+
+\begin{theorem}\label{thm2}
+There is one and only one function in $\BF_{N'}$ interpolating $f$
+if and only if the previous set of equations in the $c_j$'s has one and only one
+solution, that is, the existence and uniqueness in $\BF_{N'}$ of an
+interpolant of $f$ is equivalent to $N' = N$ and the determinant of the
+following matrix
+$$\left( \begin{array}{ccc}
+\zeta_0(t_0)&\ldots&\zeta_N(t_0)\\
+         \vdots&&\vdots\\
+         \zeta_0(t_N)&\ldots&\zeta_N(t_N)\end{array} \right)$$
+is nonsingular; in this case, we may use the well-known Cramer formula to
+compute the interpolant, and write it in the form
+$$
+\hat \zeta_N(t) = \sum_{i=1}^{N}f(t_i)s_i(t) \, (t \in \BI),
+$$
+with $s_i(t_j) = \delta_{ij}$, where $\delta_{ij}$ is the Kronecker symbol.
+\end{theorem}
+
+\noindent
+Note that the Haar condition guarantees that the latter square matrix is
+nonsingular.
+Note also that this previous result shows that, when interpolating linearly a
+function at $N$ points, the subspace of projection, $\BF$, should be of
+dimension precisely $N$.
+
+Among the well-established results on interpolation theory, we will now discuss
+those due to Lagrange, those based on splines, etc.
+
+
+\subsubsection{Differentiating the Lagrange interpolant.}
+
+It is clear that there are infinitely many polynomials of arbitrary degree
+{\it interpolating} $f$, but, according to the previous general result,
+there is one and only one of degree at most $N$ which interpolates $f$.
+This unique polynomial $L_N$ is known as the Lagrange (or polynomial)
+interpolant of $f$.
+
+Assuming
+$$
+\ell_i(t) = \prod_{\scriptstyle j = 0 \atop \scriptstyle j \ne i}^N{t-t_j \over
+t_i - t_j},
+$$
+we have
+$$
+L_N(t) = \sum_{i=0}^{N}f(t_i)\ell_i(t) \, (t \in \BI),
+$$
+with $\ell_i(t_j) = \delta_{ij}$.
+This is not the most interesting form for the computation of the Lagrange
+interpolant.
+The Newton formulae lead to more efficient computations,
+see~\cite{stoer1980,marchuk1982,nonweiler1984} for example.
+
+If the only knowledge we have on $f$ is the set of its samples, then being
+able to estimate the error bounds is hopeless. Given more information,
+the following result is known:
+If $f$ is $N$ times continuously differentiable in $\BI$, then for any $t$
+in $\BI$, there is a point $\xi_t$ in $\left[ t_0, t_N \right]$ such that
+$$
+\varepsilon(t) = f(t) - \hat \zeta_{N}(t) = {1 \over
+(N+1)!}\ell(t)f^{(N+1)}(\xi_t) \, (t \in \BI),
+$$
+where $\ell(t) = \prod_{i=0}^N(t-t_i)$.
+
+This follows mainly from the Rolle theorem.
+In general, given $t$, we do not know $\xi_t$ nor
+$f^{(N+1)}(\xi_t)$.
+This is the reason why we shall need to know a bound for the higher
+derivatives of $f$:
+$$
+\| \varepsilon \|_\infty \le {\Delta^N \over (N+1)!}\| f^{(N+1)} \|_\infty,
+$$
+where $\Delta$ is $\max_{1 \le i \le N}(t_i -t_{i-1})$.
+This bound depends both on the number $N+1$ of samples and on their
+distribution.
+If it is possible to choose freely the sampling instants, then we would be
+able to decrease the latter error bound by sampling according to the
+Tchebychev theorem, see \cite{nonweiler1984}.
+Now, the error when taking $\hat \zeta_{N}^{(j)}(t)$ for $f^{(j)}(t)$ is
+given by
+$$
+\varepsilon^{(j)}(t) = f^{(j)}(t) - \hat \zeta_{N}^{(j)}(t) = \sum_{\iota =
+0}^j{1 \over (N+\iota+1)!}{j \choose
+\iota}\ell^{(j-\iota)}(t)f^{(N+\iota+1)}(\xi_\iota) \, (t \in \BI),
+$$
+where the $\xi_\iota$'s are $t$ dependent and in $\left[ t_0, t_N
+\right]$.
+Therefore, we have
+$$
+\| \varepsilon^{(j)} \|_\infty \le c \, \Delta^{N+1-j} \max_{0 \le \iota \le
+j}\| f^{(N+1+\iota)} \|_\infty,
+$$
+where $c$ is an absolute constant (it does not depend on $f$ nor
+the samples), see \cite{schaback1992}.
+
+\noindent {\bf Remark:}
+Though simple and elegant, Lagrangian interpolation suffers from the
+{\rm Runge phenomenon} which is the fact that a small change to the data
+points in the middle of the data set may produce a very large excursion in
+the end points, $t_0, t_N$, see \S 3.2.3 of \cite{nonweiler1984}.
+According to the latter book,
+Lagrangian interpolation is thus not recommended for large set of equispaced
+data.
+Nevertheless, there are some improvements of the Lagrangian interpolation in
+the literature: \cite{schaback1992} addresses the problem of numerical
+differentiation with application to computer-aided-design (the basic
+assumption that we know the range of $f$ made in that paper makes it
+unrealistic in control theory, but still deserves some attention),
+\cite{criscuolo1990,criscuolo1991,criscuolo1992a,criscuolo1992b} propose an
+{\it osculatory} alternative by assuming available some extra data points
+which represent values of the higher derivatives of $f$ at the sampling
+instants.
+
+\subsubsection{Differentiating the spline interpolant.}
+
+Excellent introductions to spline theory may be found in
+\cite{greville1969b,nonweiler1984}; \S 3 of the latter book is particularly
+recommended for a motivated step by step introduction of splines in the
+theory of interpolation.
+
+A {\it natural spline} of {\it degree} $2l-1, \, l \in \setN, \, l \ge 1$
+with {\it knots} $t_0, t_1, \cdots, t_N$ is a real valued function, $s$,
+defined on $\setR$, and such that:
+\begin{enumerate}
+\def\theenumi{\roman{enumi}}
+\def\labelenumi{(\theenumi)}
+\item $s$ has $2l-2$ first derivatives defined and continuous on
+$\setR$,
+\item In each interval $\left[ t_i,t_{i+1} \right], \, i = 0, 1,
+\cdots, N-1$, $s$ is polynomial and with degree at most $2l-1$,
+\item In each interval $\left] \infty,t_0 \right], \left[t_N,\infty
+\right[$ $s$ is polynomial with degree at most $l-1$.
+\end{enumerate}
+
+The set of natural splines of degree $2l -1$ with knots $t_0$, $t_1,
+\cdots$, $t_N$ is classically denoted by $\CN_{2l-1}(t_0,$ $t_1, \ldots$,
+$t_N)$.
+It is clear that $\CN_{2l-1}(t_0, t_1, \ldots, t_N)$ contains the set
+of real coefficient polynomials in $t$ with degree less than $l$.
+
+The fine points of spline interpolation theory are the following
+fundamental properties, see
+\cite{schoenberg1964d,deboor1966,greville1969b}, for example, for more
+properties and proofs.
+
+\noindent {\bf Interpolation property.}
+Let $f$ be in $\BE$.
+For any natural integer $l$ such that $l \le N+1$ there is
+one and only one natural spline $\hat s$ in $\CN_{2l-1}(t_0, t_1, \ldots
+t_N)$ which interpolates $f$.
+When $l = N+1$ then, of course, $\hat s$ is the Lagrange polynomial which is
+the unique polynomial of degree less than $N+1$ interpolating $f$.
+For $l \ge N+1$, there are infinitely many natural splines which
+interpolate $f$.
+
+\noindent {\bf Smoothing properties.}
+Given $f$ in $\BE$, and $l \le N+1$ then
+$$
+\int_\BI \left( s^{(l)}(t) \right)^2 dt \le
+\int_\BI \left( f^{(l)}(t) \right)^2 dt
+$$
+for any $s$ in $\CN_{2l-1}(t_0, t_1, \ldots, t_N)$, and equality holds
+only if $f$ is the unique natural spline $\hat s$ interpolating $f$.
+
+The reason why this last property is called {\it smoothing} is
+explained very clearly in \S 3.4 of \cite{nonweiler1984}. 
+It refers to {\it cubic splines} where the above integrals may be
+interpreted in terms of energy.
+Note that this minimum property may be generalized a bit farther as is done
+in Sard's linear approximation theory~\cite{sard1967}, see also
+\cite{greville1969b}, and
+\cite{micchelli1976c,micchelli1976a,micchelli1976b}.
+Roughly speaking, the generalization consists in substituting a general
+linear functional for $f^{(l)}(t)$ in the above integrals.
+We need the theory of Peano kernels, or more generally, of reproducing
+kernels in Hilbert spaces in order to understand and use these
+generalizations of spline interpolation.
+%Anyhow, the idea of smoothing
+%should not remain, instead, we have that of minimization.
+One may ask if an ultimate generalization to the nonlinear case would
+not be a definite solution to Problem~P;see \cite{micchelli1976b} and
+the references therein, for what
+seems to be a step towards this idea. 
+
+We postpone to the next draft of this paper the summary of the results
+on error bounds of spline based, numerical differentiation.
+Let us just mention some papers containing partial results:
+\cite{golomb1959,varma0000,birkhoff1964,secrest1965,sard1967,greville1969b,dolezal1982}.
+We have not yet consulted \cite{deboor1978b} which is reported to
+be an excellent source for spline interpolation.
+This last paper contains an
+innovative idea which consists in improving the spline interpolation by
+iterating the basic process of spline interpolation as many times as desired. 
+It is claimed that arbitrary precision may
+thus be obtained.
+
+Spline interpolation certainly provides better estimation, and constitutes
+the most elaborate method of interpolation when one restricts oneself to
+linear approximation with polynomial base functions.
+Beyond that method, one has to enter the theory of {\it nonlinear
+approximation} (see~\cite{rice1965}) with its simplest form being {\it
+rational approximation.}
+But then, caution is recommended in the literature,
+and, anyway, results are far less simple and clear.
+
+The error bounds, say $\varepsilon_0$, $\varepsilon_1, \ldots$, on the
+respective derivatives $f^{(0)}$, $f^{(1)}, \ldots$ of a function $f$,
+no matter what the interpolation process is, are reasonably
+expected to be such that $\varepsilon_0 <$ $\varepsilon_1 < \ldots$,
+see~\cite{czipszer1958}.
+%This means that the lower the derivatives of $f$ to be estimated are the
+%easier we could afford high accuracy on the estimates of the derivatives.
+
+Finally, let us note that we do yet not have at hand the references
+\cite{newman0000,anderssen1972} which seem to be very
+interesting\footnote{It is remarkable that these
+researchers were with engineering departments such as the IBM
+Research Center at Yorktown Heights, NY; some other contributors on
+numerical differentiation used to be with Ford Mo.~Co., Dearborn, MI.}.
+
+\subsection{Numerical differentiation by regularization.}
+As we said earlier, the only reference on this approach that we yet have at
+hand is the paper by Cullum~\cite{cullum1971}.
+This paper mentions some other works by Russian numerical analysts.
+Further bibliographic research is also due since there might be other
+works which have been completed since 1971.
+
+%Let us just say here that this approach seems to be quite interesting
+%the standpoint of system theory.
+%Problem~P is tackled in its general form.
+%Nevertheless, Cullum is concerned with the approximation of $f^{(1)}$ from
+%the samples of $f$.
+%Are her results generalizable to the approximation of finitely many
+%derivatives of $f$, and if yes, at what expense?
+%That is the question!
+
+\section{Illustrative examples.}\setcounter{equation}{0}
+\label{examples}
+
+In order to better understand some of the issues involved in the use of  
+numerical differentiation and interpolation as a basis for an
+observer design method, three academic
+examples are currently being pursued.  The first example
+involves the estimation
+of a time function and a few of its derivatives from noisy samples collected at
+discrete instants of time.  The second example builds upon the first one
+by showing that if the signal is generated by a known,
+continuous-time linear model,
+then the model's dynamcis can be incorporated into the estimation
+process with advantage.  This will bring us into contact with more classical observer
+theory.  The third example will illustrate that the techniques sketched in the
+first two examples are
+also applicable to nonlinear system models, which is of course, the main
+point.
+
+
+In each case, polynomials are used as the interpolating
+funtions, total least squares at the interpolating points is the 
+metric to be minimized, and the discrete data will be gathered at a uniform rate.
+These simplifications are made so that the discussion can be focused on other issues.
+
+It is emphasized that no theorems are formulated and thus no proofs of validity
+are
+offered for any of the algorithms proposed herein.  This paper is meant to be an
+exploration of a set of ideas.  Formalization of these ideas into a rigorous design
+methodology will be pursued when sufficient numerical evidence exists suggesting that
+it is useful to do so.  
+
+\subsection{Sum of two sinusoids.}
+
+The purpose of this example is to illustrate the use of numerical
+differentiation, alone and 
+in combination with standard system theoretic notions,
+to recover or estimate several derivatives of a signal in noise.  The key
+parameters of interest are: $N$, the order of the interpolating polynomial;
+$\Delta t$, the time interval between data points;
+$W * \Delta t$, the length in time of the moving window used for data interpolation
+(note that $W + 1$ is the number of data points in the window);
+$K$, the data node or ``knot'' within the moving window 
+where the derivative is to be estimated (counted from the left, with
+the first node in the window numbered zero); and $\sigma$, the ``intensity'' 
+of the noise process corrupting the measurements.
+
+%The insight developed here will be transferred to an observation
+%problem for a dynamical system.
+
+Let an analog signal be given by the sum of two sinusoids of frequencies 1 Hz. and
+5 Hz., respectively:
+\begin{equation}
+y(t) = sin(2 \pi t) + sin(10 \pi t).
+\label{sines}
+\end{equation}
+
+
+
+\begin{figure}[hbt]
+\centerline{\psfig{file=sumofsines.eps,width=6in}}
+\smallskip
+\small
+\caption{Time plots of $y(t)$, $y(t) + w(t)$, $y^m_k$ and $y^m_k + w_k$, respectively.}
+\label{signals}
+\end{figure}
+
+
+Assume that the measured signal, $y^m$, is the sum of $y$ and $w$, where $w$ is a
+Gaussian white noise process, with standard deviation $\sigma$.  
+It is further supposed that
+$y^m$ is to be sampled at discrete instants of time,
+$k \Delta t$, $k = 0, 1, ...$.  In the absence of noise, the minimum sampling rate 
+to reconstruct $y$ from sampled data would be the Nyquist rate, 10 Hz.; with
+noise,
+at least four times this rate is warranted (an anti-aliasing filter is not
+being used
+though it would be standard practice to do so).
+%; its passband will be chosen as 20 Hz.  
+%It is then good practice to oversample the filtered signal, by a factor
+%of two in order to account for the non-ideal nature of the
+%anti-aliasing filter.   
+Discrete samples of $y + w$ will be collected therefore
+at 40 Hz.:
+\begin{eqnarray}
+y^m(t) &:=& y(t) + w(t) \\
+y^m_k & :=& y^m(k \Delta t). \nonumber
+\label{ysampled}
+\end{eqnarray}
+%where $G_{BW}$ is the Butterworth, anti-aliasing filter.  
+The time signals discussed are depicted in Figure \ref{signals}.  The noise
+intensity was selected to provide a (numerically computed)
+signal to noise ratio of 20/1, and
+corresponded to $\sigma = 0.22$. This should 
+provide a feel for the sample rate and noise intensity being used in all later
+simulations.
+
+
+Let the interpolating polynomial for the window of 
+data $ \{ y_{k-W}^m, \ldots, y_k^m \}$
+be denoted by
+\begin{equation}
+\hat{y}_k(t) = a_0 + a_1 (t - t_{k-W}) + \ldots + a_N (t - t_{k-W})^N,
+\label{interppoly}
+\end{equation}
+where $t_k := k \Delta t$.
+The coefficients $\{ a_0, a_1, \ldots, a_N \}$ are determined from the least
+squares solution of 
+\begin{eqnarray}
+\left[ \begin{array}{cccc} 1 & 0 & \ldots & 0 \\
+1 & \Delta t & \ldots & (\Delta t)^N \\
+\vdots & \vdots & \vdots & \vdots \\
+1 & W \Delta t & \ldots & (W \Delta t)^N 
+\end{array} \right] \left[ \begin{array}{l} a_0 \\ a_1 \\ \vdots \\ a_N
+\end{array} \right] & = & \left[ \begin{array}{l} y^m_{k-W} \\
+y^m_{k-W+1} \\ \vdots \\ y^m_k
+\end{array} \right],
+\label{leastsquares}
+\end{eqnarray}
+with respect to the Euclidean norm.  
+The estimates of the derivatives of $y$ at time $\bar{t}$ are determined by
+\begin{equation}
+\widehat{ \frac{d^j}{dt^j}y_k(\bar{t}) } := \frac{d^j}{dt^j} \hat{y}_k(t)_{|t=\bar{t}} \  ;
+\label{derivestimates}
+\end{equation}
+for simplicity of notation, this is written as 
+$\frac{d^j}{dt^j} \hat{y}_k( \bar{t} )$.
+
+
+A number of numerical experiments or simulations
+were conducted to ascertain the effects of the
+parameters $N$,  $\Delta t$, $W$, $K$ and $\sigma$ on the ability to 
+estimate the derivatives
+of $y$. 
+The general trends of these experiments are summarized here; quantifying
+these observations analytically would be a worthy goal:
+\begin{itemize}
+
+\item The order of the interpolating polynomial should be selected as low as 
+possible in order to smooth the noise in the signal. 
+On the other hand, for the estimation of 
+the 3rd derivative of a signal, for example, 
+at least a 3rd order polynomial is required.
+
+\item The window length $W \Delta t$ must be chosen large enough to
+capture the variations of the signal so that the interpolating polymomial 
+can reproduce its derivatives.  However, larger $W \Delta t$ require
+higher order polynomials to be chosen.
+
+\item Estimates of the derivatives made at the end-points of the window
+$W \Delta t$ are considerably less accurate than those made in the interior.
+However, selecting $K < W$ introduces a time delay of $(W-K) \Delta t$
+in the estimates of the signal and its derivatives. 
+
+\item For fixed $N$ and $W \Delta t$, decreasing the time between samples
+$\Delta t$ or increasing
+the number of points in the window $W$, allows a higher noise intensity
+$\sigma$ to be tolerated.
+
+\item For a fixed $\Delta t$, though increasing $W$ can produce more accurate results,
+it must be considered that it requires more on line compuation and a larger
+delay must be introduced (i.e., $(W-K)\Delta t$ increased)
+in order to retain the accuracy of the estimates. 
+
+\end{itemize}
+
+\begin{figure}[hbt]
+\centerline{\psfig{file=mplot11.eps,width=6in}}
+\smallskip
+\small
+\caption{Comparison of the true and estimated $(\times)$ values of
+$y, \ \frac{dy}{dt}, \
+\frac{d^2y}{dt^2}, \mbox{and} \
+\frac{d^3y}{dt^3}$, respectively using interpolation/numerical differentiation.}
+\label{figmplot10}
+\end{figure}
+
+Figure \ref{figmplot10} compares the true and estimated values of
+$y, \ \frac{dy}{dt}, \
+\frac{d^2y}{dt^2}, \mbox{and} \
+\frac{d^3y}{dt^3}$ when $N=4$, $\Delta t = .025$, $W=8$ and $K=5$. 
+Figure \ref{figsineinterp} displays the normalized errors
+in the estimates: the errors in the estimates 
+for $(y, \ldots, \frac{d^3}{dt^3}y)$ are normalized
+by 
+\begin{equation}
+lim_{T \rightarrow \infty} \frac{1}{T} \int_{0}^{T}{|\frac{d^j}{dt^j}y(t)| dt}.
+\label{scales}
+\end{equation}
+Thus, the error in $y$ is divided by 0.796, $\frac{dy}{dt}$ by 19.3,
+$\frac{d^2y}{dt^2}$ by 650, 
+and $\frac{d^3y}{dt^3}$ by 22,700.  The wide range in the magnitudes makes the
+estimation problem quite challenging.
+
+
+\begin{figure}[hbt]
+\centerline{\psfig{file=mplot9.eps,width=6in}}
+%\centerline{\psfig{file=sine_interp.eps}}
+\smallskip
+\small
+\caption{Normalized estimation errors in $y, \ \frac{dy}{dt}, \
+\frac{d^2y}{dt^2}, \mbox{and} \
+\frac{d^3y}{dt^3}$, respectively using interpolation/numerical differentiation.}
+\label{figsineinterp}
+\end{figure}
+
+
+Estimating the signal and its derivatives on the basis of 
+the $W + 1$ data points in the moving window corresponds to using
+an FIR (finite impulse response) 
+filter.  By introducing a simple modification
+to the above, a sort of IIR (infinite
+impulse response) filter can be achieved.  The modification is somewhat
+analogous to 
+what is done in spline
+approximations, but to a systems person, it would be called a state.
+
+The idea is to append to (\ref{leastsquares}), the estimates of $y$ and
+its derivatives at node K from the previous window, that is, one appends
+the relations
+\begin{equation}
+\frac{d^j}{dt^j} \hat{y}_k(t_{k-1-W+K}) =  \frac{d^j}{dt^j} \hat{y}_{k-1}(t_{k-1-W+K}),
+\label{derivconstraints}
+\end{equation}
+for $j=0, \ldots, J$, for some $0 \le J \le N$.
+This is equivalent to
+\begin{eqnarray} {\tiny
+\left[ \begin{array}{ccccccc} 
+1 & (K-1) \Delta t & ((K-1)\Delta t)^2 & \ldots & ((K-1) \Delta t)^J & 
+\ldots & ((K-1) \Delta t)^N \\
+0 & 1 & 2(K-1) \Delta t & \ldots & J((K-1) \Delta t)^{J-1} & \ldots & 
+N((K-1) \Delta t)^{N-1} \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+0 & 0 & \ldots & \ldots & J! & \ldots & N(N-1)\ldots(N-J+1)((K-1) \Delta t)^{N-J}
+\end{array} \right] } \times & \mbox{ } &  \nonumber \\
+\left[ \begin{array}{l} a_0 \\ a_1 \\ \vdots \\ a_N \end{array} \right] 
+ =  \left[ \begin{array}{r} 
+\hat{y}_{k-1}(t_{k-1-W+K}) \\
+\frac{d}{dt} \hat{y}_{k-1}(t_{k-1-W+K}) \\ 
+\vdots \\ 
+\frac{d^J}{dt^J} \hat{y}_{k-1}(t_{k-1-W+K})
+\end{array} \right] & \mbox{\hspace*{.2in}} &.
+\label{matrixderivconstraints}
+\end{eqnarray}
+
+The right-hand side of (\ref{derivconstraints}) must be initialized to
+start the interpolation process, and thus becomes a state.  This state 
+allows derivative 
+information to be passed from one window of data 
+to the next.   
+%Often, a smaller window can be used to achieve similar noise attenuation.  
+Weights can be added to trade-off errors in interpolating the measured data points
+versus errors in interpolating the derivatives in (\ref{derivconstraints}).  
+
+
+
+\subsection{Including a system model in the interpolation process.}
+
+The goal of this example is to demonstrate two methods for incorporating
+a dynamic model of a system into the interpolation/numerical differentiation
+process,
+whenever the signal in question is generated by a finite set of ordinary
+differential equations.
+This will bring us into more direct contact with observer design because we
+will tightly connect estimating the derivatives of a system's output
+with estimating the states of the model.
+
+The signal (\ref{sines}) can obviously be generated by an initialized,
+uncontrolled, linear model with four states.  Let 
+\begin{equation}
+\begin{array}{rcl}
+\frac{dx}{dt} & = &  A x  \\
+y & = & C x 
+\end{array}
+\label{linearmodel}
+\end{equation}
+be such a model; it will be observable.  This means that $x$ can be recovered
+from estimates of $y$ and its derivatives through
+\begin{equation} \left[ \begin{array}{r} 
+y \\ \frac{d}{dt}y \\ \vdots \\ \frac{d^{\eta}}{dt^{\eta}}y
+\end{array} \right] = \left[ \begin{array}{l} 
+C \\ CA \\ \vdots \\ CA^{\eta}
+\end{array} \right] x
+\label{obsmat}
+\end{equation}
+for $\eta$ large enough, which in the particular case of (\ref{linearmodel}) is
+$\eta = 3$.
+
+The first way to include the model in the estimation process is now
+explained.  Suppose that in general the model (\ref{linearmodel}) has dimension
+$n$, and for simplicity, assume that it has a single output.
+As before, let
+\begin{equation}
+\left[ \begin{array}{r} 
+\hat{y}_{k-1}(t_{k-1-W+K}) \\
+\frac{d}{dt} \hat{y}_{k-1}(t_{k-1-W+K}) \\ 
+\vdots \\ 
+\frac{d^{n-1}}{dt^{n-1}} \hat{y}_{k-1}(t_{k-1-W+K})
+\end{array} \right]
+\label{ydotest}
+\end{equation}
+be estimates of $y$ and its first $n-1$ derivatives from the previous window.
+By substituting (\ref{ydotest}) for the right-hand side of (\ref{obsmat}) with
+$\eta = n-1$, one can
+determine $\hat{x}_{k-1}(t_{k-1-W+K})$. 
+If the resulting estimate of $x$ is ``accurate'', then it satisfies (\ref{obsmat}) for
+any $\eta$; if not, choosing $\eta \ge n$ introduces constraints whose
+errors can be minimized in order for $x$ to be more closely compatible
+with the dynamics (\ref{linearmodel}).  Thus, in place of
+(\ref{derivconstraints}),
+one augments (\ref{leastsquares}) with
+\begin{equation}
+\frac{d^j}{dt^j} \hat{y}_k(t_{k-1-W+K}) = CA^j  \hat{x}_{k-1}(t_{k-1-W+K}),
+\label{modelconstraints}
+\end{equation}
+For $j=0, \ldots, \eta$, and proceeds as indicated previously.  
+Note that taking $\eta =J \le n-1$ reduces 
+(\ref{modelconstraints}) to (\ref{derivconstraints}).
+
+
+
+\begin{figure}[hbt]
+\centerline{\psfig{file=sine_spline_order5.eps,width=6in}}
+\smallskip
+\caption{ Normalized estimation errors in $y, \ \frac{dy}{dt}, \
+\frac{d^2y}{dt^2}, \mbox{and} \
+\frac{d^3y}{dt^3}$, respectively using interpolation/numerical differentiation
+and $\eta=5$ in (\protect\ref{modelconstraints}).  Note the reduced error with respect to
+Figure \protect\ref{figsineinterp}. }
+\label{figsinesplineorder5}
+\end{figure}
+
+
+Figure \ref{figsinesplineorder5} shows the
+effect of this modification on the estimation process for $N=6$, $\Delta t = .025$, 
+$W=8$ and $K=5$.  The weight on the constraints was chosen as 
+\begin{equation} Q = 
+\left[ \begin{array}{cccccc} 1.26 & 0 & 0 & 0 & 0 & 0\\
+0  & 5.19 \ 10^{-2}  & 0 & 0 & 0 & 0 \\
+0 & 0 & 1.54 \ 10^{-3} & 0 & 0 & 0 \\
+0 & 0 & 0 & 4.4 \ 10^{-5} & 0 & 0 \\
+0 & 0 & 0 & 0 & 1.3 \ 10^{-6} & 0 \\
+0 & 0 & 0 & 0 & 0 & 4.4 \ 10^{-8}
+\end{array} \right].
+\end{equation}
+The rationale for
+selecting the entries of the
+weight $Q$ is that the magnitude of each successive derivative grows by a
+approximatley
+30 (recall (\ref{scales}), or see (\ref{sines})), 
+and thus $Q$ corresponds to equal ``relative
+weighting'' on $y$ and its derivatives;
+this same rationale will be applied to subsequent examples. Including the model
+interpolation constraints allowed the same window size and delay as in Figure
+\ref{figsineinterp} to be used with an increased polynomial order, without
+``following'' the noise.
+
+
+The method just outlined for estimating $x$ from $y$ and its derivatives is akin to
+a ``dead-beat'' observer for $x$, though, as explained
+earlier, there is smoothing in the
+interpolation of $y$, which is ``IIR''.  Some additional smoothing from the
+model can be obtained, and this constitutes the second method for introducing
+the model into the interpolation/numerical differentiation process.
+This technique, which is reminiscent of
+\cite{grizzle1990b,grizzle1990a,grizzle1990c,moraal1992}, 
+will be
+directly applicable to nonlinear systems.  
+
+Let $A_d$ denote the discretization of the linear model, (\ref{linearmodel}),
+and let $\hat{x}_{k-1}^{+}(t_{k-1-W+K})$ be the previous estimate of $x$.  Update $x$
+based on the latest estimate of $y$ and its derivatives through a damped Newton
+method:
+\begin{eqnarray}
+\hat{x}_{k}^{-}(t_{k-W+K}) & = & A_d \hat{x}_{k-1}^{+}(t_{k-1-W+K}) \nonumber \\
+\hat{x}_{k}^{+}(t_{k-W+K}) & = & \hat{x}_{k}^{-}(t_{k-W+K}) + \label{newton} \\
+\epsilon \left[ \begin{array}{l} C \\ CA \\ \vdots \\ CA^{n-1} \end{array} 
+\right]^{-1} & &  ( \left[ \begin{array}{l} 
+\hat{y}_{k}(t_{k-W+K}) \\
+\frac{d}{dt} \hat{y}_{k}(t_{k-W+K}) \\ 
+\vdots \\ 
+\frac{d^{n-1}}{dt^{n-1}} \hat{y}_{k}(t_{k-W+K}) \end{array} \right] - 
+\left[ \begin{array}{l} C \\ CA \\ \vdots \\ CA^{n-1} \end{array} 
+\right]  \hat{x}_{k}^{-}(t_{k-W+K}) ), \nonumber
+\end{eqnarray}
+where $0 < \epsilon <  1$; using $\epsilon = 1$ reduces the above to a ``dead-beat''
+estimator for $x$.  The damped Newton update can be used with
+(\ref{leastsquares}) alone or with any of
+the additions to (\ref{leastsquares}) discussed previously.
+
+Selected simulations of the above estimation methods are now presented.
+In what follows,
+the state in (\ref{linearmodel}) was chosen as 
+$$ x = \left[ \begin{array}{r}
+y \\ \frac{d}{dt} y \\  \frac{d^2}{dt^2} y \\ \frac{d^3}{dt^3} y 
+\end{array} \right]. $$  
+It was properly initialized so that its output is precisely
+given by (\ref{sines}).  The same noise sequence used in
+Figure \ref{figsineinterp} was added to the output of (\ref{linearmodel}).
+%also, the anti-aliasing filter (\ref{ysampled}) was used.
+
+
+\begin{figure}[hbt]
+\centerline{\psfig{file=sine_spline.eps,width=6in}}
+
+\caption{Normalized estimation errors in \protect$y, \ \frac{dy}{dt}, \
+\frac{d^2y}{dt^2}$ 
+and  \protect$\frac{d^3y}{dt^3}$, respectively, incorporating 
+``spline method'' and
+Newton update in interpolation/numerical differentiation.}
+\label{figsinespline}
+\end{figure}
+
+
+Figure \ref{figsinespline} shows the normalized estimation error resulting
+from the application of (\ref{leastsquares})  in combination with
+(\ref{derivconstraints})
+and (\ref{newton}).   The parameter values were chosen as: $N=5$, $\Delta t = 0.025$
+sec., $W=6$ and $K=3$  in (\ref{leastsquares}), $\eta = 4$ in 
+(\ref{modelconstraints}) with
+a weight on (\ref{derivconstraints}) selected as
+\begin{equation} Q = 0.1 \times
+\left[ \begin{array}{cccc} 1.26 \, 10^{-1} & 0 & 0 & 0 \\
+0  & 5.19 \, 10^{-3}  & 0 & 0 \\
+0 & 0 & 1.54 \, 10^{-4} & 0 \\
+0 & 0 & 0 & 4.4 \, 10^{-5} 
+\end{array} \right],
+\end{equation}
+and $\epsilon = 0.03$ in (\ref{newton}).   
+For comparison purposes,
+a steady state, discrete-time, Kalman filter was designed with 
+state noise covariance equal to 
+$0.01 \ \sigma^2 \ Q^{-1}$ and output noise variance equal to $\sigma^2$; even
+though (\ref{linearmodel}) does not have any process noise per se, the pair
+consisting of the matrix $A$ and the state noise convariance matrix
+had to be made stabilizable
+for a stable Kalman filter to exist.
+The magnitudes of the steady state errors were essentially identical to those in 
+Figure \ref{figsinespline}.
+
+
+\begin{figure}[hbt]
+\centerline{\psfig{file=sine_model.eps,width=6in}}
+%\centerline{\psfig{file=sine_model.eps}}
+
+\caption{Normalized estimation errors in $y, \ \frac{dy}{dt}, \
+\frac{d^2y}{dt^2} 
+\mbox{and} \ \frac{d^3y}{dt^3}$, respectively, incorporating model derivative
+constraints and damped Newton updates with 
+interpolation/numerical differentiation.}
+\label{figsinemodel}
+\end{figure}
+
+
+The normalized estimation errors resulting
+from the application of (\ref{leastsquares}) in combination with
+(\ref{modelconstraints})
+and (\ref{newton}) are shown in
+Figure \ref{figsinemodel}.   The parameter values were chosen as: $N=5$, 
+$\Delta t = 0.025$
+sec., $W=6$ and $K=3$  in (\ref{leastsquares}), $\eta = 4$ in
+(\ref{modelconstraints}) 
+with a weight selected as
+\begin{equation} Q = 
+\left[ \begin{array}{ccccc} 1.26 \, 10^{-1} & 0 & 0 & 0 & 0 \\
+0  & 5.19 \, 10^{-3}  & 0 & 0 & 0 \\
+0 & 0 & 1.54 \, 10^{-4} & 0 & 0 \\
+0 & 0 & 0 & 4.4 \, 10^{-5} & 0 \\
+0 & 0 & 0 & 0 & 1.33 \, 10^{-6}
+\end{array} \right];
+\end{equation}
+$\epsilon$ in (\ref{newton}) was set at $0.03$.  
+
+\subsection{Third order, nonlinear dynamical system.}
+
+The goal of this example is to show that the method illustrated on the
+linear example above is also applicable to nonlinear models.  For this
+purpose, consider the following system which is a ``convex combination''
+of an unstable linear dynamics and a stable linear dynamics:
+\begin{eqnarray}
+\left[ \begin{array}{c} \frac{dx_1}{dt} \\ \frac{dx_2}{dt}  
+\\ \frac{dx_3}{dt} \end{array} \right] 
+& = & f(x) = 
+\left[ \begin{array}{c} x_2 \\ x_3 \\ f_3(x)
+\end{array} \right]   \label{nonlinmodel} \\
+y & = & h(x) = x_1 , \nonumber 
+\label{dynamic}
+\end{eqnarray}
+where,
+\begin{eqnarray*}
+f_3(x) & = & \alpha(x) g_s(x) + (1 - \alpha(x)) g_u(x), \\
+\alpha(x)& =& \beta  \frac{x'x}{1 + x'x} \\ 
+g_s(x) & = & -54 x_1 - 36 x_2 - 9 x_3 \\
+g_u(x) & = & 54 x_1 - 36 x_2 + 9 x_3.
+\end{eqnarray*}
+The parameter $\beta$ will be fixed at 2 for now; in the final version of the
+paper, it will be assumed unknown.  
+
+\begin{figure}[thb]
+\centerline{\psfig{file=dyn_sampled.eps,width=6in}}
+\smallskip
+\caption{Time plots of $y(t)$, $y(t) + w(t)$, $y^m_k$ and $y^m_k + w_k$, 
+respectively.}
+\label{figdynamicsampled}
+\end{figure}
+
+The output of system (\ref{dynamic}) has a fundamental frequency 
+of about 1 Hz., so the sample rate for the system was selected as
+4 Hz.; this is probably a little too slow, but will
+challenge the observers to be designed.
+Figure \ref{figdynamicsampled} shows the output of the system (\ref{dynamic}),
+$y$, $y + w$, $y^m_k$ and $y^m_k + w_k$, respectively, for $\Delta t = 0.25$
+sec. and  $\sigma= 0.0168$ (which
+corresponds once again to a 20/1 signal to noise ratio). Figure
+\ref{figdynamicinterp} shows the effectiveness of estimating the states
+on the basis of (\ref{leastsquares}) with $N = 6$,
+$W=8$, $K=4$.  The performance seems quite good.
+
+\begin{figure}[hbt]
+\centerline{\psfig{file=mplot12.eps,width=6in}}
+\smallskip
+\caption{Comparison of estimated signals $(\times)$'s and true
+signals using interpolation/numerical differentiation.}
+\label{figdynamicinterp}
+\end{figure}
+
+A state estimator was also constructed using the interpolation/numerical
+differentiation method of (\ref{leastsquares}), with  (\ref{newton}) replaced by 
+\begin{eqnarray}
+\hat{x}_{k}^{-}(t_{k-W+K}) & = & F_{\Delta t}(\hat{x}_{k-1}^{+}(t_{k-1-W+K}))
+\nonumber \\
+\hat{x}_{k}^{+}(t_{k-W+K}) & = & \hat{x}_{k}^{-}(t_{k-W+K})+ \label{nonlinnewton} \\ 
+\epsilon \, (\frac{\partial}{\partial x}
+\left[ \begin{array}{l} h \\ L_fh \\ L_f^2h \end{array} 
+\right]) ^{-1}_{|\hat{x}_{k}^{-}(t_{k-W+K})} & & ( \left[ \begin{array}{r} 
+\hat{y}_{k}(t_{k-W+K}) \\
+\frac{d}{dt} \hat{y}_{k}(t_{k-W+K}) \\ 
+\frac{d^{2}}{dt^{2}} \hat{y}_{k}(t_{k-W+K}) \end{array} \right] - 
+\left[ \begin{array}{l} h \\ L_fh \\ L_f^2h \end{array} 
+\right]_{| \hat{x}_{k}^{-}(t_{k-W+K})} ). \nonumber
+\end{eqnarray}
+In the above, $F_{\Delta t}(x)$ is the 
+sampled-data representation of (\ref{nonlinmodel}) for $t=\Delta t$; for the
+estimator results which follow, it was computed by Euler
+integration with step size $0.0125$ (i.e., 80 Hz. updates).
+The parameter $\epsilon$ was selected as
+$$ \epsilon = \left[ \begin{array}{ccc}
+0.6 & 0 & \\
+0 & 0.12 & 0 \\
+0 & 0 & 0.03  \end{array} \right], $$ to reflect scaling in the
+magnitudes of the estimates of the derivatives and uncertainty due to noise.
+Figure \ref{figdynamicnewton} compares the estimated values
+of $x_1, x_2$ and $x_3$ to the true values.
+
+
+
+\begin{figure}[hbt]
+\centerline{\psfig{file=dynamic_newton.eps,width=6in}}
+\smallskip
+\caption{Comparison of estimated signals $(\times)$'s and true
+signals using (\protect\ref{nonlinnewton}).  Note the reduced error with
+respect to Figure \protect\ref{figdynamicinterp}. }
+\label{figdynamicnewton}
+\end{figure}
+
+
+One could explore replacing the model 
+constraints (\ref{modelconstraints}) by
+\begin{equation}
+\frac{d^j}{dt^j} \hat{y}_k(t_{k-1-W+K}) = L_f^j h(\hat{x}_{k-1}(t_{k-1-W+K})),
+\label{nonlinmodelconstraints}
+\end{equation}
+for $j = 0, \ldots, J$, but this was not done.
+
+
+%\section{Conclusions}\setcounter{equation}{0}
+%\label{conclusions}
+
+\bibliographystyle{plain}
+
+
+\bibliography{numdiff}
+
+
+\end{document}
+
+
+

@@ -1,0 +1,35 @@
+\begin{verbatim}
+
+    % 1 t t^2  t^3 t^4  t^5
+    A=[1+0*t, t, t.^2, t.^3, t.^4, t.^5];
+    
+    alpha = inv(A'*A)*A'*f
+    f_hat=A*alpha;
+    
+    figure(3)
+    plot(t,f,'r',t,f_hat,'g','linewidth',3)
+    grid on
+    xlabel('t','FontSize',18)
+    ylabel('f','FontSize',18)
+    title('[1 t t^2 t^3 t^4 t^5]', 'FontSize',18)
+    
+    print Prob8RegressionAgainstPolynomials -dpng
+    
+    w0=2*pi/2;
+    % F.S.
+    A=[sin(w0*t), sin(2*w0*t), sin(3*w0*t), sin(4*w0*t), sin(5*w0*t)];
+    
+    alpha = inv(A'*A)*A'*f
+    f_hat=A*alpha;
+    
+    figure(4)
+    plot(t,f,'r',t,f_hat,'g','linewidth',3)
+    grid on
+    xlabel('t','FontSize',18)
+    ylabel('f','FontSize',18)
+    
+    title('[sin(pi t), ..., sin(5 pi t)]', 'FontSize',18)
+    
+    print Prob8RegressionAgainstSinusoids -dpng
+    
+\end{verbatim}

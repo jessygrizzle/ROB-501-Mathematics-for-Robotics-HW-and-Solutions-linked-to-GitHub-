@@ -1,0 +1,131 @@
+\documentclass[letterpaper]{article}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{epsfig,float,alltt}
+\usepackage{psfrag,xr}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+%\usepackage{mathtools}
+
+\begin{document}
+
+\newcommand{\trace}{\mathrm{trace}}
+\newcommand{\real}{\mathbb R}  % real numbers  {I\!\!R}
+\newcommand{\nat}{\mathbb R}   % Natural numbers {I\!\!N}
+\newcommand{\cp}{\mathbb C}    % complex numbers  {I\!\!\!\!C}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\mf}[2]{\frac{\ds #1}{\ds #2}}
+\newcommand{\book}[2]{{Luenberger, Page~#1, }{Prob.~#2}}
+\newcommand{\spanof}[1]{\textrm{span} \{ #1 \}}
+\parindent 0pt
+
+\begin{center}
+{\large \bf UnderDeterminedProblems}
+\end{center}
+
+\vspace*{1cm}
+
+Consider $y = Ax$ where $y \in \real^p$, $x \in \real^n$, $n \supset p$. The equations are \underline{consistent} if $\exists \forall y \in \real^p, \exists x_0 \in \real^n$ s.t. $y = Ax_0$. We define the set of solutions
+$$V = \{x \in \real^n | y = Ax\} \neq \varnothing$$
+if consistent. If we define $\mathcal{N}(A) = \{x \in \real^n|Ax = 0\} = \text{null space of} A$, then clearly, if $x_0$ is one solution of the equations, then $\forall \bar{x} \in  \mathcal{N}(A)$, $x_0+\bar{x}$ is also a solution, that is
+$$y = A(x_0+\bar{x})$$
+
+\underline{Exercise} (Easy) If $y = Ax_0$, then $V = \{x\in \real^n|y = Ax\} = x_0+ \mathcal{N}(A) \hfill \square$\\
+
+How to choose among the set of solutions?\\
+Common choice: take the one of minimum norm
+$$\hat{x} = \mathrm{arg}~\min_{x \in V} ||x||.$$
+
+Here is the general version of the problem. Let $(\cal{X}, \cal{F}, <.~,~.>)$ be an inner product space, let $\{y_1, ..., y_p\}$ be a linearly independent set, and let $c_1, ..., c_p \in \cal{F}$ be a set of scalars. Define $V = \{x\in \mathcal{X} | <x, y_i> = c_i,~i=1, ...,p \}$\\
+
+\underline{Exercise:} $\exists ! x_0 \in \spanof{y_1, ..., y_p}$ such that $<x_0, y_i> = c_i, ~ i = 1,...,p$.\\
+
+\underline{Remark:} Equivalent: $\exists ! x_0 \in \mathcal{X} ~s.t. ~V \cap \spanof{y_1, ..., y_p} = \{x_0\} \hfill \square$\\
+
+\underline{Solution:} Write $x_0 = \beta_1 y_1+~...~ +\beta_p y_p$, obtain the normal equations, and deduce that the Gram matrix is nonsingular. $\hfill \square$\\
+
+\underline{Notation:} $[y_1, ..., y_p] := \spanof{y_1,...,y_p}$.\\
+
+\underline{Proposition} $V = x_0 + [y_1, ..., y_p]^\perp$\\
+
+\underline{Proof}
+$$\begin{aligned}  \text{To show:} ~~ x\in V &\iff x-x_0 \perp [y_1, ..., y_p] \\ x\in V &\iff <x, y_i>~ =~ c_i, ~~ i = 1, ..., p \\
+&\iff <x-x_0, y_i>~ = ~<x, y_i> - <x_0, y_i> ~= ~c_i - c_i = 0, ~~ i = 1,...,p\\
+&\iff (x-x_0) \perp [y_1, ..., y_p] \end{aligned} $$
+$\hfill \square$
+
+\underline{Theorem} Let $(\mathcal{X}, \mathcal{F}, <.~,~.>)$ be a finite dimensional inner product space and $\{y_1,...,y_p\}$ a linearly independent set, and $c_1, ..., c_m$ a set of scalers. Then $\exists ! v^* \in V = \{x \in \mathcal{X} | <x, y_i> = c_i, i = 1, ..., p\}$ having minimum norm, and $v^*$ is characterized by $v^* \perp [y_1, ..., y_p]^\perp$ (\underline{not} $v^* \perp V$).\\
+
+\underline{Proof:} Let $M = [y_1, ..., y_p]^\perp$ and write $V=x_0+M$. The problem is to determine
+$$\inf_{v\in V} ||v|| = \inf_{m\in M} ||x_0 + m|| = \inf_{m\in M} ||x_0 - m||$$
+because $M$ is a subspace. By the Projection Theorem, $\exists ! x^* \in M$ such that 
+$$||x_0 - x^*|| = \inf_{m\in M} ||x_0 - m||,$$
+and $x^*$ is characterized by $x_0 - x^* \perp M$. We set $v^* = x_0 - x^*$, and then\\
+$$||v^*|| = \inf_{v\in V} ||v||~~ \text{and} ~~v^* \perp M.$$ $\hfill \square$\\
+
+\underline{Remark} $v^* \perp [y_1, ..., y_p]^\perp \iff v^* \in ([y_1, ..., y_p]^\perp)^\perp \iff v^* \in [y_1, ..., y_p]$\\
+
+\underline{Because} $\mathcal{X} = [y_1, ..., y_p] \oplus [y_1, ..., y_p]^\perp \hfill \bigtriangleup$\\
+
+\underline{Theorem} Let $(\mathcal{X}, \mathcal{F}, <.~,~.>)$ be an inner product space, $\{y_1, ... ,y_p \}$ a linearly independent set, and $c_1, ..., c_p$ constants. Let
+$$V = \{x \in \mathcal{X} | <x, y_i> = c_i, i = 1,...,p\}$$
+Then 
+$$\exists ! v^* \in V~ s.t.~ ||v^*|| = \inf_{v\in V} ||v||.$$
+Moreover, $v^* = \sum \limits_{i = 1}^{p} \beta_i y_i$
+
+Where the $\beta_i$'s satisfy the normal equations:
+$$\left[ \begin{array}{cccc} 
+<y_1, y_1> & <y_2, y_1> & \cdots & <y_p, y_1> \\
+\vdots & \vdots& & \vdots\\
+<y_1, y_p> & <y_2, y_p> & \cdots & <y_p, y_p>
+\end{array} \right] \begin{bmatrix} \beta_1 \\ \vdots \\ \beta_p \end{bmatrix} = \begin{bmatrix} c_1\\ \vdots \\c_p \end{bmatrix}$$
+
+\underline{Proof} From our remark, $v^* \in [y_1, ..., y_p]$. We write $v^* = \beta_1 y_1 + ... +\beta_p y_p$ and then impose $v^* \in V$. This gives the normal equations. $\hfill \square$
+\medskip \\
+
+Return to $y = Ax$\\
+
+$y \in \real^p, ~ x \in \real^n, ~ n > p, ~ y = Ax$.\\
+
+We define an inner product on $\real^n$ by $<x, \tilde{x}> = x^\top Q \tilde{x}, ~ Q>0$. So that $||x|| = (x^\top Q x)^{1/2}$.\\
+
+\underline{Theorem} If the rows of A are linearly independent, then 
+$$\hat{x} = \mathrm{arg}~\min_{Ax = b} ||x||$$
+is given by
+$$\fbox{$\hat{x} = Q^{-1} A^\top (AQ^{-1}A^\top)^{-1} b$} $$
+
+\underline{Proof} We write $A=\begin{bmatrix}a_1 \\ \vdots \\ a_m \end{bmatrix}$ and $\tilde{A} = AQ^{-1}$, define
+$v_i \in \real^n $ by
+$v_i = (a_i Q^{-1})^\top = Q^{-1} a_i^\top$
+because $Q$ is symmetric. It follows that
+$$Ax = b \iff <v_i, ~x> = b_i, ~~ i = 1,...,p$$
+Hence,
+$$\hat{x} = x^* = \sum \limits_{i=1}^{p} \beta_i v_i = [v_1 |~ ... ~|v_p] \beta$$ and $G \beta = b$ and $G$ is the Gram matrix.\\
+
+\underline{Exercise} $$G = AQ^{-1}A^\top~~ \text{and} ~~G = G^\top$$
+$$[v_1 | ~... ~|v_p] = Q^{-1}A^\top$$  $\hfill \square$
+
+Hence, 
+$$\hat{x} = Q^{-1}A^\top(AQ^{-1}A^\top)^{-1}b$$ $\hfill \square$
+
+\underline{Solution to Exercise}
+$$\begin{aligned} v_i &= Q^{-1} a_i^\top\\
+[v_1 | ~... ~|v_p]  &= [Q^{-1}a_1^\top | ... | Q^{-1}a_p^\top]\\
+&= Q^{-1}[a_1^\top | ... | a_p^\top]\\
+&= Q^{-1} A^\top 
+\end{aligned}$$
+
+
+$$\begin{aligned}
+G_{ij} &= <v_i, ~v_j>\\
+&= v_i^\top Q v_j\\
+&= (a_i Q^{-1})QQ^{-1} a_j^\top\\
+&= a_i Q^{-1} a_j^\top
+\end{aligned}$$
+
+$$\begin{aligned}(AQ^{-1}A^\top)_{ij} &= a_i (Q^{-1} A^\top)_{\text{j-column}}\\
+&= a_i Q^{-1} a_j^\top \end{aligned}$$
+$\hfill \square$
+
+\end{document} 

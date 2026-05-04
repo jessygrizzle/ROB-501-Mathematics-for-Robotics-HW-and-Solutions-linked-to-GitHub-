@@ -1,0 +1,236 @@
+\documentclass[letterpaper]{article}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{epsfig,float,alltt}
+\usepackage{psfrag,xr}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage{halloweenmath}
+%\includepdfset{pagecommand=\thispagestyle{fancy}}
+\author{Prof. Grizzle}
+\title{Rob 501 - Mathematics for R$\skull$b$\skull$tics\\
+HW \#7}
+
+\begin{document}
+\date{}
+\maketitle
+
+
+ \newcommand{\trace}{\mathrm{trace}}
+\newcommand{\real}{\mathbb R}  % real numbers  {I\!\!R}
+\newcommand{\nat}{\mathbb N}   % Natural numbers {I\!\!N}
+\newcommand{\cp}{\mathbb C}    % complex numbers  {I\!\!\!\!C}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\mf}[2]{\frac{\ds #1}{\ds #2}}
+\newcommand{\Nagy}[2]{{Nagy, Page~#1, }{Prob.~#2}}
+\newcommand{\spanof}[1]{\textrm{span} \{ #1 \}}
+\parindent 0pt
+
+
+\begin{flushright}
+{\bfseries Due Nov. 9, 2017} \\
+{\bfseries 3PM via Gradescope} \\[3mm]
+\end{flushright}
+
+\noindent \textbf{Remarks:}  Problems 1 through 5 involve calculations. Problem 5 is very important. Please spend extra time on it as it is very helpful for understanding the Kalman Filter. Problem 6 explains why we can often obtain recursion relations of the type: $ \widehat{x}_{k+1}$ is a linear combination of $\widehat{x}_k$ and the ``innovation'' or new measured information $ (y_{k+1} - \widehat{y}_{k+1|k} )$. If you are pressed for time, skip Problem 6 and study the solutions. It is better to spend your time on Problem 5.
+
+\begin{enumerate}
+
+
+%Prob. 1 Matrices
+\item Classify each matrix as positive definite, positive semi-definite, or neither. In addition, if the matrix is either positive definite or positive semi-definite, find a square root. You may use MATLAB to factor a symmetric matrix as $\Lambda = O^\top P O$ or as $P= O \Lambda O ^\top$.
+
+\begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item $\greatpumpkin= \left[ \begin{array}{rr}  1&   3\\  3&   9\end{array} \right].$
+
+\item  $\bigskull= \left[ \begin{array}{rrr}  6&  10&  11\\ 10&  19&  19\\ 11&  19&  21\end{array} \right].$
+
+\item $\mathghost=  \left[ \begin{array}{rrr}  2&   6&  10\\  6&  10&  14\\ 10&  14&  18\end{array} \right].$
+
+\end{enumerate}
+
+
+%Prob. 2 Matrices
+\item Use the results on Schur Complements  to solve  the following problems BY HAND:
+
+        \begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item  Determine if  $\greatpumpkin= \left[ \begin{array}{rr}  1&   3\\  3&   8\end{array} \right]$ is positive definite or not.
+
+\item  Determine if  $\bigskull= \left[ \begin{array}{rrr}  1&   0&  6\\  0&  4&   7\\  6&   7&  10\end{array} \right]$ is positive definite or not.
+
+\item Find the range of $a$ such that the following matrix is positive definite:
+$\mathghost= \left[ \begin{array}{rrr}  1&   2&   6\\  2&   5&   7\\  6&   7&  a\end{array}\right]$
+
+
+\end{enumerate}
+
+%Prob. Underdetermine equations
+\item Find $x$ of minimum norm that satisfies the equation
+
+$$ \left[ \begin{array}{rrr}  1&   3 & 2\\  3&   8 & 4 \end{array} \right] x = \left[ \begin{array}{r}  1 \\2\end{array} \right]$$
+
+        \begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item  Use the standard inner product on $\real^3$
+
+\item  Use the inner product $<x,y>= x^\top \left[ \begin{array}{rrr}  5&   1&   9\\  1&   2&   1\\  9&   1&  17\end{array} \right]y$
+
+\end{enumerate}
+
+ %Prob. 4  BLUE
+\item $x$ has been bewitched to give the following data:
+$$ y = \mathwitch x + \epsilon$$
+with
+$$ \mathwitch=\left[\begin{array}{rr}  1&   2\\  3&   4\\  5&   0\\  0&   6\end{array} \right] ~~ y=\left[  \begin{array}{r}1.5377\\3.6948\\-7.7193\\7.3621\end{array}\right] ~~\mbox{and}  ~~ E\{ \epsilon \epsilon^\top \} = Q=\left[ \begin{array}{rrrr}1.00& 0.50& 0.50& 0.25\\0.50& 2.00& 0.25& 1.00\\0.50& 0.25& 2.00& 1.00\\0.25& 1.00& 1.00& 4.00\end{array}
+\right] $$
+As in class, $E\{ \epsilon\} = 0$.
+
+
+        \begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item Find the Best Linear Unbiased Estimate (BLUE) for $x$, using only the first two values of $y$. Also compute the covariance of the estimate.
+
+\item Find the Best Linear Unbiased Estimate (BLUE) for $x$, using only the first three values of $y$. Also compute the covariance of the estimate.
+
+\item Find the Best Linear Unbiased Estimate (BLUE) for $x$, using all the values of $y$. Also compute the covariance of the estimate.
+
+\end{enumerate}
+
+\noindent \textbf{Note:} For (a), you use the first 2 rows of $y$ and $\mathwitch$ and the upper $2 \times 2 $ part of $Q$. For (b), you use the first 3 rows of $y$ and $C$, as well as the upper $3 \times 3 $ part of $Q$. You see the pattern, I hope. Do all the calculations in MATLAB. You do not have to turn in your code.
+
+% Prob. 5 Jointly Gaussian Random Variables
+\item Read the Handout \texttt{GaussianRandomVariablesAndVectors.pdf}, which you can find on CANVAS. We consider three jointly normal random variables $(X,Y,Z)$, with
+$$ \mbox{mean}~~\mu = \left[\begin{array}{r} -1\\  0\\  1\end{array} \right] ~~\mbox{and covariance}~~ \Sigma = \left[  \begin{array}{rrr}  2&   2&   1\\  2&   4&   2\\  1&   2&   2\end{array}
+\right] $$
+
+        \begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item  Compute the conditional distribution of  $  \left[\begin{array}{r} X\\  Y\end{array} \right]  \left| {\{Z=z\} } \right.  $, the conditional distribution of the vector $[X,Y]^\top$ given $Z=z$, which is the same as the joint distribution of the normal random variables $X|\{Z=z\}$ and $Y|\{Z=z\}$. To be extra clear, give the mean vector and covariance matrix for $[X,Y]^\top$ given $Z=z$.
+
+    \item Compute the distribution of $X|_{\{Z=z\}}$ conditioned on $Y|_{\{ Z=z\} }= y$.
+
+\item  Compute the conditional distribution of  $  X | _{\left[\begin{array}{r} Y=y\\  Z=z\end{array} \right] } $, or more compactly, $ X_{|Y=y,Z=z}$, the conditional distribution of  $X$ given the vector $[Y=y,Z=z]^\top$.
+
+    \item Compare your answers for (b) and (c).
+\end{enumerate}
+
+\newpage
+
+ %Prob. 6  Recursion
+\item  Let $({\cal X}, \real, <\cdot, \cdot>)$ be a finite-dimensional inner product space. Our objective is to understand recursion relations similar to what we see in RLS and the Kalman filter. With that in mind, let $\{y_1, \cdots, y_N \}$ be a linearly independent set in ${\cal X}$. For $1 \le k \le N$ define     $$M_k: = \spanof{y_1, \cdots, y_k}$$
+      and for $x \in {\cal X}$ define $ \widehat{x}_k := \mathrm{arg~min}_{m\in M_k} ||x-m||,$ which is the orthogonal projection of $x$ onto $M_k$.
+  \begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item  Suppose that for some $1 \le k < N$, we have $y_{k+1} \perp M_k$ (interpretation: the new measurement $y_{k+1}$ is orthogonal to the previous measurements). Show that there exists $\beta \in \real$ such that
+$$\widehat{x}_{k+1} = \widehat{x}_k + \beta y_{k+1},$$
+and give a formula for $\beta$.
+
+\item We no longer make any hypothesis about $y_{k+1}$ being orthogonal to $M_k$. What we do now is, for each $1 \le k < N$, define
+$$\widehat{y}_{k+1|k} = \mathrm{arg~min}_{m\in M_{k}} ||y_{k+1}-m||, $$
+which we interpret as the orthogonal projection of the new measurement $y_{k+1}$ onto the subspace generated by the previous measurements.
+Show that there exists $\beta \in \real$ such that
+$$\widehat{x}_{k+1} = \widehat{x}_k + \beta (y_{k+1} - \widehat{y}_{k+1|k} ),$$
+and give a formula for $\beta$. \\
+
+\textbf{Remark:} The error term $ (y_{k+1} - \widehat{y}_{k+1|k} )$ is the ``innovations'' in the case of the Kalman filter and RLS. What is particularly nice in the case of RLS and the Kalman filter, where we have a model such as $y_k = C_k x_k + v_k$, we can compute $\widehat{y}_{k+1|k}$ directly from $ \widehat{x}_k$, often with a formula such as $\widehat{y}_{k+1|k} = C_{k+1}  \widehat{x}_k$. In other words, we do not have to solve an extra optimization problem in order to compute $\widehat{y}_{k+1|k};$ instead, we can bootstrap from the previous solution to the optimization problem.
+\end{enumerate}
+
+
+
+%End of list of HW Problems
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+{\bf Hints}
+\end{center}
+
+\noindent \textbf{Hints: Prob. 1 }  Use the \texttt{help eig} command in MATLAB.
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 2}  Recall that for a symmetric matrix $M=\left[  \begin{array}{cc} A & B \\
+B^\top & C \end{array} \right]$
+the following are equivalent:
+ \begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item $M \succ 0$
+
+\item $A \succ 0$ and $C-B^\top A^{-1} B \succ 0$
+
+\item $C \succ 0$ and $A-B C^{-1} B^\top \succ 0$
+
+\end{enumerate}
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 3 } This is an under determined system of equations and not an over determined system of equations.
+
+\vspace{1cm}
+
+\noindent \textbf{Hints: Prob. 4 } Recall our formulas (using $C := \mathwitch$ for convenience):
+$$ \widehat{K}=(C^\top Q^{-1}C)^{-1} C^\top Q^{-1}~~\mbox{and}~~E\{ (\widehat{x}-x)(\widehat{x}-x)^\top \}=(C^\top Q^{-1}C)^{-1}  $$
+For (a), you use the first 2 rows of $y$ and $C$ and the upper $2 \times 2 $ part of $Q$. For (b), you use the first 3 rows of $y$ and $C$, as well as the upper $3 \times 3 $ part of $Q$. You see the pattern, I hope. Do all the calculations in MATLAB. You do not have to turn in your code.
+\vspace{1cm}
+
+
+\noindent \textbf{Hints: Prob. 5 } Print out the handout on Jointly Gaussian Random Vectors, and read it carefully.  Note \textbf{Fact 1:} Conditional Distributions of Gaussian Random Vectors
+
+ \begin{enumerate}
+\setlength{\itemsep}{.1in}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\item Identify $X_1 =  \left[\begin{array}{r} X \\ Y\end{array} \right] $ and $X_2 = Z$. Based on this, identify and write down $\Sigma_{11}$, $\Sigma_{12}$, $\Sigma_{21}$, and $\Sigma_{22}$, and then $\mu_1$ and $\mu_2$, and finally, note that $x_2=z$. Now apply the formulas for $\mu_{1|2}$ and $\Sigma_{1|2}$. These are the mean and covariance of the jointly normally distributed random variables $X_{|Z=z}$ and $Y_{|Z=z}$.
+
+  \item From (a), we know   $X_{|Z=z}$ and $Y_{|Z=z}$ are jointly distributed normal random variables, and we know their mean and covariance. Rename the mean $\mu$ and the covariance $\Sigma$ (i.e., $\mu_{1|2} \to \mu$ and $\Sigma_{1|2} \to \Sigma$). Using Fact 1, identify $X_1 =  X_{|Z=z}$ and $X_2 = Y_{|Z=z}$, and then  identify and write down $\Sigma_{11}$, $\Sigma_{12}$, $\Sigma_{21}$, and $\Sigma_{22}$, and then $\mu_1$ and $\mu_2$, and finally, note that $x_2=y$.  Now apply the formulas for $\mu_{1|2}$ and $\Sigma_{1|2}$. These are the mean and covariance of a normally distributed random variable. Which one? If you do not know, work part (c) and then return here. If you do know, still work part (c).
+
+  \item Go back to the very beginning with our three jointly normal random variables, and this time identify $X_1 =  X$ and $X_2 = \left[\begin{array}{r} Y \\ Z\end{array} \right] $. Based on this, identify and write down $\Sigma_{11}$, $\Sigma_{12}$, $\Sigma_{21}$, and $\Sigma_{22}$, and then $\mu_1$ and $\mu_2$, and finally, note that $x_2=\left[\begin{array}{r} y \\ z\end{array} \right] $. Now apply the formulas for $\mu_{1|2}$ and $\Sigma_{1|2}$. These are the mean and covariance of the normally distributed random variable $X_{|Y=y,Z=z}$.
+
+      \item Read again the handout on Jointly Gaussian Random Vectors. Go back to the beginning and repeat as necessary: \textbf{FACT 4:} \textit{If we have jointly distributed normal random vectors, when we condition one block of vectors on another, we always obtain either a jointly distributed normal random vector or, if only a scalar quantity is left,  a normally distributed random variable.} This is an amazingly useful property of Gaussian (i.e., normal) random variables.
+
+\end{enumerate}
+
+\vspace{1cm}
+
+
+\noindent \textbf{Hints: Prob. 6 } There are several ways to approach part (a):
+\begin{itemize}
+\item Method 1: Let $G_k$ be the Gram matrix for $M_k$ and $G_{k+1}$ be the Gram matrix for $M_{k+1}$. Then, using $y_{k+1} \perp M_k$, you deduce that
+    $$G_{k+1} = \left[ \begin{array}{cc} G_k & 0_{1 \times k} \\ 0_{k \times 1} & <y_{k+1}, y_{k+1}> \end{array} \right] $$
+    Use this block diagonal structure to relate the solution of the normal equations for $M_{k+1}$ to the solution of the normal equations for $M_{k}$.
+
+\item Method 2: The solution of the optimization problem depends on the subspaces $M_k$ and not on the bases you use for them.  Apply Gram Schmidt to produce an ortho\textbf{normal} basis for $M_k$. Relate it to an orthornormal basis for $M_{k+1}$. Then use what you know about the orthogonal projection of $x$ onto sets with orthonormal bases.
+
+\end{itemize}
+
+For part (b), we know from the Projection Theorem that $y_{k+1} - \widehat{y}_{k+1|k}$ is orthogonal to $M_k$. If you need a second hint, note that
+$$M_{k+1} = M_k \oplus \spanof{ y_{k+1} }  =  M_k \oplus \spanof{ y_{k+1} - v },$$
+for any $v\in M_k$. Hence, because $\widehat{y}_{k+1|k} \in M_k$ by definition, we have
+$$M_{k+1} = M_k \oplus \spanof{ y_{k+1} - \widehat{y}_{k+1|k} }~~\mbox{and}~~ M_k \perp (y_{k+1} - \widehat{y}_{k+1|k}).$$
+You can now apply your result from (a).
+
+\newpage
+
+
+\end{document}
+
+

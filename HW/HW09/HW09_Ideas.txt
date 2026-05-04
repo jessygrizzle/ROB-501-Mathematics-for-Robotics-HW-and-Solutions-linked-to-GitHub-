@@ -1,0 +1,9 @@
+
+
+Estimate derivatives numerically
+
+1) Symmetric difference  [f(x+delta e_i) - f(x-delta e_i) ]/ (2 delta)
+
+2) Fit Ax+b to function values. 
+
+3) 

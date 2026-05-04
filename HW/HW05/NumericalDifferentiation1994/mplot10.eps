@@ -1,0 +1,401 @@
+%!PS-Adobe-1.0 
+%%Creator: MATRIXx V2.4
+%%CreationDate: 10-SEP-93 08:43:09
+%%DocumentFonts: Helvetica-Bold
+%%Pages: 1
+%%BoundingBox: 0 0 696 484
+%%EndComments
+save
+%=======================  USER CONFIGURABLE PARAMETERS  ========================
+% Orientation:  0=portrait,   1=landscape
+% Color         0=Black&White 1=Color
+% X Y scaling:  1=largest size, .5=half size, etc
+% X justify:    1=left,  2=center,3=right, >3=offset(units .01 in) from left
+% Y justify:    1=bottom,2=center,3=top    >3=offset(units .01 in) from bottom
+% Encapsulated PostScript: 0=no, 1=yes.  %%BoundingBox xy scaling is 1 1
+%                          if xy scaling is changed manually, %%BoundingBox
+%                          above must be recalculated using  0 0 boxw boxh
+%                          (see PostScript calculations for boxw,boxh below)
+/PSland     1 def      /PScolor    0 def
+/PSxscale   1 def      /PSyscale   1 def
+/PSxjust    1 def      /PSyjust    1 def
+/PSeps      1 def       
+%===============================================================================
+PSland 1 eq {/grafw 696 def /grafh 540 def}
+            {/grafw 540 def /grafh 696 def} ifelse
+PSeps  1 ne {initgraphics  PSland 1 eq {90 rotate 48 -576 translate}
+                                       {36 48 translate } ifelse } if
+/xmax 1 def  /ymax 0.69481 def
+/boxw grafw PSxscale mul def  /boxh grafw PSyscale mul ymax xmax div mul def
+boxh grafh gt {/boxw grafh boxh div boxw mul def  /boxh grafh def} if 
+%
+/np /newpath load def   /cp /closepath load def
+/rm /rmoveto load def   /rl /rlineto load def
+/mt /moveto  load def   /lt /lineto  load def
+/st /stroke  load def   /sw /setlinewidth load def
+/pt {moveto closepath stroke} def  /pp {2 copy pt neg pt} def
+/P2 {moveto rlineto stroke} def    /P3 {moveto rlineto rlineto stroke} def
+/dl {/ll exch def /ls exch def} def
+/vl {ls moveto 0 ll rlineto stroke} def
+/hl {ls exch moveto ll 0 rlineto stroke} def
+/mvl {/n exch def dl /ml exch def /ms exch def
+       n {ms vl /ms ms ml add def} repeat} def
+/mhl {/n exch def dl /ml exch def /ms exch def
+       n {ms hl /ms ms ml add def} repeat} def
+/trsw  {tr3wid mul setlinewidth} def
+/RECT  {/h exch def /w exch def np mt 0 h rl  w 0 rl  0 h neg rl  cp} def
+/TEXT  {0 fh -.72 mul rmoveto show} def
+/TEXTC {dup stringwidth pop -.5 mul fh -.35 mul rmoveto show} def
+/TEXTJ {/xyj exch def dup stringwidth pop -.5 mul 
+         xyj 10 idiv 1 sub mul -.72 -.35 .23 xyj 10 mod 1 sub
+         index 4 1 roll pop pop pop fh mul rmoveto show} def
+/BAR   {-48 div 1 add setgray RECT fill 0 setgray} def
+/MARK  {mt dup stringwidth pop -.525 mul fh -.35 mul rmoveto show} def
+/STAR  {mt (X) stringwidth pop -.525 mul fh -1.1 mul rmoveto 2 2 scale
+        currentlinewidth (*) false charpath 1 trsw stroke .5 .5 scale sw} def
+/TSIZE {/fh exch def .75 div /fw exch def /Helvetica-Bold
+         findfont [fw 0 0 fh 0 0] makefont setfont} def
+/TRANS {/TY exch def /TX exch def /SY exch def /SX exch def grestore gsave
+         SX SY scale TX TY translate  /tr3mat matrix currentmatrix def
+        /tr3wid vdwid SX div def  /cw 3 tr3wid mul def  3 trsw} def
+%
+0 0 0 setrgbcolor [] 0 setdash 2 setlinejoin 0 setlinecap
+/dots boxw .24 div def  /vdwid xmax dots div def
+%
+PSxjust abs 3 gt {PSxjust .72 mul}
+{grafw boxw sub 0 PSxjust 2 eq {pop .5} if PSxjust 3 eq {pop 1} if mul} ifelse
+PSyjust abs 3 gt {PSyjust .72 mul}
+{grafh boxh sub 0 PSyjust 2 eq {pop .5} if PSyjust 3 eq {pop 1} if mul} ifelse
+translate
+%
+boxw xmax div boxh ymax div scale
+/vdmat matrix currentmatrix def gsave
+%%EndProlog
+%
+%
+5.00000E-05 5.00000E-05 10000 6948.1 TRANS
+1 trsw
+3144 304 1120 72 19 mvl
+/onoff 2 cw mul def   [onoff] cw setdash
+0 5668 4360 1120 P2
+0 5668 5880 1120 P2
+0 5668 7400 1120 P2
+240 320 TSIZE
+2840 800 mt (0) TEXTC
+4360 800 mt (.5) TEXTC
+5880 800 mt (1) TEXTC
+7400 800 mt (1.5) TEXTC
+8920 800 mt (2) TEXTC
+[] 0 setdash
+1261.7 141.7 2840 72 39 mhl
+/onoff 2 cw mul def   [onoff] cw setdash
+6080 0 2840 1829 P2
+6080 0 2840 2537 P2
+6080 0 2840 3246 P2
+6080 0 2840 3954 P2
+6080 0 2840 4663 P2
+6080 0 2840 5371 P2
+6080 0 2840 6080 P2
+2600 1120 mt (-40) 32 TEXTJ
+2600 1829 mt (-30) 32 TEXTJ
+2600 2537 mt (-20) 32 TEXTJ
+2600 3246 mt (-10) 32 TEXTJ
+2600 3954 mt (0) 32 TEXTJ
+2600 4663 mt (10) 32 TEXTJ
+2600 5371 mt (20) 32 TEXTJ
+2600 6080 mt (30) 32 TEXTJ
+2600 6788 mt (40) 32 TEXTJ
+[] 0 setdash
+6080 0 2840 3954 P2
+3 trsw
+np 2840 1120 mt 6080 0 rl 0 5668 rl -6080 0 rl cp st
+5880 320 mt (time\(sec\)) TEXTC
+1424 3954 mt currentpoint translate 90 rotate
+(real & est.values in 1st derivative) TEXTC tr3mat setmatrix
+%
+3.04000E-05 3.04000E-05 21118 17931 TRANS
+0 -4661.3 10000 9322.6 RECT clip np
+PScolor 0 ne {1 0 0 setrgbcolor} if
+np 0 0 mt 125 3391 rl 250 -5241 rl 125 -1212 rl 125 916 rl 250 4987 rl
+ 125 1047 rl 125 -1102 rl 250 -5401 rl 125 -1264 rl 125 883 rl 250 4986 rl
+ 125 1078 rl 125 -1051 rl 250 -5244 rl 125 -1163 rl 125 999 rl 250 5241 rl
+ 125 1212 rl 125 -916 rl 250 -4987 rl 125 -1047 rl 125 1102 rl 250 5401 rl
+ 125 1264 rl 125 -883 rl 250 -4986 rl 125 -1078 rl 125 1051 rl 250 5244 rl
+ 125 1163 rl 125 -999 rl 250 -5241 rl 125 -1212 rl 125 916 rl 250 4987 rl
+ 125 1047 rl 125 -1102 rl 250 -5401 rl 125 -1264 rl 125 883 rl 250 4986 rl
+ 125 1078 rl 125 -1051 rl 250 -5244 rl 125 -1163 rl 125 999 rl 250 5241 rl
+ 125 1212 rl 125 -916 rl 250 -4987 rl 125 -1047 rl 125 1102 rl 250 5401 rl
+ 125 1264 rl 125 -883 rl 250 -4986 rl 125 -1078 rl 125 1051 rl 250 5244 rl
+ 125 1163 rl st
+1000 0 7000 4195 P2
+394.74 526.32 TSIZE
+8250 4195 mt (real) 12 TEXTJ
+/onoff 3 cw mul def   [onoff] 0 setdash
+PScolor 0 ne {0 0.8 0 setrgbcolor} if
+np 0 0 mt 500 0 rl 125 -1661 rl 125 1988 rl 125 2331 rl 125 543 rl 125 -180 rl
+ 125 -2493 rl 125 -2872 rl 125 -2248 rl 125 1063 rl 125 2990 rl 125 3477 rl
+ 125 600 rl 125 -2433 rl 125 -2942 rl 125 -1543 rl 125 -411 rl 125 999 rl
+ 125 1892 rl 125 1794 rl 125 2465 rl 125 23 rl 125 -2843 rl 125 -3811 rl
+ 125 -962 rl 125 1516 rl 125 3259 rl 125 2520 rl 125 361 rl 125 -1293 rl
+ 125 -1709 rl 125 -2173 rl 125 -1578 rl 125 751 rl 125 3357 rl 125 2188 rl
+ 125 1003 rl 125 -544 rl 125 -1659 rl 125 -2689 rl 125 -2119 rl 125 784 rl
+ 250 5294 rl 125 1034 rl 125 -2007 rl 125 -2119 rl 125 -2750 rl 125 -1078 rl
+ 125 1297 rl 125 1969 rl 250 3131 rl 125 -650 rl 125 -1988 rl 125 -2265 rl
+ 125 -1555 rl 125 722 rl 125 2590 rl 125 1818 rl 125 1380 rl 125 -312 rl
+ 125 -2495 rl 125 -2635 rl 125 -1123 rl 125 1255 rl 125 3095 rl 125 1652 rl
+ 125 702 rl 125 289 rl 125 -1597 rl 125 -2002 rl 125 -2760 rl 125 552 rl
+ 125 2815 rl 250 0 rl st
+1000 0 7000 3263 P2
+8250 3263 mt (estim.) 12 TEXTJ
+0 0 0 setrgbcolor
+%
+0.0001 0.0001 5000 3474.1 TRANS
+[] 0 setdash
+%
+5.00000E-05 5.00000E-05 10000 6948.1 TRANS
+1 trsw
+-6856 304 -5828.1 72 19 mvl
+/onoff 2 cw mul def   [onoff] cw setdash
+0 5668 -5640 -5828 P2
+0 5668 -4120 -5828 P2
+0 5668 -2600 -5828 P2
+240 320 TSIZE
+-7160 -6148 mt (0) TEXTC
+-5640 -6148 mt (.5) TEXTC
+-4120 -6148 mt (1) TEXTC
+-2600 -6148 mt (1.5) TEXTC
+-1080 -6148 mt (2) TEXTC
+[] 0 setdash
+-5592 236.17 -7160 72 23 mhl
+/onoff 2 cw mul def   [onoff] cw setdash
+-5119.6 708.52 -7160 6080 7 mhl
+-7400 -5828 mt (-1200) 32 TEXTJ
+-7400 -5120 mt (-900) 32 TEXTJ
+-7400 -4411 mt (-600) 32 TEXTJ
+-7400 -3703 mt (-300) 32 TEXTJ
+-7400 -2994 mt (0) 32 TEXTJ
+-7400 -2286 mt (300) 32 TEXTJ
+-7400 -1577 mt (600) 32 TEXTJ
+-7400 -869 mt (900) 32 TEXTJ
+-7400 -160 mt (1200) 32 TEXTJ
+[] 0 setdash
+6080 0 -7160 -2994 P2
+3 trsw
+np -7160 -5828 mt 6080 0 rl 0 5668 rl -6080 0 rl cp st
+-4120 -6628 mt (time\(sec\)) TEXTC
+-9056 -2994 mt currentpoint translate 90 rotate
+(real &est.values in 2nd derivative) TEXTC tr3mat setmatrix
+%
+3.04000E-05 3.04000E-05 4671.1 6503.4 TRANS
+0 -4661.3 10000 9322.6 RECT clip np
+PScolor 0 ne {1 0 0 setrgbcolor} if
+np 0 0 mt 125 -2555 rl 125 -1313 rl 125 927 rl 125 2612 rl 125 2755 rl
+ 125 1274 rl 125 -963 rl 125 -2642 rl 125 -2779 rl 125 -1292 rl 125 951 rl
+ 125 2638 rl 125 2783 rl 125 1302 rl 125 -935 rl 125 -2614 rl 125 -2754 rl
+ 125 -1267 rl 125 973 rl 125 2657 rl 125 2797 rl 125 1313 rl 125 -927 rl
+ 125 -2612 rl 125 -2755 rl 125 -1274 rl 125 963 rl 125 2642 rl 125 2779 rl
+ 125 1292 rl 125 -951 rl 125 -2638 rl 125 -2783 rl 125 -1302 rl 125 935 rl
+ 125 2614 rl 125 2753 rl 125 1268 rl 125 -973 rl 125 -2657 rl 125 -2797 rl
+ 125 -1313 rl 125 927 rl 125 2612 rl 125 2755 rl 125 1274 rl 125 -963 rl
+ 125 -2642 rl 125 -2779 rl 125 -1292 rl 125 951 rl 125 2638 rl 125 2783 rl
+ 125 1302 rl 125 -935 rl 125 -2614 rl 125 -2753 rl 125 -1268 rl 125 973 rl
+ 125 2657 rl 125 2797 rl 125 1313 rl 125 -927 rl 125 -2612 rl 125 -2755 rl
+ 125 -1274 rl 125 963 rl 125 2642 rl 125 2779 rl 125 1292 rl 125 -951 rl
+ 125 -2638 rl 125 -2783 rl 125 -1302 rl 125 935 rl 125 2614 rl 125 2753 rl
+ 125 1268 rl 125 -973 rl 125 -2657 rl st
+1000 0 7000 4195 P2
+394.74 526.32 TSIZE
+8250 4195 mt (real) 12 TEXTJ
+/onoff 3 cw mul def   [onoff] 0 setdash
+PScolor 0 ne {0 0.8 0 setrgbcolor} if
+np 0 0 mt 500 0 rl 125 1435 rl 125 1026 rl 125 2 rl 250 -3552 rl 125 -2256 rl
+ 125 261 rl 125 1356 rl 125 3028 rl 125 2287 rl 125 132 rl 125 -3374 rl
+ 125 -3100 rl 125 -909 rl 125 1549 rl 250 4013 rl 125 556 rl 125 7 rl
+ 125 -574 rl 125 -2504 rl 125 -2682 rl 125 -352 rl 125 2357 rl 125 3278 rl
+ 125 2246 rl 125 -1450 rl 125 -2555 rl 125 -2054 rl 125 -659 rl 125 -161 rl
+ 125 1753 rl 125 2414 rl 125 1634 rl 125 -82 rl 125 -1829 rl 125 -2573 rl
+ 125 -1513 rl 125 185 rl 125 1163 rl 125 2042 rl 125 2742 rl 125 -134 rl
+ 125 -2524 rl 125 -3002 rl 125 -843 rl 125 526 rl 125 1641 rl 125 2677 rl
+ 125 1006 rl 125 -451 rl 125 -1019 rl 125 -2445 rl 125 -992 rl 125 -394 rl
+ 125 1259 rl 125 2573 rl 125 1857 rl 125 -554 rl 125 -1334 rl 125 -2152 rl
+ 125 -1933 rl 125 225 rl 125 1785 rl 125 2567 rl 125 1887 rl 125 -969 rl
+ 125 -1779 rl 125 -1498 rl 125 -1292 rl 125 -497 rl 125 689 rl 125 2636 rl
+ 125 -803 rl 250 0 rl st
+1000 0 7000 3263 P2
+8250 3263 mt (estim.) 12 TEXTJ
+0 0 0 setrgbcolor
+%
+0.0001 0.0001 5000 3474.1 TRANS
+[] 0 setdash
+%
+5.00000E-05 5.00000E-05 10000 6948.1 TRANS
+1 trsw
+3144 304 -5828.1 72 19 mvl
+/onoff 2 cw mul def   [onoff] cw setdash
+0 5668 4360 -5828 P2
+0 5668 5880 -5828 P2
+0 5668 7400 -5828 P2
+240 320 TSIZE
+2840 -6148 mt (0) TEXTC
+4360 -6148 mt (.5) TEXTC
+5880 -6148 mt (1) TEXTC
+7400 -6148 mt (1.5) TEXTC
+8920 -6148 mt (2) TEXTC
+[] 0 setdash
+-5686.4 141.7 2840 72 39 mhl
+/onoff 2 cw mul def   [onoff] cw setdash
+6080 0 2840 -5120 P2
+6080 0 2840 -4411 P2
+6080 0 2840 -3703 P2
+6080 0 2840 -2994 P2
+6080 0 2840 -2286 P2
+6080 0 2840 -1577 P2
+6080 0 2840 -869 P2
+2600 -5828 mt (-40000) 32 TEXTJ
+2600 -5120 mt (-30000) 32 TEXTJ
+2600 -4411 mt (-20000) 32 TEXTJ
+2600 -3703 mt (-10000) 32 TEXTJ
+2600 -2994 mt (0) 32 TEXTJ
+2600 -2286 mt (10000) 32 TEXTJ
+2600 -1577 mt (20000) 32 TEXTJ
+2600 -869 mt (30000) 32 TEXTJ
+2600 -160 mt (40000) 32 TEXTJ
+[] 0 setdash
+6080 0 2840 -2994 P2
+3 trsw
+np 2840 -5828 mt 6080 0 rl 0 5668 rl -6080 0 rl cp st
+5880 -6628 mt (time\(sec\)) TEXTC
+704 -2994 mt currentpoint translate 90 rotate
+(real & est. values in 3rd derivative) TEXTC tr3mat setmatrix
+%
+3.04000E-05 3.04000E-05 21118 6503.4 TRANS
+0 -4661.3 10000 9322.6 RECT clip np
+PScolor 0 ne {1 0 0 setrgbcolor} if
+np 0 0 mt 125 -2822 rl 125 2424 rl 125 2650 rl 125 1312 rl 125 -785 rl
+ 125 -2425 rl 125 -2642 rl 125 -1313 rl 125 790 rl 125 2441 rl 125 2650 rl
+ 125 1315 rl 125 -785 rl 125 -2426 rl 125 -2639 rl 125 -1311 rl 125 785 rl
+ 125 2440 rl 125 2642 rl 125 1316 rl 125 -786 rl 125 -2435 rl 125 -2645 rl
+ 125 -1315 rl 125 785 rl 125 2424 rl 125 2644 rl 125 1312 rl 125 -797 rl
+ 125 -2434 rl 125 -2650 rl 125 -1315 rl 125 783 rl 125 2428 rl 125 2637 rl
+ 125 1313 rl 125 -791 rl 125 -2433 rl 125 -2646 rl 125 -1313 rl 125 783 rl
+ 125 2438 rl 125 2644 rl 125 1316 rl 125 -784 rl 125 -2424 rl 125 -2646 rl
+ 125 -1311 rl 125 797 rl 125 2434 rl 125 2650 rl 125 1315 rl 125 -783 rl
+ 125 -2428 rl 125 -2637 rl 125 -1313 rl 125 793 rl 125 2431 rl 125 2646 rl
+ 125 1313 rl 125 -783 rl 125 -2438 rl 125 -2644 rl 125 -1316 rl 125 784 rl
+ 125 2424 rl 125 2647 rl 125 1310 rl 125 -797 rl 125 -2434 rl 125 -2650 rl
+ 125 -1315 rl 125 782 rl 125 2429 rl 125 2637 rl 125 1313 rl 125 -793 rl
+ 125 -2432 rl 125 -2645 rl 125 -1313 rl st
+1000 0 7000 4195 P2
+394.74 526.32 TSIZE
+8250 4195 mt (real) 12 TEXTJ
+/onoff 3 cw mul def   [onoff] 0 setdash
+PScolor 0 ne {0 0.8 0 setrgbcolor} if
+np 0 0 mt 500 0 rl 125 1607 rl 125 -1336 rl 125 -1996 rl 125 -37 rl 125 -546 rl
+ 125 1598 rl 125 1866 rl 125 2377 rl 125 -840 rl 125 -2394 rl 125 -3310 rl
+ 125 -497 rl 250 4774 rl 125 534 rl 125 43 rl 125 -596 rl 125 -954 rl
+ 125 -461 rl 125 -2475 rl 125 -601 rl 125 2197 rl 125 3764 rl 125 683 rl
+ 125 -1324 rl 125 -2713 rl 125 -1754 rl 125 138 rl 125 1180 rl 125 774 rl
+ 125 1354 rl 125 1627 rl 125 23 rl 125 -3139 rl 125 -1350 rl 125 -327 rl
+ 125 511 rl 125 581 rl 125 1839 rl 125 2315 rl 125 -641 rl 125 -2413 rl
+ 125 -2150 rl 125 -1068 rl 125 1998 rl 125 895 rl 125 2114 rl 125 836 rl
+ 250 -2863 rl 125 -560 rl 125 -1526 rl 125 394 rl 125 1345 rl 125 1645 rl
+ 125 1466 rl 125 -500 rl 125 -2306 rl 125 -844 rl 125 -1125 rl 125 -177 rl
+ 125 1957 rl 125 2183 rl 125 1129 rl 125 -907 rl 125 -2887 rl 125 -525 rl
+ 125 207 rl 125 -711 rl 250 1949 rl 125 3316 rl 125 163 rl 125 -3529 rl
+ 250 0 rl st
+1000 0 7000 3263 P2
+8250 3263 mt (estim.) 12 TEXTJ
+0 0 0 setrgbcolor
+%
+0.0001 0.0001 5000 3474.1 TRANS
+[] 0 setdash
+%
+5.00000E-05 5.00000E-05 10000 6948.1 TRANS
+1 trsw
+-6856 304 1120 72 19 mvl
+/onoff 2 cw mul def   [onoff] cw setdash
+0 5348 -5640 1120 P2
+0 5348 -4120 1120 P2
+0 5348 -2600 1120 P2
+240 320 TSIZE
+-7160 800 mt (0) TEXTC
+-5640 800 mt (.5) TEXTC
+-4120 800 mt (1) TEXTC
+-2600 800 mt (1.5) TEXTC
+-1080 800 mt (2) TEXTC
+[] 0 setdash
+1298.3 178.27 -7160 72 29 mhl
+/onoff 2 cw mul def   [onoff] cw setdash
+2011.4 891.36 -7160 6080 5 mhl
+-7400 1120 mt (-3) 32 TEXTJ
+-7400 2011 mt (-2) 32 TEXTJ
+-7400 2903 mt (-1) 32 TEXTJ
+-7400 3794 mt (0) 32 TEXTJ
+-7400 4685 mt (1) 32 TEXTJ
+-7400 5577 mt (2) 32 TEXTJ
+-7400 6468 mt (3) 32 TEXTJ
+[] 0 setdash
+6080 0 -7160 3794 P2
+3 trsw
+np -7160 1120 mt 6080 0 rl 0 5348 rl -6080 0 rl cp st
+-4120 320 mt (time\(sec\)) TEXTC
+-8336 3794 mt currentpoint translate 90 rotate
+(signal) TEXTC tr3mat setmatrix
+-7160 6900 mt (delay=0.075 sec \(37.5% of the window\)) 13 TEXTJ
+%
+3.04000E-05 3.04000E-05 4671.1 17668 TRANS
+0 -4398.1 10000 8796.3 RECT clip np
+PScolor 0 ne {1 0 0 setrgbcolor} if
+np 0 0 mt 125 1266 rl 125 653 rl 125 -217 rl 250 -1702 rl 125 -280 rl
+ 125 550 rl 250 2215 rl 125 447 rl 125 -447 rl 250 -2215 rl 125 -550 rl
+ 125 280 rl 250 1702 rl 125 217 rl 125 -653 rl 250 -2532 rl 125 -653 rl
+ 125 217 rl 250 1702 rl 125 280 rl 125 -550 rl 250 -2215 rl 125 -447 rl
+ 125 447 rl 250 2215 rl 125 550 rl 125 -280 rl 250 -1702 rl 125 -217 rl
+ 125 653 rl 250 2532 rl 125 653 rl 125 -217 rl 250 -1702 rl 125 -280 rl
+ 125 550 rl 250 2215 rl 125 447 rl 125 -447 rl 250 -2215 rl 125 -550 rl
+ 125 280 rl 250 1702 rl 125 217 rl 125 -653 rl 250 -2532 rl 125 -653 rl
+ 125 217 rl 250 1702 rl 125 280 rl 125 -550 rl 250 -2215 rl 125 -447 rl
+ 125 447 rl 250 2215 rl 125 550 rl 125 -280 rl 250 -1702 rl 125 -217 rl
+ 125 653 rl 125 1266 rl st
+1000 0 7000 3958 P2
+394.74 526.32 TSIZE
+8250 3958 mt (real) 12 TEXTJ
+/onoff 3 cw mul def   [onoff] 0 setdash
+PScolor 0 ne {0 0.8 0 setrgbcolor} if
+np 0 0 mt 500 0 rl 125 172 rl 125 -223 rl 125 392 rl 125 933 rl 125 1030 rl
+ 125 714 rl 125 -351 rl 125 -1035 rl 125 -1280 rl 125 -770 rl 125 187 rl
+ 125 1102 rl 125 857 rl 125 50 rl 125 -827 rl 250 -2398 rl 125 -548 rl
+ 125 -1 rl 125 645 rl 125 1060 rl 125 697 rl 125 -333 rl 125 -1074 rl
+ 125 -1215 rl 125 -625 rl 125 609 rl 125 1103 rl 125 972 rl 125 426 rl
+ 125 -132 rl 125 -893 rl 125 -948 rl 125 -279 rl 125 391 rl 125 1092 rl
+ 125 1362 rl 125 925 rl 125 9 rl 125 -602 rl 125 -677 rl 125 -551 rl 125 414 rl
+ 125 1186 rl 125 1118 rl 125 390 rl 125 -483 rl 125 -985 rl 125 -1154 rl
+ 125 -598 rl 125 45 rl 125 548 rl 125 815 rl 125 223 rl 125 -294 rl 125 -953 rl
+ 125 -1205 rl 125 -750 rl 125 70 rl 125 611 rl 125 811 rl 125 404 rl
+ 125 -469 rl 125 -1042 rl 125 -1098 rl 125 -577 rl 125 315 rl 125 853 rl
+ 125 997 rl 125 675 rl 125 130 rl 125 -606 rl 125 -860 rl 125 1503 rl
+ 250 0 rl st
+1000 0 7000 3079 P2
+8250 3079 mt (estim.) 12 TEXTJ
+/on 3 cw mul def  /off 2 cw mul def   [on off cw off] 0 setdash
+PScolor 0 ne {1 0.85 0 setrgbcolor} if
+np 0 -247 mt 125 1595 rl 125 272 rl 125 26 rl 125 -1011 rl 125 -181 rl
+ 125 -976 rl 125 989 rl 125 931 rl 125 1095 rl 250 596 rl 250 -3053 rl
+ 125 -843 rl 125 842 rl 125 914 rl 125 1152 rl 125 -265 rl 125 -1234 rl
+ 250 -1887 rl 125 -857 rl 125 57 rl 125 831 rl 125 790 rl 125 1428 rl
+ 125 -737 rl 125 -1563 rl 125 -1433 rl 250 497 rl 250 2373 rl 125 120 rl
+ 125 -203 rl 125 -602 rl 125 -1163 rl 125 -803 rl 125 1018 rl 125 1731 rl
+ 125 289 rl 125 1252 rl 125 349 rl 125 -671 rl 125 -1488 rl 125 -269 rl
+ 125 1155 rl 125 699 rl 125 1294 rl 125 504 rl 125 -967 rl 125 -580 rl
+ 125 -1731 rl 125 -151 rl 125 168 rl 125 404 rl 125 643 rl 125 832 rl
+ 125 -750 rl 125 -1183 rl 250 -1921 rl 125 295 rl 125 826 rl 125 442 rl
+ 125 784 rl 125 -521 rl 125 -1480 rl 125 -1143 rl 125 -354 rl 125 533 rl
+ 125 988 rl 125 407 rl 125 1037 rl 125 462 rl 125 -1114 rl 125 -756 rl
+ 125 -1215 rl 125 1612 rl 125 1697 rl st
+1000 0 7000 2199 P2
+8250 2199 mt (noisy) 12 TEXTJ
+grestore
+%
+%%Trailer
+PSeps 1 ne {showpage} if
+restore

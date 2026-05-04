@@ -1,0 +1,10 @@
+
+$$\widehat{A} =\left[ \begin{array}{rrr}4.042& 7.045& 3.015\\10.043& 17.034& 7.025\\16.008& 27.003& 11.049\end{array} \right].$$
+
+Evaluating the SVD of $\widehat{A}$, per 
+\begin{verbatim}
+[U,S,V]=svd(Ahat);
+\end{verbatim}
+gives
+$$ S=\left[ \begin{array}{rrr}40.285& 0.000&0.000\\0.000&0.186& 0.000\\0.000& 0.000& 0.000\end{array} \right]$$
+as expected.
